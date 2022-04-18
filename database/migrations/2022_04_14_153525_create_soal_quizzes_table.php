@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('soal_quizzes', function (Blueprint $table) {
+        Schema::create('quiz_soal', function (Blueprint $table) {
             $table->integer('id')->primary();
             $table->foreignId('quiz_id');
+            $table->foreignId('soal_id');
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('soal_quizzes');
+        Schema::dropIfExists('quiz_soal');
     }
 };

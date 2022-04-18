@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Sekolah extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "nama",
+        "alamat",
+        "nomor_telepon",
+    ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class, "sekolah_id");
+    }
 }

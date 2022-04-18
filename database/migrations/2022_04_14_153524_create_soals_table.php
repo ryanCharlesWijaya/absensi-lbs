@@ -14,8 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('soals', function (Blueprint $table) {
-            $table->integer('id')->primary();
-            $table->foreignId('pertemuan_id');
+            $table->id();
+            $table->enum("jawaban", ["a", "b", "c", "d"]);
+            $table->string("pilihan_a");
+            $table->string("pilihan_b");
+            $table->string("pilihan_c");
+            $table->string("pilihan_d");
         });
     }
 

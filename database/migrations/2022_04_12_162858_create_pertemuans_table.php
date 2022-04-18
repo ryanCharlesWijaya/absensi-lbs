@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pertemuans', function (Blueprint $table) {
             $table->integer('id')->primary();
-            $table->unsignedBigInteger('kelas_id');
+            $table->unsignedBigInteger('kurikulum_id');
             $table->date('tanggal');
         });
     }

@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class HasilQuiz extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "id",
+        "user_id",
+        "quiz_id",
+        "nilai",
+    ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, "user_id");
+    }
+
+    public function quiz()
+    {
+        return $this->hasOne(Quiz::class, "quiz_id");
+    }
 }

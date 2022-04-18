@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('id')->primary();
             $table->string('nama');
             $table->string('alamat');
-            $table->string('nomor_telelpon');
+            $table->string('nomor_telepon');
         });
     }
 

@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('absensis', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->integer('pertemuan_id');
             $table->dateTime('tanggal_absen')->nullable();
+            $table->timestamps();
         });
     }
 

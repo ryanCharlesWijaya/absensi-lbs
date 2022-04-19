@@ -14,9 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('kurikulums', function (Blueprint $table) {
-            $table->integer('id');
-            $table->foreignId('guru_id')->references('id')->on('users');
+            $table->id();
+            $table->foreignId('guru_id')->nullable();
+            $table->integer('kelas');
             $table->string('tahun_ajaran');
+            $table->timestamps();
         });
     }
 

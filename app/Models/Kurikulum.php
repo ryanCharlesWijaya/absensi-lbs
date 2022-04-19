@@ -11,11 +11,12 @@ class Kurikulum extends Model
 
     protected $fillable = [
         "guru_id",
+        "kelas",
         "tahun_ajaran",
     ];
 
     public function guru()
     {
-        return $this->hasOne(User::class, "guru_id");
+        return $this->hasOne(User::class, "id", "guru_id");
     }
 }

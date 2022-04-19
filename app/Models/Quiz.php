@@ -16,7 +16,7 @@ class Quiz extends Model
 
     public function pertemuan()
     {
-        return $this->hasOne(Pertemuan::class, "pertemuan_id");
+        return $this->hasOne(Pertemuan::class, "id", "pertemuan_id");
     }
 
     public function soals()

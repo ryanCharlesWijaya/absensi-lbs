@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('kurikulum_users', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('kurikulum_id');
+            $table->timestamps();
         });
     }
 

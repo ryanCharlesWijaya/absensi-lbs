@@ -16,7 +16,7 @@ class Pertemuan extends Model
 
     public function kurikulum()
     {
-        return $this->hasOne(Kurikulum::class, "kurikulum_id");
+        return $this->hasOne(Kurikulum::class, "id", "kurikulum_id");
     }
 
     public function absensi()

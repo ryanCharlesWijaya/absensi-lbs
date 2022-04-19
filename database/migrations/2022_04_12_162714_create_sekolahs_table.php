@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('sekolahs', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->string('nama');
             $table->string('alamat');
             $table->string('nomor_telepon');
+            $table->timestamps();
         });
     }
 

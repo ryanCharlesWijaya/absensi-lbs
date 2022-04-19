@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('hasil_quizzes', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->integer('quiz_id');
             $table->integer('nilai');
+            $table->timestamps();
         });
     }
 

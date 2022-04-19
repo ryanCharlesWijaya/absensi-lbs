@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('quizzes', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->foreignId('pertemuan_id');
             $table->dateTime('tanggal_kadaluarsa');
+            $table->timestamps();
         });
     }
 

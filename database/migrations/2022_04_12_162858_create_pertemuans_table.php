@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pertemuans', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->unsignedBigInteger('kurikulum_id');
             $table->date('tanggal');
+            $table->timestamps();
         });
     }
 

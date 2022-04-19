@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("pilihan_b");
             $table->string("pilihan_c");
             $table->string("pilihan_d");
+            $table->timestamps();
         });
     }
 

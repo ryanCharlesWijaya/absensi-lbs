@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('quiz_soal', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->foreignId('quiz_id');
             $table->foreignId('soal_id');
+            $table->timestamps();
         });
     }
 

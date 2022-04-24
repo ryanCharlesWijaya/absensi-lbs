@@ -30,6 +30,7 @@
                                         <td>{{ $kurikulum->kelas }}</td>
                                         <td>{{ $kurikulum->guru ? $kurikulum->guru->nama : "Kosong" }}</td>
                                         <td>
+                                            <a href="{{ route("guru.kurikulum.show", ["kurikulum_id" => $kurikulum->id]) }}" class="btn btn-sm btn-danger">Detail</a>
                                             <a href="{{ route("guru.kurikulum.edit", ["kurikulum_id" => $kurikulum->id]) }}" class="btn btn-sm btn-info">Edit</a>
                                         </td>
                                     </tr>

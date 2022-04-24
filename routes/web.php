@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\Guru\KurikulumController as GuruKurikulumController;
+<<<<<<< Updated upstream
 use App\Http\Controllers\User\UserController as UserManajemenController;
 use Illuminate\Support\Facades\Auth;
+=======
+use App\Http\Controllers\Guru\KurikulumResourceController as GuruKurikulumResourceController;
+>>>>>>> Stashed changes
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +41,18 @@ function () {
         Route::get("/{kurikulum_id}", [GuruKurikulumController::class, 'show'])->name("show");
         Route::get("/{kurikulum_id}/edit", [GuruKurikulumController::class, 'edit'])->name("edit");
         Route::post("/{kurikulum_id}/update", [GuruKurikulumController::class, 'update'])->name("update");
+
+        Route::group([
+            "as" => "resources."
+        ],
+        function () {
+            Route::get("/{kurikulum_id}/resources", [GuruKurikulumResourceController::class, 'index'])->name("index");
+            Route::get("/{kurikulum_id}/resources/create", [GuruKurikulumResourceController::class, 'create'])->name("create");
+            Route::post("/{kurikulum_id}/resources/store", [GuruKurikulumResourceController::class, 'store'])->name("store");
+            Route::get("/{kurikulum_id}/resources/{media_id}", [GuruKurikulumResourceController::class, 'show'])->name("show");
+            Route::get("/{kurikulum_id}/resources/{media_id}/download", [GuruKurikulumResourceController::class, 'download'])->name("download");
+            Route::post("/{kurikulum_id}/resources/{media_id}/delete", [GuruKurikulumResourceController::class, 'delete'])->name("delete");
+        });
     });
 
     Route::group([

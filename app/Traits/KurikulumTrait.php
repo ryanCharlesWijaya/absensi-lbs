@@ -38,4 +38,11 @@ trait KurikulumTrait
     {
         return $kurikulum->update($data);
     }
+
+    protected function makeAddKurikulumResourceValidator(Array $data)
+    {
+        return Validator::make($data, [
+            "file" => ["required", "max:4096", "mimes:pdf,jpeg,jpg,png,docx"]
+        ]);
+    }
 }

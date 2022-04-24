@@ -27,4 +27,26 @@ class KurikulumService {
 
         return $kurikulum->refresh();
     }
+
+    public function addKurikulumResource($data, int $kurikulum_id)
+    {
+        $kurikulum = Kurikulum::findOrFail($kurikulum_id);
+
+        $validated = $this->makeAddKurikulumResourceValidator($data)->validate();
+
+        $kurikulum->addMedia($validated["file"])
+            ->toMediaCollection();
+
+        return $kurikulum;
+    }
+
+    public function deleteKurikulumResource(int $kurikulum_id, int $media_id)
+    {
+        $kurikulum = Kurikulum::findOrFail($kurikulum_id);
+
+        $media = $kurikulum->getMedia()->where("id", $media_id)->first();
+        $media->delete();
+
+        return $kurikulum;
+    }
 }

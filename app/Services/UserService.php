@@ -37,4 +37,14 @@ class UserService {
 
         return $user->refresh();
     }
+
+    public function deleteUserResource(int $user_id)
+    {
+        $user = User::findOrFail($user_id);
+
+        $user = $user::find($user_id);
+        $user->delete();
+
+        return $user;
+    }
 }

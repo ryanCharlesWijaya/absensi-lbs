@@ -36,7 +36,7 @@ class UserController extends Controller
         try {
             $userService->createUser($request->all());
 
-            DB::commit();            
+            DB::commit();
             return redirect(route("guru.user.index"));
         } catch (Exception $e) {
             DB::rollBack();
@@ -73,6 +73,20 @@ class UserController extends Controller
 
             DB::commit();
             return redirect(route("guru.user.index"));
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+    public function delete(UserService $userService, $user_id)
+    {
+        DB::beginTransaction();
+
+        try {
+            $user = $userService->deleteUserResource($user_id);
+
+            DB::commit();
+            return redirect(route("guru.user.index", ["user_id" => $user_id]));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;

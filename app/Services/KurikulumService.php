@@ -49,4 +49,13 @@ class KurikulumService {
 
         return $kurikulum;
     }
+
+    public function createKurikulumPertemuan(Array $data)
+    {
+        $validated = $this->makeStoreValidator($data)->validate();
+
+        $kurikulum = $this->storeKurikulumInDatabase($validated);
+
+        return $kurikulum;
+    }
 }

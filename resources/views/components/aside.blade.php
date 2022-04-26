@@ -76,12 +76,28 @@
                             <span class="menu-title">Daftar Kurikulum</span>
                         </a>
                     </div>
-                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                    {{-- <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <a class="menu-link" href="{{ route("guru.kurikulum.create") }}">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
                             <span class="menu-title">Tambah Kurikulum</span>
+                        </a>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <a class="menu-link" href="{{ route("guru.kurikulum.create") }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Tambah Pertemuan</span>
+                        </a>
+                    </div> --}}
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <a class="menu-link" href="{{ route("guru.kurikulum.create") }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Daftar Pertemuan</span>
                         </a>
                     </div>
                 </div>

@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="py-8">Tambah Kurikulum</h2>
+                    <h2 class="py-8">Tambah Media</h2>
                 </div>
                 <form action="{{ route("guru.kurikulum.resources.store", ["kurikulum_id" => $kurikulum->id]) }}" method="POST" enctype="multipart/form-data" class="card-body">
                     @csrf

@@ -21,7 +21,7 @@ class TextInput extends Component
      *
      * @return void
      */
-    public function __construct($type = "text", $name, $title, $id, $info = false, $required = false, $min = false, $max = false, $value = false)
+    public function __construct($name, $title, $id, $info = false, $required = false, $min = false, $max = false, $value = false, $type = "text")
     {
         $this->type = $type;
         $this->name = $name;

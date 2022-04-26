@@ -19,7 +19,7 @@
                         required="required"
                         />
 
-                    <x-text-input
+                        <x-text-input
                         name="tahun_ajaran"
                         title="Tahun Ajaran"
                         id="tahun-ajaran-input"

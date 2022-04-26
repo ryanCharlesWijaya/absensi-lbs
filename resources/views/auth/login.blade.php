@@ -12,6 +12,7 @@
                         @csrf
 
                         <x-text-input
+                            type="text"
                             name="email"
                             title="email"
                             id="email-input"

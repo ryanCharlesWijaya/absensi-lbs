@@ -92,4 +92,5 @@ class UserController extends Controller
             throw $e;
         }
     }
+
 }

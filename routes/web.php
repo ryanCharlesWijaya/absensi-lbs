@@ -36,7 +36,7 @@ function () {
         Route::get("", [GuruKurikulumController::class, 'index'])->name("index");
         Route::get("/create", [GuruKurikulumController::class,'create'])->name("create");
         Route::post("/store", [GuruKurikulumController::class, 'store'])->name("store");
-        Route::get("/{kurikulum_id}", [GuruKurikulumController::class, 'show'])->name("show");
+        Route::get("/{kurikulum_id}/show", [GuruKurikulumController::class, 'show'])->name("show");
         Route::get("/{kurikulum_id}/edit", [GuruKurikulumController::class, 'edit'])->name("edit");
         Route::post("/{kurikulum_id}/update", [GuruKurikulumController::class, 'update'])->name("update");
 
@@ -61,6 +61,8 @@ function () {
         Route::post("/pertemuan/store", [KurikulumPertemuanController::class, 'store'])->name("store");
         Route::get("/pertemuan/{pertemuan_id}/edit", [KurikulumPertemuanController::class, 'edit'])->name("edit");
         Route::post("/pertemuan/{pertemuan_id}/update", [KurikulumPertemuanController::class, 'update'])->name("update");
+        Route::post("/pertemuan/{pertemuan_id}/delete", [KurikulumPertemuanController::class, 'delete'])->name("delete");
+
         });
     });
 

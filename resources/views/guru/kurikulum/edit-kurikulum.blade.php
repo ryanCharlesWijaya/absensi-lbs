@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="py-8">Tambah Kurikulum</h2>
+                    <h2 class="py-8">Edit Kurikulum</h2>
                 </div>
                 <form action="{{ route("guru.kurikulum.update", ["kurikulum_id" => $kurikulum->id]) }}" method="post" class="card-body">
                     @csrf

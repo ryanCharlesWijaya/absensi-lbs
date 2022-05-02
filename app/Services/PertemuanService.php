@@ -31,7 +31,6 @@ class PertemuanService {
     public function deletePertemuan(int $pertemuan_id)
     {
         $pertemuan = Pertemuan::findOrFail($pertemuan_id);
-
         $pertemuan = $pertemuan->first();
         $pertemuan->delete();
 

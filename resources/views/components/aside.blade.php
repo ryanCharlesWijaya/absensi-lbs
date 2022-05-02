@@ -76,14 +76,7 @@
                             <span class="menu-title">Daftar Kurikulum</span>
                         </a>
                     </div>
-                    <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <a class="menu-link" href="{{ route("guru.kurikulum.pertemuan.index") }}">
-                            <span class="menu-bullet">
-                                <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">Daftar Pertemuan</span>
-                        </a>
-                    </div>
+
                 </div>
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">

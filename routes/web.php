@@ -56,7 +56,6 @@ function () {
             "as" => "pertemuan."
         ],
         function () {
-        Route::get("/pertemuan", [KurikulumPertemuanController::class, 'index'])->name("index");
         Route::get("/pertemuan/create", [KurikulumPertemuanController::class,'create'])->name("create");
         Route::post("/pertemuan/store", [KurikulumPertemuanController::class, 'store'])->name("store");
         Route::get("/pertemuan/{pertemuan_id}/edit", [KurikulumPertemuanController::class, 'edit'])->name("edit");

@@ -11,6 +11,8 @@ trait PertemuanTrait
     {
         return Validator::make($data, [
             "kurikulum_id" => ["required", "int"],
+            "judul" => ["required", "string"],
+            "deskripsi" => ["required", "string"],
             "tanggal" => ["required", "date"],
         ]);
     }
@@ -19,6 +21,8 @@ trait PertemuanTrait
     {
         return Pertemuan::create([
             "kurikulum_id" => $data["kurikulum_id"],
+            "judul" => $data["judul"],
+            "deskripsi" => $data["deskripsi"],
             "tanggal" => $data["tanggal"],
         ]);
     }
@@ -26,7 +30,8 @@ trait PertemuanTrait
     protected function makeUpdateValidator(Array $data)
     {
         return Validator::make($data, [
-            "kurikulum_id" => ["sometimes","int"],
+            "judul" => ["required", "string"],
+            "deskripsi" => ["sometimes", "string"],
             "tanggal" => ["required", "date"],
         ]);
     }

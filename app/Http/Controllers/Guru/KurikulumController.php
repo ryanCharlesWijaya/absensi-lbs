@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kurikulum;
+use App\Models\Pertemuan;
 use App\Services\KurikulumService;
 use Exception;
 use Illuminate\Http\Request;
@@ -21,8 +22,9 @@ class KurikulumController extends Controller
     public function show(int $kurikulum_id)
     {
         $kurikulum = Kurikulum::findOrFail($kurikulum_id);
+        $pertemuans = Pertemuan::all();
 
-        return view("guru.kurikulum.kurikulum-detail", compact("kurikulum"));
+        return view("guru.kurikulum.kurikulum-detail", compact("kurikulum", "pertemuans"));
     }
 
     public function create()

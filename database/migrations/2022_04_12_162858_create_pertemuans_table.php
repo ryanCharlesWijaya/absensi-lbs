@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('pertemuans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('kurikulum_id');
+            $table->string('judul');
+            $table->string('deskripsi');
             $table->date('tanggal');
             $table->timestamps();
         });
-    }
+    } 
 
     /**
      * Reverse the migrations.

@@ -9,22 +9,20 @@
                 </div>
                 <form action="{{ route("guru.kurikulum.pertemuan.store") }}" method="post" class="card-body">
                     @csrf
-                        <div class="mb-3">
-                            <label for="kurikulum-input" class="form-label text-capitalize">Tahun Ajaran</label>
-                            <select name="kurikulum_id" id="kurikulum_id-input" class="form-control">
-                                <option value="">Pilih Tahun Ajaran</option>
-                                @foreach ($kurikulums as $kurikulum)
-                                    <option value="{{$kurikulum->kelas}}">{{$kurikulum->tahun_ajaran}}</option> 
-                                @endforeach
-                            </select>
-                        </div>
-                    {{-- <x-text-input
-                    type="number"
-                    name="kurikulum_id"
-                    title="Kurikulum"
-                    id="kurikulum_id-input"
+                    <input type="hidden" name="kurikulum_id" value="{{ request()->input("kurikulum_id") }}">
+
+                    <x-text-input
+                    type="text"
+                    name="judul"
+                    title="Judul Pertemuan"
+                    id="judul-input"
                     required="required"
-                    /> --}}
+                    />
+
+                    <div class="mb-3">
+                      <label for="" class="form-label">Deskripsi</label>
+                      <textarea class="form-control" name="deskripsi" id="deskripsi-input" rows="3" required="require"></textarea>
+                    </div>
 
                     <x-text-input
                     type="date"

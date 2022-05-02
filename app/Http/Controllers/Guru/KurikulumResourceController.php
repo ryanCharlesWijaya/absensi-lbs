@@ -20,7 +20,7 @@ class KurikulumResourceController extends Controller
 
         if (!$kurikulum_resource->count()) throw new ModelNotFoundException();
 
-        return view("guru.kurikulum.resource.resource-detail", compact("kurikulum_resource"));
+        return view("guru.kurikulum.resource.resource-details", compact("kurikulum_resource"));
     }
 
     public function create($kurikulum_id)
@@ -36,7 +36,7 @@ class KurikulumResourceController extends Controller
 
         try {
             $kurikulum = $kurikulumService->addKurikulumResource($request->all(), $kurikulum_id);
-
+            
             DB::commit();
             return redirect(route("guru.kurikulum.show", ["kurikulum_id" => $kurikulum_id]));
         } catch (Exception $e) {
@@ -45,7 +45,7 @@ class KurikulumResourceController extends Controller
         }
     }
 
-    public function download(Request $request, $kurikulum_id, $media_id)
+    public function download($kurikulum_id, $media_id)
     {
         $kurikulum = Kurikulum::findOrFail($kurikulum_id);
         $kurikulum_resource = $kurikulum->getMedia()->where("id", $media_id)->first();
@@ -55,7 +55,7 @@ class KurikulumResourceController extends Controller
         return response()->download($kurikulum_resource->getPath(), $kurikulum_resource->file_name);
     }
 
-    public function delete(Request $request, KurikulumService $kurikulumService, $kurikulum_id, $media_id)
+    public function delete(KurikulumService $kurikulumService, $kurikulum_id, $media_id)
     {
         DB::beginTransaction();
 

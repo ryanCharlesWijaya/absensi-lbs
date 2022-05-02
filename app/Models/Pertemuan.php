@@ -11,6 +11,8 @@ class Pertemuan extends Model
 
     protected $fillable = [
         "kurikulum_id",
+        "judul",
+        "deskripsi",
         "tanggal",
     ];
 

@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('soals', function (Blueprint $table) {
             $table->id();
+            $table->integer("kelas");
+            $table->string("soal");
             $table->enum("jawaban", ["a", "b", "c", "d"]);
             $table->string("pilihan_a");
             $table->string("pilihan_b");

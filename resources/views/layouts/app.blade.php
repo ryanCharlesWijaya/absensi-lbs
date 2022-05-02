@@ -19,6 +19,8 @@ License: For each use you must have a valid license purchased only from above li
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<link href="{{ asset("assets/plugins/global/plugins.bundle.css") }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset("assets/css/style.bundle.css") }}" rel="stylesheet" type="text/css" />
+
+		@stack('head')
 	</head>
 	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
 		<div class="d-flex flex-column flex-root">
@@ -39,6 +41,8 @@ License: For each use you must have a valid license purchased only from above li
                 @endauth
 			</div>
 		</div>
+
+		@stack('scripts')
 
 		<script src="{{ asset("assets/plugins/global/plugins.bundle.js")}}"></script>
 		<script src="{{ asset("assets/js/scripts.bundle.js") }}"></script>

@@ -10,6 +10,8 @@ class Soal extends Model
     use HasFactory;
 
     protected $fillable = [
+        "kelas",
+        "soal",
         "jawaban",
         "pilihan_a",
         "pilihan_b",

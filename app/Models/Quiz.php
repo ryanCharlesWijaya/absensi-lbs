@@ -14,6 +14,11 @@ class Quiz extends Model
         "tanggal_kadaluarsa",
     ];
 
+    public function detachAllSoals()
+    {
+        $this->soals()->detach();
+    }
+
     public function pertemuan()
     {
         return $this->hasOne(Pertemuan::class, "id", "pertemuan_id");

@@ -4,6 +4,7 @@ use App\Http\Controllers\Guru\KurikulumController as GuruKurikulumController;
 use App\Http\Controllers\User\UserController as UserManajemenController;
 use App\Http\Controllers\Guru\KurikulumResourceController as GuruKurikulumResourceController;
 use App\Http\Controllers\Guru\PertemuanController as KurikulumPertemuanController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\SoalController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -93,6 +94,20 @@ function () {
         Route::get("/{soal_id}/edit", [SoalController::class, 'edit'])->name("edit");
         Route::post("/{soal_id}/update", [SoalController::class, 'update'])->name("update");
         Route::post("/{soal_id}/delete", [SoalController::class, 'delete'])->name("delete");
+    });
+
+    Route::group([
+        "prefix" => "quiz",
+        "as" => "quiz."
+    ],
+    function () {
+        Route::get("", [QuizController::class, 'index'])->name("index");
+        Route::get("/create", [QuizController::class, 'create'])->name("create");
+        Route::post("/store", [QuizController::class, 'store'])->name("store");
+        Route::get("/{quiz_id}/detail", [QuizController::class, 'show'])->name('show');
+        Route::get("/{quiz_id}/edit", [QuizController::class, 'edit'])->name("edit");
+        Route::post("/{quiz_id}/update", [QuizController::class, 'update'])->name("update");
+        Route::post("/{quiz_id}/delete", [QuizController::class, 'delete'])->name("delete");
     });
 });
 

@@ -11,6 +11,8 @@ class SelectInput extends Component
     public $title;
     public $id;
     public $info;
+    public $multiple;
+    public $error_name = false;
     public $required = false;
     public $value;
 
@@ -19,12 +21,14 @@ class SelectInput extends Component
      *
      * @return void
      */
-    public function __construct($name, $title, $id, $info = false, $required = false, $value = false)
+    public function __construct($name, $title, $id, $info = false, $multiple = false, $error_name = false, $required = false, $value = false)
     {
         $this->name = $name;
         $this->title = $title;
         $this->id = $id;
         $this->info = $info;
+        $this->multiple = $multiple;
+        $this->error_name = $error_name;
         $this->required = $required;
         $this->value = $value;
     }

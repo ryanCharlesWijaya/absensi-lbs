@@ -50,6 +50,43 @@
                         value="{{ $user->email }}"
                     />
 
+                    <x-select-input
+                        name="role"
+                        title="Kategori User"
+                        id="role-input">
+                        <option>Pilih Kategori User</option>
+                        <option value="guru"
+                            @if (old("role"))
+                                @if(old("role") == "guru")
+                                    selected
+                                @endif
+                            @else
+                                @if($user->hasRole("guru"))
+                                    selected
+                                @endif
+                            @endif>Guru</option>
+                        <option value="siswa"
+                            @if (old("role"))
+                                @if(old("role") == "siswa")
+                                    selected
+                                @endif
+                            @else
+                                @if($user->hasRole("siswa"))
+                                    selected
+                                @endif
+                            @endif>Siswa</option>
+                        <option value="admin"
+                            @if (old("role"))
+                                @if(old("role") == "admin")
+                                    selected
+                                @endif
+                            @else
+                                @if($user->hasRole("admin"))
+                                    selected
+                                @endif
+                            @endif>Admin</option>
+                    </x-select-input>
+
                     <div class="mb-3">
                         <button class="btn btn-primary">Tambah</button>
                     </div>

@@ -13,6 +13,8 @@ class UserService {
 
         $user = $this->storeUserInDatabase($validated);
 
+        $user->assignRole($validated["role"]);
+
         return $user;
     }
 

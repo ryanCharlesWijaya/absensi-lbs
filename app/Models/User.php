@@ -45,6 +45,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function kurikulums()
+    {
+        return $this->belongsToMany(Kurikulum::class, 'kurikulum_users');
+    }
+
     public function sekolah()
     {
         return $this->hasOne(User::class, "id", "sekolah_id");

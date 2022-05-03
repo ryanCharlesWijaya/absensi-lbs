@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Services\UserService;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -34,7 +35,7 @@ class UserController extends Controller
     {
         DB::beginTransaction();
         try {
-            $userService->createUser($request->all());
+            $userService->createUser($request->all());            
 
             DB::commit();
             return redirect(route("guru.user.index"));

@@ -7,9 +7,6 @@
                 <div class="card-header">
                     <h2 class="py-8">Daftar Kurikulum</h2>
                     <div class="card-toolbar">
-                        {{-- <button class="btn btn-sm btn-primary">
-                            <i class="fas fa-plus"></i> Tambah Kurikulum
-                        </button> --}}
                         <a href="{{ route("guru.kurikulum.create") }}">
                             <button class="btn btn-sm btn-primary" >
                                 <i class="fas fa-plus"></i> Tambah Kurikulum

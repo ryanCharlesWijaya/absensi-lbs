@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Guru\KurikulumController as GuruKurikulumController;
 use App\Http\Controllers\User\UserController as UserManajemenController;
 use App\Http\Controllers\Guru\KurikulumResourceController as GuruKurikulumResourceController;
-use App\Http\Controllers\Guru\PertemuanController as KurikulumPertemuanController;
+use App\Http\Controllers\Guru\PertemuanController as GuruPertemuanController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\Siswa\DashboardController as SiswaDashboardController;
+use App\Http\Controllers\Siswa\PertemuanController as SiswaPertemuanController;
 use App\Http\Controllers\SoalController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -20,16 +23,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware("auth")->group(function () {
+    Route::get('/', [DashboardController::class, "index"])->name("dashboard");
 });
 
+// Guru Route
 Route::group([
     "prefix" => "guru",
     "as" => "guru.",
     "middleware" => ["auth"]
 ],
-function () {
+function () {    
     Route::group([
         "prefix" => "kurikulum",
         "as" => "kurikulum.",
@@ -58,11 +62,11 @@ function () {
             "as" => "pertemuan."
         ],
         function () {
-        Route::get("/pertemuan/create", [KurikulumPertemuanController::class,'create'])->name("create");
-        Route::post("/pertemuan/store", [KurikulumPertemuanController::class, 'store'])->name("store");
-        Route::get("/pertemuan/{pertemuan_id}/edit", [KurikulumPertemuanController::class, 'edit'])->name("edit");
-        Route::post("/pertemuan/{pertemuan_id}/update", [KurikulumPertemuanController::class, 'update'])->name("update");
-        Route::post("/pertemuan/{pertemuan_id}/delete", [KurikulumPertemuanController::class, 'delete'])->name("delete");
+        Route::get("/pertemuan/create", [GuruPertemuanController::class,'create'])->name("create");
+        Route::post("/pertemuan/store", [GuruPertemuanController::class, 'store'])->name("store");
+        Route::get("/pertemuan/{pertemuan_id}/edit", [GuruPertemuanController::class, 'edit'])->name("edit");
+        Route::post("/pertemuan/{pertemuan_id}/update", [GuruPertemuanController::class, 'update'])->name("update");
+        Route::post("/pertemuan/{pertemuan_id}/delete", [GuruPertemuanController::class, 'delete'])->name("delete");
 
         });
     });
@@ -108,9 +112,52 @@ function () {
         Route::post("/{quiz_id}/update", [QuizController::class, 'update'])->name("update");
         Route::post("/{quiz_id}/delete", [QuizController::class, 'delete'])->name("delete");
     });
+
+    Route::get("/", [DashboardController::class, 'index']);
+    });
+
+// Siswa Route
+Route::group([
+    "prefix" => "siswa",
+    "as" => "siswa.",
+    "middleware" => ["auth", "auth.siswa"]
+],
+function () {    
+    Route::group([
+        "prefix" => "pertemuan",
+        "as" => "pertemuan.",
+    ],
+    function () {
+        Route::get("", [SiswaPertemuanController::class, 'index'])->name("index");
+        Route::get("/create", [SiswaPertemuanController::class,'create'])->name("create");
+        Route::post("/store", [SiswaPertemuanController::class, 'store'])->name("store");
+        Route::get("/show", [SiswaPertemuanController::class, 'show'])->name("show");
+        Route::get("/edit", [SiswaPertemuanController::class, 'edit'])->name("edit");
+        Route::post("/update", [SiswaPertemuanController::class, 'update'])->name("update");
+    });
+
+    Route::get('/dashboard', [SiswaDashboardController::class, 'index'])->name('dashboard');
+
 });
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+// Route::group([
+//     "prefix" => "siswa",
+//     "as" => "siswa.",
+//     "middleware" => ["auth"]
+// ],
+
+// function () { 
+//     Route::group([
+//         "prefix" => "siswa",
+//         "as" => "siswa.",
+//     ],
+
+//     function (){
+//         Route::get("", [SiswaDashboardController::class, 'index'])->name("index");
+//     });        
+// });
+
+    Auth::routes();
+
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

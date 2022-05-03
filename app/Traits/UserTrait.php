@@ -9,15 +9,16 @@ use Illuminate\Support\Facades\Validator;
 trait UserTrait
 {
     protected function makeStoreValidator(Array $data)
-    {
+    {   
         return Validator::make($data, [
             "sekolah_id" => ["nullable", "int"],
             "nama" => ["required", "string"],
             "tanggal_lahir"=> ["required", "string"],
             "nomor_telepon" => ["required", "string"],
             "alamat" => ["nullable", "string"],
-            "email" => ["required", "string"],
-            "password" => ["required", "confirmed", "min:8"]
+            "email" => ["required", "unique:users", "string"],
+            "password" => ["required", "confirmed", "min:8"],
+            "role" => ["required", "in:guru,siswa,admin"]
         ]);
     }
 
@@ -30,7 +31,7 @@ trait UserTrait
             "nomor_telepon" => $data["nomor_telepon"],
             "alamat" => $data["alamat"],
             "email" => $data["email"],
-            "password" => $data["password"],
+            "password" => Hash::make($data["password"]),
             
         ]);
     }
@@ -44,6 +45,7 @@ trait UserTrait
             "nomor_telepon" => ["sometimes","required", "int"],
             "alamat" => ["sometimes","nullable", "string"],
             "email" => ["sometimes","required", "string"],
+            "roles" => ["required"]
         ]);
     }
 

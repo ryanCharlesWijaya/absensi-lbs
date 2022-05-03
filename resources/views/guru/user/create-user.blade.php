@@ -65,6 +65,16 @@
                         required="required"
                     />
 
+                    <x-select-input
+                        name="role"
+                        title="Kategori User"
+                        id="role-input">
+                        <option>Pilih Kategori User</option>
+                        <option value="guru" @if(old("role") == "guru") selected @endif>Guru</option>
+                        <option value="siswa" @if(old("role") == "siswa") selected @endif>Siswa</option>
+                        <option value="admin" @if(old("role") == "admin") selected @endif>Admin</option>
+                    </x-select-input>
+
                     <div class="mb-3">
                         <button class="btn btn-primary">Tambah</button>
                     </div>

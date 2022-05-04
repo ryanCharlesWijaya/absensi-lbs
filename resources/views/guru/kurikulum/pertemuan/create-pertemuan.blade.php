@@ -12,12 +12,12 @@
                     <input type="hidden" name="kurikulum_id" value="{{ request()->input("kurikulum_id") }}">
 
                     <x-text-input
-                    type="text"
-                    name="judul"
-                    title="Judul Pertemuan"
-                    id="judul-input"
-                    required="required"
-                    />
+                        type="text"
+                        name="judul"
+                        title="Judul Pertemuan"
+                        id="judul-input"
+                        required="required"
+                        />
 
                     <div class="mb-3">
                       <label for="" class="form-label">Deskripsi</label>
@@ -25,12 +25,12 @@
                     </div>
 
                     <x-text-input
-                    type="date"
-                    name="tanggal"
-                    title="Tanggal Pertemuan"
-                    id="tanggal-input"
-                    required="required"
-                    />
+                        type="date"
+                        name="tanggal"
+                        title="Tanggal Pertemuan"
+                        id="tanggal-input"
+                        required="required"
+                        />
 
                     <div class="mb-3">
                         <button class="btn btn-primary">Tambah</button>

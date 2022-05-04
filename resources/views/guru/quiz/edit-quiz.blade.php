@@ -15,32 +15,11 @@
                 <div class="card-header">
                     <h2 class="py-8">Edit Quiz</h2>
                 </div>
-                <form action="{{ route("guru.quiz.update", ["quiz_id" => $quiz->id]) }}" method="post" class="card-body">
+                <form action="{{ route("guru.kurikulum.pertemuan.quiz.update", ["pertemuan_id" => $quiz->pertemuan_id, "quiz_id" => $quiz->id]) }}" method="post" class="card-body">
                     @csrf
                     @if ($errors->any())
                         {{ $errors }}
                     @endif
-                    <x-select-input
-                        name="pertemuan_id"
-                        title="pertemuan"
-                        id="pertemuan-input"
-                        >
-                        @foreach ($pertemuans as $pertemuan)
-                            <option value="{{ $pertemuan->id }}"
-                                @if(old("pertemuan_id"))
-                                    @if (old("pertemuan_id") == $pertemuan->id)
-                                        selected
-                                    @endif
-                                @else
-                                    @if ($quiz->pertemuan_id == $pertemuan->id)
-                                        selected
-                                    @endif
-                                @endif>{{ $pertemuan->id }}</option>
-                        @endforeach
-                        {{-- temporary --}}
-                        <option value="1" selected>1</option>
-                    </x-select-input>
-
                     <x-text-input
                         type="date"
                         name="tanggal_kadaluarsa"

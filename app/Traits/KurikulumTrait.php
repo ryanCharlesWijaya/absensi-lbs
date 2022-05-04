@@ -25,6 +25,18 @@ trait KurikulumTrait
         ]);
     }
 
+    protected function makeAssignSiswaValidator(Array $data)
+    {
+        return Validator::make($data, [
+            "siswa_id" => ["required", "int"]
+        ]);
+    }
+
+    protected function assignSiswaToKurikulum(Array $data, Kurikulum $kurikulum)
+    {
+        return $kurikulum->siswas()->attach($data["siswa_id"]);
+    }
+
     protected function makeUpdateValidator(Array $data)
     {
         return Validator::make($data, [

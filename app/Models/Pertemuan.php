@@ -26,7 +26,7 @@ class Pertemuan extends Model
         return $this->hasMany(Absensi::class, "pertemuan_id");
     }
 
-    public function quiz()
+    public function quizzes()
     {
         return $this->hasMany(Quiz::class, "pertemuan_id");
     }

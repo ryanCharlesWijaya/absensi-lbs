@@ -12,37 +12,37 @@ use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
-    public function index()
+    public function show(int $pertemuan_id, int $quiz_id)
     {
-        $quizzes = Quiz::all();
+        $pertemuan = Pertemuan::findOrFail($pertemuan_id);
+        $quiz = Quiz::findOrFail($quiz_id);
 
-        return view("guru.quiz.index", compact("quizzes"));
+        return view("guru.quiz.quiz-detail", compact("pertemuan", "quiz"));
     }
 
-    public function create()
+    public function create(int $pertemuan_id)
     {
         $soals = Soal::all();
-        $pertemuans = Pertemuan::all();
+        $pertemuan = Pertemuan::findOrFail($pertemuan_id);
 
-        return view("guru.quiz.create-quiz", compact("soals", "pertemuans"));
+        return view("guru.quiz.create-quiz", compact("soals", "pertemuan"));
     }
 
-    public function store(Request $request, QuizService $quizService)
+    public function store(Request $request, QuizService $quizService, int $pertemuan_id)
     {
         DB::beginTransaction();
         try {
             $quiz = $quizService->createQuiz($request->all());
 
             DB::commit();
-            return redirect(route("guru.quiz.index"));
-            // return redirect(route("guru.kurikulum.show", ["kurikulum_id" => $quiz->pertemuan->kurikulum->id]))->with(["message" => "kurikulum succesfully created"]);
+            return redirect(route("guru.kurikulum.pertemuan.show", ["pertemuan_id" => $pertemuan_id]));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
         }
     }
 
-    public function edit($quiz_id)
+    public function edit(int $pertemuan_id, int $quiz_id)
     {
         $quiz = Quiz::findOrFail($quiz_id);
         $soals = Soal::all();
@@ -51,15 +51,28 @@ class QuizController extends Controller
         return view("guru.quiz.edit-quiz", compact("quiz", "soals", "pertemuans"));
     }
 
-    public function update(Request $request, QuizService $quizService, int $quiz_id)
+    public function update(Request $request, QuizService $quizService, int $pertemuan_id, int $quiz_id)
     {
         DB::beginTransaction();
         try {
             $quiz = $quizService->updateQuiz($request->all(), $quiz_id);
 
             DB::commit();
-            return redirect(route("guru.quiz.index"));
-            // return redirect(route("guru.kurikulum.show", ["kurikulum_id" => $quiz->pertemuan->kurikulum->id]))->with(["message" => "updated succesfully created"]);
+            return redirect(route("guru.kurikulum.pertemuan.show", ["pertemuan_id" => $pertemuan_id]));
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+    public function delete(int $pertemuan_id, int $quiz_id)
+    {
+        DB::beginTransaction();
+        try {
+            Quiz::findOrFail($quiz_id)->delete();
+
+            DB::commit();
+            return redirect(route("guru.kurikulum.pertemuan.show", ["pertemuan_id" => $pertemuan_id]));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;

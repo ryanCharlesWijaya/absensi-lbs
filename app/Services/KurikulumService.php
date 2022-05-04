@@ -17,6 +17,15 @@ class KurikulumService {
         return $kurikulum;
     }
 
+    public function assignSiswa(Array $data, int $kurikulum_id)
+    {
+        $kurikulum = Kurikulum::findOrFail($kurikulum_id);
+
+        $validated = $this->makeAssignSiswaValidator($data)->validate();
+
+        $this->assignSiswaToKurikulum($validated, $kurikulum);
+    }
+
     public function updateKurikulum(Array $data, int $kurikulum_id)
     {
         $kurikulum = Kurikulum::findOrFail($kurikulum_id);

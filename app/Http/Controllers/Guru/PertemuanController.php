@@ -13,6 +13,14 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PertemuanController extends Controller
 {
+    public function show(int $pertemuan_id)
+    {
+        $pertemuan = Pertemuan::findOrFail($pertemuan_id);
+        $quizzes = $pertemuan->quizzes;
+
+        return view("guru.kurikulum.pertemuan.pertemuan-detail", compact("pertemuan", "quizzes"));
+    }
+
     public function create()
     {
         return view("guru.kurikulum.pertemuan.create-pertemuan");
@@ -70,5 +78,4 @@ class PertemuanController extends Controller
             throw $e;
         }
     }
-    
 }

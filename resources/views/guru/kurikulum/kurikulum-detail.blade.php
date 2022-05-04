@@ -19,6 +19,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#pertemuan-tab">Pertemuan</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#siswa-tab">Siswa</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -28,11 +31,11 @@
                         <div class="tab-pane fade show active" id="detail-tab" role="tabpanel">
                             <div class="mb-4">
                                 <label for="">Kelas</label>
-                                <div>{{ $kurikulum->kelas }}</div>
+                                <h3>{{ $kurikulum->kelas }}</h3>
                             </div>
                             <div class="mb-4">
                                 <label for="">Tahun Ajaran</label>
-                                <div>{{ $kurikulum->tahun_ajaran }}</div>
+                                <h3>{{ $kurikulum->tahun_ajaran }}</h3>
                             </div>
                         </div>
                         
@@ -86,7 +89,8 @@
                                             <td>{{ $pertemuan->deskripsi }}</td>
                                             <td>{{ $pertemuan->tanggal }}</td>
                                             <td class="d-flex">
-                                                <a href="{{ route("guru.kurikulum.pertemuan.edit", ["pertemuan_id" => $pertemuan->id]) }}" class="btn btn-sm btn-info">Edit</a>
+                                                <a href="{{ route("guru.kurikulum.pertemuan.show", ["pertemuan_id" => $pertemuan->id]) }}" class="btn btn-sm btn-primary me-2">Detail</a>
+                                                <a href="{{ route("guru.kurikulum.pertemuan.edit", ["pertemuan_id" => $pertemuan->id]) }}" class="btn btn-sm btn-info me-2">Edit</a>
                                                 <form action="{{ route("guru.kurikulum.pertemuan.delete", ["pertemuan_id" => $pertemuan->id]) }}" method="POST">
                                                     @csrf
                                                     <button class="btn btn-sm btn-danger">Delete</button>
@@ -96,6 +100,35 @@
                                     @endforeach
                                 </tbody>    
                             </table>
+                        </div>
+
+                        {{-- Siswa Tab --}}
+                        <div class="tab-pane fade" id="siswa-tab" role="tabpanel">
+                            <a href="{{ route("guru.kurikulum.showAssignSiswa", ["kurikulum_id" => $kurikulum->id]) }}" class="btn btn-dark">Assign Siswa</a>
+                            <div class="table-responsive">
+                                <table class="table table-row-dashed table-row-gray-300 gy-7">
+                                    <thead>
+                                        <tr class="fw-bolder fs-6 text-gray-800">
+                                            <th>Nama</th>
+                                            <th>Tanggal Lahir</th>
+                                            <th>Nomor Telepon</th>
+                                            <th>Alamat</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($kurikulum->siswas as $siswa)
+                                            <tr>
+                                                <td>{{ $siswa->nama }}</td>
+                                                <td>{{ $siswa->tanggal_lahir }}</td>
+                                                <td>{{ $siswa->nomor_telepon }}</td>
+                                                <td>{{ $siswa->alamat }}</td>
+                                                <td>{{ $siswa->email }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

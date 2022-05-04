@@ -15,23 +15,13 @@
                 <div class="card-header">
                     <h2 class="py-8">Tambah Quiz</h2>
                 </div>
-                <form action="{{ route("guru.quiz.store") }}" method="post" class="card-body">
+                <form action="{{ route("guru.kurikulum.pertemuan.quiz.store", ["pertemuan_id" => $pertemuan->id]) }}" method="post" class="card-body">
                     @csrf
                     @if ($errors->any())
                         {{ $errors }}
                     @endif
-                    <x-select-input
-                        name="pertemuan_id"
-                        title="pertemuan"
-                        id="pertemuan-input"
-                        required="required"
-                        >
-                        @foreach ($pertemuans as $pertemuan)
-                            <option value="{{ $pertemuan->id }}">{{ $pertemuan->id }}</option>
-                        @endforeach
-                        {{-- temporary --}}
-                        <option value="1">1</option>
-                    </x-select-input>
+
+                    <input type="hidden" name="pertemuan_id" value="{{ $pertemuan->id }}">
 
                     <x-text-input
                         type="date"

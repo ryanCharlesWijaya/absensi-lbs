@@ -47,7 +47,7 @@
                             </span>
                             <!--end::Svg Icon-->
                         </span>
-                        <button class="menu-title bg-transparent">Logout</button>
+                        <button class="menu-title bg-transparent border-0">Logout</button>
                     </form>
                 </div>
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">

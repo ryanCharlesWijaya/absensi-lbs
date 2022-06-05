@@ -42,7 +42,7 @@
                         {{-- Resource Tab --}}
                         <div class="tab-pane fade" id="resource-tab" role="tabpanel">
                             <a href="{{ route("guru.kurikulum.resources.create", ["kurikulum_id" => $kurikulum->id]) }}" class="btn btn-dark">Create</a>
-                            <table class="table table-row-dashed table-row-gray-300 gy-7">
+                            <table class="table table-rounded table-striped border gy-7 gs-7">
                                 <thead>
                                     <tr class="fw-bolder fs-6 text-gray-800">
                                         <th>Nama</th>
@@ -71,7 +71,7 @@
                         {{-- Pertemuan Tab --}}
                         <div class="tab-pane fade" id="pertemuan-tab" role="tabpanel">
                             <a href="{{ route("guru.kurikulum.pertemuan.create", ["kurikulum_id" => $kurikulum->id]) }}" class="btn btn-dark">Create</a>
-                            <table class="table table-row-dashed table-row-gray-300 gy-7">
+                            <table class="table table-rounded table-striped border gy-7 gs-7">
                                 <thead>
                                     <tr class="fw-bolder fs-6 text-gray-800">
                                         <th>Nomor</th>

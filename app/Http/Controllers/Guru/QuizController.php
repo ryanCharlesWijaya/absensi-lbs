@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Guru;
 
+use App\Http\Controllers\Controller;
 use App\Models\Pertemuan;
 use App\Models\Quiz;
 use App\Models\Soal;

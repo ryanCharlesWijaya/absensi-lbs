@@ -5,10 +5,10 @@ use App\Http\Controllers\Guru\KurikulumController as GuruKurikulumController;
 use App\Http\Controllers\User\UserController as UserManajemenController;
 use App\Http\Controllers\Guru\KurikulumResourceController as GuruKurikulumResourceController;
 use App\Http\Controllers\Guru\PertemuanController as GuruPertemuanController;
-use App\Http\Controllers\QuizController as GuruQuizController;
+use App\Http\Controllers\Guru\QuizController as GuruQuizController;
+use App\Http\Controllers\Guru\SoalController as GuruSoalController;
 use App\Http\Controllers\Siswa\DashboardController as SiswaDashboardController;
 use App\Http\Controllers\Siswa\PertemuanController as SiswaPertemuanController;
-use App\Http\Controllers\SoalController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -106,13 +106,13 @@ function () {
         "as" => "soal."
     ],
     function () {
-        Route::get("", [SoalController::class, 'index'])->name("index");
-        Route::get("/create", [SoalController::class, 'create'])->name("create");
-        Route::post("/store", [SoalController::class, 'store'])->name("store");
-        Route::get("/{soal_id}/detail", [SoalController::class, 'show'])->name('show');
-        Route::get("/{soal_id}/edit", [SoalController::class, 'edit'])->name("edit");
-        Route::post("/{soal_id}/update", [SoalController::class, 'update'])->name("update");
-        Route::post("/{soal_id}/delete", [SoalController::class, 'delete'])->name("delete");
+        Route::get("", [GuruSoalController::class, 'index'])->name("index");
+        Route::get("/create", [GuruSoalController::class, 'create'])->name("create");
+        Route::post("/store", [GuruSoalController::class, 'store'])->name("store");
+        Route::get("/{soal_id}/detail", [GuruSoalController::class, 'show'])->name('show');
+        Route::get("/{soal_id}/edit", [GuruSoalController::class, 'edit'])->name("edit");
+        Route::post("/{soal_id}/update", [GuruSoalController::class, 'update'])->name("update");
+        Route::post("/{soal_id}/delete", [GuruSoalController::class, 'delete'])->name("delete");
     });
 
     Route::get("/", [DashboardController::class, 'index']);

@@ -41,7 +41,7 @@
                         <div class="tab-pane fade" id="quiz-tab" role="tabpanel">
                             <a href="{{ route("guru.kurikulum.pertemuan.quiz.create", ["pertemuan_id" => $pertemuan->id]) }}" class="btn btn-dark">Create</a>
                             <div class="table-responsive">
-                                <table class="table table-row-dashed table-row-gray-300 gy-7">
+                                <table class="table table-rounded table-striped border gy-7 gs-7">
                                     <thead>
                                         <tr class="fw-bolder fs-6 text-gray-800">
                                             <th>Tahun Ajaran</th>

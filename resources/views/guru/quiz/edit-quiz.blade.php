@@ -17,9 +17,7 @@
                 </div>
                 <form action="{{ route("guru.kurikulum.pertemuan.quiz.update", ["pertemuan_id" => $quiz->pertemuan_id, "quiz_id" => $quiz->id]) }}" method="post" class="card-body">
                     @csrf
-                    @if ($errors->any())
-                        {{ $errors }}
-                    @endif
+                    
                     <x-text-input
                         type="date"
                         name="tanggal_kadaluarsa"

@@ -41,7 +41,7 @@
                         
                         {{-- Resource Tab --}}
                         <div class="tab-pane fade" id="resource-tab" role="tabpanel">
-                            <a href="{{ route("guru.kurikulum.resources.create", ["kurikulum_id" => $kurikulum->id]) }}" class="btn btn-dark">Create</a>
+                            <a href="{{ route("guru.kurikulum.resources.create", ["kurikulum_id" => $kurikulum->id]) }}" class="btn btn-dark mb-4">Create</a>
                             <table class="table table-rounded table-striped border gy-7 gs-7">
                                 <thead>
                                     <tr class="fw-bolder fs-6 text-gray-800">
@@ -54,7 +54,8 @@
                                         <tr>
                                             <td>{{ $media->name }}</td>
                                             <td class="d-flex">
-                                                <a href="{{ route("guru.kurikulum.resources.download", ["kurikulum_id" => $kurikulum->id, "media_id" => $media->id]) }}" class="btn btn-sm btn-primary me-2">Download</a>
+                                                <a href="{{ $media->getFullUrl() }}" target="__blank" class="btn btn-sm btn-primary me-2">View</a>
+                                                <a href="{{ route("guru.kurikulum.resources.download", ["kurikulum_id" => $kurikulum->id, "media_id" => $media->id]) }}" class="btn btn-sm btn-info me-2">Download</a>
                                                 <form action="{{ route("guru.kurikulum.resources.delete", ["kurikulum_id" => $kurikulum->id, "media_id" => $media->id]) }}" method="POST">
                                                     @csrf
                                                     <button class="btn btn-sm btn-danger">
@@ -70,7 +71,7 @@
 
                         {{-- Pertemuan Tab --}}
                         <div class="tab-pane fade" id="pertemuan-tab" role="tabpanel">
-                            <a href="{{ route("guru.kurikulum.pertemuan.create", ["kurikulum_id" => $kurikulum->id]) }}" class="btn btn-dark">Create</a>
+                            <a href="{{ route("guru.kurikulum.pertemuan.create", ["kurikulum_id" => $kurikulum->id]) }}" class="btn btn-dark mb-4">Create</a>
                             <table class="table table-rounded table-striped border gy-7 gs-7">
                                 <thead>
                                     <tr class="fw-bolder fs-6 text-gray-800">
@@ -104,7 +105,7 @@
 
                         {{-- Siswa Tab --}}
                         <div class="tab-pane fade" id="siswa-tab" role="tabpanel">
-                            <a href="{{ route("guru.kurikulum.showAssignSiswa", ["kurikulum_id" => $kurikulum->id]) }}" class="btn btn-dark">Assign Siswa</a>
+                            <a href="{{ route("guru.kurikulum.showAssignSiswa", ["kurikulum_id" => $kurikulum->id]) }}" class="btn btn-dark mb-4">Assign Siswa</a>
                             <div class="table-responsive">
                                 <table class="table table-rounded table-striped border gy-7 gs-7">
                                     <thead>

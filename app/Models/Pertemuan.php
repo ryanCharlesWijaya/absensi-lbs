@@ -30,4 +30,9 @@ class Pertemuan extends Model
     {
         return $this->hasMany(Quiz::class, "pertemuan_id");
     }
+
+    public function tugas()
+    {
+        return $this->hasOne(Tugas::class);
+    }
 }

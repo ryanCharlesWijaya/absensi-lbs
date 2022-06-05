@@ -9,6 +9,7 @@ use App\Http\Controllers\Guru\QuizController as GuruQuizController;
 use App\Http\Controllers\Guru\SoalController as GuruSoalController;
 use App\Http\Controllers\Siswa\DashboardController as SiswaDashboardController;
 use App\Http\Controllers\Siswa\PertemuanController as SiswaPertemuanController;
+use App\Http\Controllers\Guru\TugasController as GuruTugasController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -83,6 +84,20 @@ function () {
                 Route::get("/{quiz_id}/edit", [GuruQuizController::class, 'edit'])->name("edit");
                 Route::post("/{quiz_id}/update", [GuruQuizController::class, 'update'])->name("update");
                 Route::post("/{quiz_id}/delete", [GuruQuizController::class, 'delete'])->name("delete");
+            });
+            
+            Route::group([
+                "prefix" => "pertemuan/{pertemuan_id}/tugas",
+                "as" => "tugas.",
+            ],
+            function ()
+            {
+                Route::get("/create", [GuruTugasController::class, 'create'])->name("create");
+                Route::post("/store", [GuruTugasController::class, 'store'])->name("store");
+                Route::get("/{tugas_id}/detail", [GuruTugasController::class, 'show'])->name('show');
+                Route::get("/{tugas_id}/edit", [GuruTugasController::class, 'edit'])->name("edit");
+                Route::post("/{tugas_id}/update", [GuruTugasController::class, 'update'])->name("update");
+                Route::post("/{tugas_id}/delete", [GuruTugasController::class, 'delete'])->name("delete");
             });
         });
     });

@@ -17,8 +17,6 @@
                 </div>
                 <form action="{{ route("guru.kurikulum.pertemuan.quiz.store", ["pertemuan_id" => $pertemuan->id]) }}" method="post" class="card-body">
                     @csrf
-                    
-
                     <input type="hidden" name="pertemuan_id" value="{{ $pertemuan->id }}">
 
                     <x-text-input

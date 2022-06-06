@@ -14,6 +14,11 @@ class HasilQuiz extends Model
         "user_id",
         "quiz_id",
         "nilai",
+        "jawabans"
+    ];
+
+    protected $casts = [
+        'jawabans' => 'array',
     ];
 
     public function user()

@@ -26,4 +26,9 @@ class Kurikulum extends Model implements HasMedia
     {
         return $this->belongsToMany(User::class, 'kurikulum_users');
     }
+
+    public function pertemuans()
+    {
+        return $this->hasMany(Pertemuan::class, "kurikulum_id");
+    }
 }

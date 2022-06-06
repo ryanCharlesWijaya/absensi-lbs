@@ -17,6 +17,7 @@ class CreateJawabanTugasTable extends Migration
             $table->id();
             $table->foreignId("tugas_id");
             $table->foreignId("siswa_id");
+            $table->string("pesan")->nullable();
             $table->integer("nilai")->nullable();
             $table->timestamp("tanggal_pengumpulan")->nullable();
             $table->timestamps();

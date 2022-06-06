@@ -15,7 +15,7 @@ class PertemuanController extends Controller
     {
         $user = Auth::user();
         $kurikulum = $user->kurikulums()->first();
-        $pertemuans = $kurikulum->pertemuans;
+        $pertemuans = $kurikulum->pertemuans ?? [];
 
         return view("siswa.pertemuan.index", compact("pertemuans"));
     }

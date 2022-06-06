@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(HasilQuiz::class, "user_id", "id");
     }
+
+    public function jawaban_tugas()
+    {
+        return $this->hasMany(JawabanTugas::class, "siswa_id", "id");
+    }
 }

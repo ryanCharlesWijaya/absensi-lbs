@@ -23,4 +23,9 @@ class Tugas extends Model implements HasMedia
     {
         return $this->belongsTo(Pertemuan::class, "pertemuan_id");
     }
+
+    public function jawaban()
+    {
+        return $this->hasOne(JawabanTugas::class, "id", "tugas_id");
+    }
 }

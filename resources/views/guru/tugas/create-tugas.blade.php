@@ -13,7 +13,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="py-8">Edit Tugas</h2>
+                    <h2 class="py-8">Tambah Tugas</h2>
                 </div>
                 <form action="{{ route("guru.kurikulum.pertemuan.tugas.store", ["pertemuan_id" => $pertemuan->id]) }}" method="post" class="card-body" enctype="multipart/form-data">
                     @csrf

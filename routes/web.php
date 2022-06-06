@@ -10,6 +10,8 @@ use App\Http\Controllers\Guru\SoalController as GuruSoalController;
 use App\Http\Controllers\Siswa\DashboardController as SiswaDashboardController;
 use App\Http\Controllers\Siswa\PertemuanController as SiswaPertemuanController;
 use App\Http\Controllers\Guru\TugasController as GuruTugasController;
+use App\Http\Controllers\Siswa\TugasController as SiswaTugasController;
+use App\Http\Controllers\Siswa\QuizController as SiswaQuizController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -148,9 +150,28 @@ function () {
         Route::get("", [SiswaPertemuanController::class, 'index'])->name("index");
         Route::get("/create", [SiswaPertemuanController::class,'create'])->name("create");
         Route::post("/store", [SiswaPertemuanController::class, 'store'])->name("store");
-        Route::get("/show", [SiswaPertemuanController::class, 'show'])->name("show");
-        Route::get("/edit", [SiswaPertemuanController::class, 'edit'])->name("edit");
-        Route::post("/update", [SiswaPertemuanController::class, 'update'])->name("update");
+        Route::get("/{pertemuan_id}/edit", [SiswaPertemuanController::class, 'edit'])->name("edit");
+        Route::post("/{pertemuan_id}/update", [SiswaPertemuanController::class, 'update'])->name("update");
+
+        Route::group([
+            "prefix" => "/{pertemuan_id}/tugas",
+            "as" => "tugas."
+        ],
+        function ()
+        {
+            Route::get("/{tugas_id}/create", [SiswaTugasController::class, "create"])->name("create");
+            Route::post("/{tugas_id}/store", [SiswaTugasController::class, "upload"])->name("upload");
+        });
+
+        Route::group([
+            "prefix" => "/{pertemuan_id}/quiz",
+            "as" => "quiz."
+        ],
+        function ()
+        {
+            Route::get("/{quiz_id}/create", [SiswaQuizController::class, "kerjakanQuiz"])->name("kerjakanQuiz");
+            Route::post("/{quiz_id}/store", [SiswaQuizController::class, "kumpulQuiz"])->name("kumpulQuiz");
+        });
     });
 
     Route::get('/dashboard', [SiswaDashboardController::class, 'index'])->name('dashboard');

@@ -33,4 +33,15 @@ class QuizService {
 
         return $quiz->refresh();
     }
+
+    public function kumpulQuiz(Array $data, int $quiz_id)
+    {
+        $quiz = Quiz::findOrFail($quiz_id);
+
+        $validated = $this->makeInsertHasilQuiz($data, $quiz_id)->validate();
+
+        $hasil_quiz = $this->storeHasilQuizToDatabase($validated, $quiz);
+
+        return $hasil_quiz;
+    }
 }

@@ -2,7 +2,10 @@
 
 namespace App\Traits;
 
+use App\Models\HasilQuiz;
 use App\Models\Quiz;
+use App\Models\Soal;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 trait QuizTrait
@@ -45,5 +48,32 @@ trait QuizTrait
     protected function updateQuizInDatabase(Array $data, Quiz $quiz)
     {
         return $quiz->update($data);
+    }
+
+    protected function makeInsertHasilQuiz(Array $data)
+    {
+        return Validator::make($data, [
+            "quiz_id" => ["required", "int"],
+            "jawabans" => ["required", "array"],
+        ]);
+    }
+
+    protected function storeHasilQuizToDatabase(Array $data, Quiz $quiz)
+    {
+        $total_jawaban_benar = 0;
+
+        foreach ($data["jawabans"] as $soal_id => $jawaban) {
+            $soal = Soal::findOrFail($soal_id);
+            if (strtolower($soal->jawaban) == strtolower($jawaban)) $total_jawaban_benar++;
+        }
+
+        $nilai = ($total_jawaban_benar/ $quiz->soals()->count()) * 100;
+
+        return HasilQuiz::create([
+            "user_id" => Auth::id(),
+            "quiz_id" => $data["quiz_id"],
+            "nilai" => $nilai,
+            "jawabans" => $data["jawabans"]
+        ]);
     }
 }

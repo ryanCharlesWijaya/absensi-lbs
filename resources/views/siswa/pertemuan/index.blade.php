@@ -34,7 +34,7 @@
                                             </a>
                                         @endif
                                         @if ($pertemuan->quiz && !Auth::user()->hasil_quiz()->where("quiz_id", $pertemuan->quiz->id)->count())
-                                            <a href="{{ route("siswa.pertemuan.quiz.create", ["pertemuan_id" => $pertemuan->id, "quiz_id" => $pertemuan->quiz->id]) }}" class="btn btn-sm btn-primary me-2">
+                                            <a href="{{ route("siswa.pertemuan.quiz.kerjakanQuiz", ["pertemuan_id" => $pertemuan->id, "quiz_id" => $pertemuan->quiz->id]) }}" class="btn btn-sm btn-primary me-2">
                                                 Kerjain Quiz
                                             </a>
                                         @endif

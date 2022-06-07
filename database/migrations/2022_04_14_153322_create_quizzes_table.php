@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('pertemuan_id');
             $table->dateTime('tanggal_kadaluarsa');
+            $table->int('durasi_quiz')->default(60);
             $table->timestamps();
         });
     }

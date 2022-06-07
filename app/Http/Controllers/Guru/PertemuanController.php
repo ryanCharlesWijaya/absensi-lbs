@@ -16,7 +16,7 @@ class PertemuanController extends Controller
     public function show(int $pertemuan_id)
     {
         $pertemuan = Pertemuan::findOrFail($pertemuan_id);
-        $quizzes = $pertemuan->quizzes;
+        $quizzes = $pertemuan->quiz ? [$pertemuan->quiz] : [];
         $tugases = $pertemuan->tugas ? [$pertemuan->tugas] : [];
 
         return view("guru.kurikulum.pertemuan.pertemuan-detail", compact("pertemuan", "quizzes", "tugases"));

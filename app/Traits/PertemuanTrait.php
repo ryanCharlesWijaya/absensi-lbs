@@ -14,6 +14,7 @@ trait PertemuanTrait
             "judul" => ["required", "string"],
             "deskripsi" => ["required", "string"],
             "tanggal" => ["required", "date"],
+            "file" => ["sometimes"],
         ]);
     }
 
@@ -33,6 +34,7 @@ trait PertemuanTrait
             "judul" => ["required", "string"],
             "deskripsi" => ["sometimes", "string"],
             "tanggal" => ["required", "date"],
+            "file" => ["sometimes"],
         ]);
     }
 

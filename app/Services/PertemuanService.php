@@ -14,6 +14,9 @@ class PertemuanService {
 
         $pertemuan = $this->storePertemuanInDatabase($validated);
 
+        $pertemuan->addMedia($validated["file"])
+            ->toMediaCollection();
+
         return $pertemuan;
     }
 
@@ -24,6 +27,15 @@ class PertemuanService {
         $validated = $this->makeUpdateValidator($data)->validate();
 
         $this->updatePertemuanInDatabase($validated, $pertemuan);
+
+        if (isset($validated["file"])) {
+            $pertemuan->getFirstMedia()
+                ? $pertemuan->getFirstMedia()->delete()
+                : null;
+
+            $pertemuan->addMedia($validated["file"])
+                ->toMediaCollection();
+        }
 
         return $pertemuan->refresh();
     }

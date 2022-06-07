@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <h2 class="py-8">Tambah Pertemuan</h2>
                 </div>
-                <form action="{{ route("guru.kurikulum.pertemuan.store") }}" method="post" class="card-body">
+                <form action="{{ route("guru.kurikulum.pertemuan.store") }}" method="post" class="card-body" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="kurikulum_id" value="{{ request()->input("kurikulum_id") }}">
 
@@ -31,6 +31,17 @@
                         id="tanggal-input"
                         required="required"
                         />
+
+                    <div class="mb-3">
+                        <label for="file-input" class="form-label">Materi</label>
+                        <input class="form-control @error('file') is-invalid @enderror" type="file" name="file" id="file-input">
+
+                        @error('file')
+                            <div class="invalid-feedback">
+                                <span>{{ $message }}</span>
+                            </div>
+                        @enderror
+                    </div>
 
                     <div class="mb-3">
                         <button class="btn btn-primary">Tambah</button>

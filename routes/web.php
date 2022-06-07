@@ -150,6 +150,7 @@ function () {
         Route::get("", [SiswaPertemuanController::class, 'index'])->name("index");
         Route::get("/create", [SiswaPertemuanController::class,'create'])->name("create");
         Route::post("/store", [SiswaPertemuanController::class, 'store'])->name("store");
+        Route::get("/{pertemuan_id}/download-resource", [SiswaPertemuanController::class, 'downloadResource'])->name("downloadResource");
         Route::get("/{pertemuan_id}/edit", [SiswaPertemuanController::class, 'edit'])->name("edit");
         Route::post("/{pertemuan_id}/update", [SiswaPertemuanController::class, 'update'])->name("update");
 

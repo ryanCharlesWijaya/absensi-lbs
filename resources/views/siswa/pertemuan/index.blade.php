@@ -38,10 +38,12 @@
                                                 Kerjain Quiz
                                             </a>
                                         @endif
-                                        {{-- <form action="{{ route("guru.kurikulum.pertemuan.delete", ["pertemuan_id" => $pertemuan->id]) }}" method="POST">
-                                            @csrf
-                                            <button class="btn btn-sm btn-danger">Delete</button>
-                                        </form> --}}
+                                        @if ($pertemuan->getFirstMedia())
+                                            <form action="{{ $pertemuan->getFirstMedia()->getFullUrl() }}" method="GET">
+                                                @csrf
+                                                <button class="btn btn-sm btn-danger">Tampilkan Resource</button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

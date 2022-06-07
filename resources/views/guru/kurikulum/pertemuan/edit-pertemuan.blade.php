@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <h2 class="py-8">Edit Kurikulum</h2>
                 </div>
-                <form action="{{ route("guru.kurikulum.pertemuan.update", ["pertemuan_id" => $pertemuan->id]) }}  " method="post" class="card-body">
+                <form action="{{ route("guru.kurikulum.pertemuan.update", ["pertemuan_id" => $pertemuan->id]) }}  " method="post" class="card-body" enctype="multipart/form-data">
                     {{-- @if ($errors->any())
                         {{$errors}}
                     @endif --}}
@@ -33,6 +33,17 @@
                         id="tanggal-input"
                         value="{{ $pertemuan->tanggal}}"
                     />
+
+                    <div class="mb-3">
+                        <label for="file-input" class="form-label">Materi</label>
+                        <input class="form-control @error('file') is-invalid @enderror" type="file" name="file" id="file-input">
+
+                        @error('file')
+                            <div class="invalid-feedback">
+                                <span>{{ $message }}</span>
+                            </div>
+                        @enderror
+                    </div>
 
                     <div class="mb-3">
                         <button class="btn btn-primary">Tambah</button>

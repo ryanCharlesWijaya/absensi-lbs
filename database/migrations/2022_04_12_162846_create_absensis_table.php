@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->integer('pertemuan_id');
+            $table->enum('status', ["tidak hadir", "hadir"])->default("tidak hadir");
             $table->dateTime('tanggal_absen')->nullable();
             $table->timestamps();
         });

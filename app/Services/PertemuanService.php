@@ -17,6 +17,8 @@ class PertemuanService {
         $pertemuan->addMedia($validated["file"])
             ->toMediaCollection();
 
+        foreach ($pertemuan->kurikulum->siswas as $siswa) $pertemuan->absensi()->create(["user_id" => $siswa->id]);
+
         return $pertemuan;
     }
 

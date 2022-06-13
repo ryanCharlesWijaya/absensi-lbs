@@ -12,6 +12,9 @@
                                 <a class="nav-link active" data-bs-toggle="tab" href="#detail-tab">Detail</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#absensi-tab">Absensi</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#quiz-tab">Quiz</a>
                             </li>
                             <li class="nav-item">
@@ -39,6 +42,41 @@
                             <div class="mb-4">
                                 <label for="">Kurikulum</label>
                                 <h3>{{ $pertemuan->kurikulum->id }}</h3>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="absensi-tab" role="tabpanel">
+                            <div class="table-responsive">
+                                <table class="table table-rounded table-striped border gy-7 gs-7">
+                                    <thead>
+                                        <tr class="fw-bolder fs-6 text-gray-800">
+                                            <th>Siswa</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($pertemuan->absensi as $absensi)
+                                            <tr>
+                                                <td>
+                                                    {{ $absensi->user->nama }}
+                                                </td>
+                                                <td>
+                                                    <span class="badge badge-primary">{{ $absensi->status }}</span>
+                                                </td>
+                                                <td>
+                                                    <form action="{{ route("guru.kurikulum.pertemuan.absensi.updateStatus", ["pertemuan_id" => $pertemuan->id, "absensi_id" => $absensi->id, "status" => "hadir"]) }}" class="d-inline-block" method="POST">
+                                                        @csrf
+                                                        <button class="btn btn-sm btn-secondary">Update Ke Hadir</button>
+                                                    </form>
+                                                    <form action="{{ route("guru.kurikulum.pertemuan.absensi.updateStatus", ["pertemuan_id" => $pertemuan->id, "absensi_id" => $absensi->id, "status" => "tidak hadir"]) }}" class="d-inline-block" method="POST">
+                                                        @csrf
+                                                        <button class="btn btn-sm btn-secondary">Update Ke Tidak Hadir</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="quiz-tab" role="tabpanel">

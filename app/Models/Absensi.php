@@ -14,6 +14,7 @@ class Absensi extends Model
         "user_id",
         "pertemuan_id",
         "tanggal_absen",
+        "status"
     ];
 
     public function user()

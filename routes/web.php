@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbsensiController as GuruAbsensiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Guru\KurikulumController as GuruKurikulumController;
 use App\Http\Controllers\User\UserController as UserManajemenController;
@@ -74,6 +75,15 @@ function () {
             Route::get("/pertemuan/{pertemuan_id}/edit", [GuruPertemuanController::class, 'edit'])->name("edit");
             Route::post("/pertemuan/{pertemuan_id}/update", [GuruPertemuanController::class, 'update'])->name("update");
             Route::post("/pertemuan/{pertemuan_id}/delete", [GuruPertemuanController::class, 'delete'])->name("delete");
+
+            Route::group([
+                "prefix" => "pertemuan/{pertemuan_id}/absensi",
+                "as" => "absensi."
+            ],
+            function ()
+            {
+                Route::post("/{absensi_id}/update/status/{status}", [GuruAbsensiController::class, "updateStatus"])->name("updateStatus");
+            });
 
             Route::group([
                 "prefix" => "pertemuan/{pertemuan_id}/quiz",
@@ -153,6 +163,15 @@ function () {
         Route::get("/{pertemuan_id}/download-resource", [SiswaPertemuanController::class, 'downloadResource'])->name("downloadResource");
         Route::get("/{pertemuan_id}/edit", [SiswaPertemuanController::class, 'edit'])->name("edit");
         Route::post("/{pertemuan_id}/update", [SiswaPertemuanController::class, 'update'])->name("update");
+
+        Route::group([
+            "prefix" => "/{pertemuan_id}/absensi",
+            "as" => "absensi."
+        ],
+        function ()
+        {
+            // Route::post("/{absensi_id}/update/status/{status}", [SiswaTugasController::class, "updateStatus"])->name("updateStatus");
+        });
 
         Route::group([
             "prefix" => "/{pertemuan_id}/tugas",

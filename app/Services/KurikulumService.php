@@ -24,6 +24,8 @@ class KurikulumService {
         $validated = $this->makeAssignSiswaValidator($data)->validate();
 
         $this->assignSiswaToKurikulum($validated, $kurikulum);
+
+        foreach ($kurikulum->pertemuans as $pertemuan) $pertemuan->absensi()->create(["user_id" => $validated["siswa_id"]]);
     }
 
     public function updateKurikulum(Array $data, int $kurikulum_id)

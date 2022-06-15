@@ -134,7 +134,6 @@
                                                 <td>{{ $tugas->deskripsi }}</td>
                                                 <td>{{ $tugas->tanggal_kadaluarsa }}</td>
                                                 <td>
-                                                    <a href="{{ route("guru.semester.pertemuan.tugas.show", ["pertemuan_id" => $pertemuan->id, "tugas_id" => $tugas->id]) }}" class="btn btn-sm btn-danger">Detail</a>
                                                     <a href="{{ route("guru.semester.pertemuan.tugas.edit", ["pertemuan_id" => $pertemuan->id, "tugas_id" => $tugas->id]) }}" class="btn btn-sm btn-info">Edit</a>
                                                     <form action="{{ route("guru.semester.pertemuan.tugas.delete", ["pertemuan_id" => $pertemuan->id, "tugas_id" => $tugas->id]) }}" class="d-inline-block" method="POST">
                                                         @csrf
@@ -146,7 +145,7 @@
                                     </tbody>
                                 </table>
 
-                                @if (isset($tugasses[0]))
+                                @if (isset($tugases[0]))
                                     <table class="table table-rounded table-striped border gy-7 gs-7">
                                         <thead>
                                             <tr class="fw-bolder fs-6 text-gray-800">
@@ -156,7 +155,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
                                             @foreach ($tugases[0]->jawaban as $jawaban)
                                                 <tr>
                                                     <td>

@@ -115,6 +115,7 @@
                                             <th>Nomor Telepon</th>
                                             <th>Alamat</th>
                                             <th>Email</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -125,6 +126,9 @@
                                                 <td>{{ $siswa->nomor_telepon }}</td>
                                                 <td>{{ $siswa->alamat }}</td>
                                                 <td>{{ $siswa->email }}</td>
+                                                <td>
+                                                    <a href="{{ route("guru.semester.nilaiAkhir.create", ["semester_id" => $semester->id, "siswa_id" => $siswa->id]) }}" class="btn btn-sm btn-primary me-2">Nilai Siswa</a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

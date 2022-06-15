@@ -53,6 +53,11 @@ class User extends Authenticatable
         });
     }
 
+    public function absensis()
+    {
+        return $this->hasMany(Absensi::class, 'user_id');
+    }
+
     public function semesters()
     {
         return $this->belongsToMany(Semester::class, 'semester_users');

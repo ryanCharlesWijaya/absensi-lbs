@@ -59,6 +59,9 @@ function () {
         Route::get("/{semester_id}/assign-siswa", [GuruSemesterController::class, 'showAssignSiswa'])->name("showAssignSiswa");
         Route::post("/{semester_id}/assign-siswa", [GuruSemesterController::class, 'assignSiswa'])->name("assignSiswa");
 
+        Route::get("/{semester_id}/nilai-akhir/{siswa_id}/create", [NilaiAkhirController::class, 'create'])->name("nilaiAkhir.create");
+        Route::post("/{semester_id}/nilai-akhir/{siswa_id}/store", [NilaiAkhirController::class, 'store'])->name("nilaiAkhir.store");
+
         Route::group([
             "as" => "resources."
         ],
@@ -127,17 +130,6 @@ function () {
                 Route::get("/{jawaban_tugas_id}/nilai", [GuruJawabanTugasController::class, 'showNilai'])->name("showNilai");
                 Route::post("/{jawaban_tugas_id}/nilai", [GuruJawabanTugasController::class, 'nilai'])->name("nilai");
             });
-        });
-
-        Route::group([
-            "prefix" => "nilai-akhir",
-            "as" => "nilaiAkhir."
-        ],
-        function () {
-            Route::get("/create", [NilaiAkhirController::class, 'create'])->name("create");
-            Route::post("/store", [NilaiAkhirController::class, 'store'])->name("store");
-            Route::get("/{nilai_akhir_id}/edit", [NilaiAkhirController::class, 'edit'])->name("edit");
-            Route::post("/{nilai_akhir_id}/update", [NilaiAkhirController::class, 'update'])->name("update");
         });
     });
 

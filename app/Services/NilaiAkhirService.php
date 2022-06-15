@@ -13,7 +13,7 @@ class NilaiAkhirService {
             "siswa_id" => ["required", "int"],
             "semester_id" => ["required", "int"],
             "nilai" => ["required", "int", "min:0", "max:100"],
-        ]);
+        ])->validate();
 
         $validated["guru_id"] = Auth::id();
 
@@ -26,7 +26,7 @@ class NilaiAkhirService {
 
         $validated = Validator::make($data, [
             "nilai" => ["required", "int", "min:0", "max:100"],
-        ]);
+        ])->validate();
 
         return $nilai_akhir->update($validated["nilai"]);
     }

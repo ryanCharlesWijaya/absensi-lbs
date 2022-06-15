@@ -8,6 +8,7 @@ use App\Models\Semester;
 use App\Models\User;
 use App\Services\NilaiAkhirService;
 use Exception;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,11 +18,31 @@ class NilaiAkhirController extends Controller
     {
         $semester = Semester::findOrFail($semester_id);
         $siswa = $semester->siswas()->findOrFail($siswa_id);
+        $jawaban_tugases = $siswa->jawaban_tugas()
+            ->whereHas("tugas", function ($query) use ($semester) {
+                return $query->whereHas("pertemuan", function ($query) use ($semester) {
+                    $query->where("semester_id", $semester->id);
+                }, ">", 0);
+            }, ">", 0)
+            ->get();
 
-        return view("guru.nilai-akhir.create-nilai-akhir", compact("semester", "siswa"));
+        $hasil_quizzes = $siswa->hasil_quiz()
+            ->whereHas("quiz", function ($query) use ($semester) {
+                return $query->whereHas("pertemuan", function ($query) use ($semester) {
+                    $query->where("semester_id", $semester->id);
+                }, ">", 0);
+            }, ">", 0)
+            ->get();
+
+        $absensi_count = $siswa->absensis()
+            ->whereHas("pertemuan", function ($query) use ($semester) {
+                $query->where("semester_id", $semester->id);
+            }, ">", 0);
+
+        return view("guru.semester.nilai-akhir.create-nilai-akhir", compact("jawaban_tugases", "hasil_quizzes", "absensi_count", "semester", "siswa"));
     }
 
-    public function store(Request $request, NilaiAkhirService $nilaiAkhirService, int $semester_id)
+    public function store(Request $request, NilaiAkhirService $nilaiAkhirService, int $semester_id, int $siswa_id)
     {
         DB::beginTransaction();
         try {
@@ -41,7 +62,7 @@ class NilaiAkhirController extends Controller
         $semester = $nilai_akhir->semester;
         $siswa = $nilai_akhir->siswa;
 
-        return view("guru.nilai-akhir.create-nilai-akhir", compact("nilai_akhir", "semester", "siswa"));
+        return view("guru.semester.nilai-akhir.create-nilai-akhir", compact("nilai_akhir", "semester", "siswa"));
     }
 
     public function update(Request $request, NilaiAkhirService $nilaiAkhirService, int $semester_id, int $nilai_akhir_id)

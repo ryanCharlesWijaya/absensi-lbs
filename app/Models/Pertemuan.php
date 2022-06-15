@@ -13,15 +13,15 @@ class Pertemuan extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $fillable = [
-        "kurikulum_id",
+        "semester_id",
         "judul",
         "deskripsi",
         "tanggal",
     ];
 
-    public function kurikulum()
+    public function semester()
     {
-        return $this->hasOne(Kurikulum::class, "id", "kurikulum_id");
+        return $this->hasOne(Semester::class, "id", "semester_id");
     }
 
     public function absensi()

@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="py-8">Daftar Kurikulum</h2>
+                    <h2 class="py-8">Daftar Semester</h2>
                     <div class="card-toolbar">
                         <a href="{{ route("guru.user.create") }}" class="btn btn-sm btn-primary">
                             <i class="fas fa-plus"></i> Tambah User

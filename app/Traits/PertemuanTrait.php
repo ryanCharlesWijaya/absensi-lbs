@@ -10,7 +10,7 @@ trait PertemuanTrait
     protected function makeStoreValidator(Array $data)
     {
         return Validator::make($data, [
-            "kurikulum_id" => ["required", "int"],
+            "semester_id" => ["required", "int"],
             "judul" => ["required", "string"],
             "deskripsi" => ["required", "string"],
             "tanggal" => ["required", "date"],
@@ -21,7 +21,7 @@ trait PertemuanTrait
     protected function storePertemuanInDatabase(Array $data)
     {
         return Pertemuan::create([
-            "kurikulum_id" => $data["kurikulum_id"],
+            "semester_id" => $data["semester_id"],
             "judul" => $data["judul"],
             "deskripsi" => $data["deskripsi"],
             "tanggal" => $data["tanggal"],

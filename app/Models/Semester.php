@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Kurikulum extends Model implements HasMedia
+class Semester extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
@@ -24,11 +24,11 @@ class Kurikulum extends Model implements HasMedia
 
     public function siswas()
     {
-        return $this->belongsToMany(User::class, 'kurikulum_users');
+        return $this->belongsToMany(User::class, 'semester_users');
     }
 
     public function pertemuans()
     {
-        return $this->hasMany(Pertemuan::class, "kurikulum_id");
+        return $this->hasMany(Pertemuan::class, "semester_id");
     }
 }

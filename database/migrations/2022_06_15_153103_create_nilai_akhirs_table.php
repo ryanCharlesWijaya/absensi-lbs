@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateNilaiAkhirsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kurikulum_users', function (Blueprint $table) {
+        Schema::create('nilai_akhirs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('kurikulum_id');
+            $table->foreignId("guru_id");
+            $table->foreignId("siswa_id");
+            $table->foreignId("semester_id");
+            $table->integer("nilai");
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kurikulum_users');
+        Schema::dropIfExists('nilai_akhirs');
     }
-};
+}

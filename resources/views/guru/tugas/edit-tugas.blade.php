@@ -15,7 +15,7 @@
                 <div class="card-header">
                     <h2 class="py-8">Edit Tugas</h2>
                 </div>
-                <form action="{{ route("guru.kurikulum.pertemuan.tugas.update", ["pertemuan_id" => $pertemuan->id, "tugas_id" => $tugas->id]) }}" method="post" class="card-body" enctype="multipart/form-data">
+                <form action="{{ route("guru.semester.pertemuan.tugas.update", ["pertemuan_id" => $pertemuan->id, "tugas_id" => $tugas->id]) }}" method="post" class="card-body" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="pertemuan_id" value="{{ $pertemuan->id }}">
 

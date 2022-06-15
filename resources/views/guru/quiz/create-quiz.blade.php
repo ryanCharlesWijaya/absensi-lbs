@@ -15,7 +15,7 @@
                 <div class="card-header">
                     <h2 class="py-8">Tambah Quiz</h2>
                 </div>
-                <form action="{{ route("guru.kurikulum.pertemuan.quiz.store", ["pertemuan_id" => $pertemuan->id]) }}" method="post" class="card-body">
+                <form action="{{ route("guru.semester.pertemuan.quiz.store", ["pertemuan_id" => $pertemuan->id]) }}" method="post" class="card-body">
                     @csrf
                     <input type="hidden" name="pertemuan_id" value="{{ $pertemuan->id }}">
 

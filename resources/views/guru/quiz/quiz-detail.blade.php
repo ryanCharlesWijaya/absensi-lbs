@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <h2 class="py-8">Quiz Detail</h2>
                     <div class="card-toolbar">
-                        <a href="{{ route("guru.kurikulum.pertemuan.quiz.edit", ["pertemuan_id" => $pertemuan->id, "quiz_id" => $quiz->id]) }}" class="btn btn-sm btn-primary" >
+                        <a href="{{ route("guru.semester.pertemuan.quiz.edit", ["pertemuan_id" => $pertemuan->id, "quiz_id" => $quiz->id]) }}" class="btn btn-sm btn-primary" >
                             <i class="fas fa-plus"></i> Edit Quiz
                         </a>
                     </div>
@@ -19,8 +19,8 @@
                             <h3>{{ $quiz->tanggal_kadaluarsa }}</h3>
                         </div>
                         <div class="col-4">
-                            <label for="">Kurikulum</label>
-                            <h3>{{ $pertemuan->kurikulum->tahun_ajaran }}</h3>
+                            <label for="">Semester</label>
+                            <h3>{{ $pertemuan->semester->tahun_ajaran }}</h3>
                         </div>
                     </div>
                     <div class="table-responsive">

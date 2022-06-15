@@ -5,11 +5,11 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="py-8">Daftar Kurikulum</h2>
+                    <h2 class="py-8">Daftar Semester</h2>
                     <div class="card-toolbar">
-                        <a href="{{ route("guru.kurikulum.create") }}">
+                        <a href="{{ route("guru.semester.create") }}">
                             <button class="btn btn-sm btn-primary" >
-                                <i class="fas fa-plus"></i> Tambah Kurikulum
+                                <i class="fas fa-plus"></i> Tambah Semester
                             </button>
                         </a>
                     </div>
@@ -26,14 +26,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($kurikulums as $kurikulum)
+                                @foreach ($semesters as $semester)
                                     <tr>
-                                        <td>{{ $kurikulum->tahun_ajaran }}</td>
-                                        <td>{{ $kurikulum->kelas }}</td>
-                                        <td>{{ $kurikulum->guru ? $kurikulum->guru->nama : "Kosong" }}</td>
+                                        <td>{{ $semester->tahun_ajaran }}</td>
+                                        <td>{{ $semester->kelas }}</td>
+                                        <td>{{ $semester->guru ? $semester->guru->nama : "Kosong" }}</td>
                                         <td>
-                                            <a href="{{ route("guru.kurikulum.show", ["kurikulum_id" => $kurikulum->id]) }}" class="btn btn-sm btn-danger">Detail</a>
-                                            <a href="{{ route("guru.kurikulum.edit", ["kurikulum_id" => $kurikulum->id]) }}" class="btn btn-sm btn-info">Edit</a>
+                                            <a href="{{ route("guru.semester.show", ["semester_id" => $semester->id]) }}" class="btn btn-sm btn-danger">Detail</a>
+                                            <a href="{{ route("guru.semester.edit", ["semester_id" => $semester->id]) }}" class="btn btn-sm btn-info">Edit</a>
                                         </td>
                                     </tr>
                                 @endforeach

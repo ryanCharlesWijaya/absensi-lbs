@@ -26,7 +26,7 @@ class TugasController extends Controller
             $tugas = $tugasService->createTugas($request->all());
 
             DB::commit();
-            return redirect(route("guru.kurikulum.pertemuan.show", ["pertemuan_id" => $pertemuan_id]));
+            return redirect(route("guru.semester.pertemuan.show", ["pertemuan_id" => $pertemuan_id]));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
@@ -48,7 +48,7 @@ class TugasController extends Controller
             $tugas = $tugasService->updateTugas($request->all(), $tugas_id);
 
             DB::commit();
-            return redirect(route("guru.kurikulum.pertemuan.show", ["pertemuan_id" => $pertemuan_id]));
+            return redirect(route("guru.semester.pertemuan.show", ["pertemuan_id" => $pertemuan_id]));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
@@ -62,7 +62,7 @@ class TugasController extends Controller
             Tugas::findOrFail($tugas_id)->delete();
 
             DB::commit();
-            return redirect(route("guru.kurikulum.pertemuan.show", ["pertemuan_id" => $pertemuan_id]));
+            return redirect(route("guru.semester.pertemuan.show", ["pertemuan_id" => $pertemuan_id]));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;

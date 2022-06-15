@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <h2 class="py-8">Assign Siswa</h2>
                 </div>
-                <form action="{{ route("guru.kurikulum.assignSiswa", ["kurikulum_id" => $kurikulum->id]) }}" method="POST" enctype="multipart/form-data" class="card-body">
+                <form action="{{ route("guru.semester.assignSiswa", ["semester_id" => $semester->id]) }}" method="POST" enctype="multipart/form-data" class="card-body">
                     @csrf
                     <x-select-input
                         name="siswa_id"

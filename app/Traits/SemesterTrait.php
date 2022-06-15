@@ -2,10 +2,10 @@
 
 namespace App\Traits;
 
-use App\Models\Kurikulum;
+use App\Models\Semester;
 use Illuminate\Support\Facades\Validator;
 
-trait KurikulumTrait
+trait SemesterTrait
 {
     protected function makeStoreValidator(Array $data)
     {
@@ -16,9 +16,9 @@ trait KurikulumTrait
         ]);
     }
 
-    protected function storeKurikulumInDatabase(Array $data)
+    protected function storeSemesterInDatabase(Array $data)
     {
-        return Kurikulum::create([
+        return Semester::create([
             "guru_id" => $data["guru_id"] ?? null,
             "kelas" => $data["kelas"],
             "tahun_ajaran" => $data["tahun_ajaran"]
@@ -32,9 +32,9 @@ trait KurikulumTrait
         ]);
     }
 
-    protected function assignSiswaToKurikulum(Array $data, Kurikulum $kurikulum)
+    protected function assignSiswaToSemester(Array $data, Semester $semester)
     {
-        return $kurikulum->siswas()->attach($data["siswa_id"]);
+        return $semester->siswas()->attach($data["siswa_id"]);
     }
 
     protected function makeUpdateValidator(Array $data)
@@ -46,12 +46,12 @@ trait KurikulumTrait
         ]);
     }
 
-    protected function updateKurikulumInDatabase(Array $data, Kurikulum $kurikulum)
+    protected function updateSemesterInDatabase(Array $data, Semester $semester)
     {
-        return $kurikulum->update($data);
+        return $semester->update($data);
     }
 
-    protected function makeAddKurikulumResourceValidator(Array $data)
+    protected function makeAddSemesterResourceValidator(Array $data)
     {
         return Validator::make($data, [
             "file" => ["required", "max:4096", "mimes:pdf,jpeg,jpg,png,docx"]

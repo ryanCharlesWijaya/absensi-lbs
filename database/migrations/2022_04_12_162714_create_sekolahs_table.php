@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('sekolahs', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->string('deskripsi');
             $table->string('alamat');
             $table->string('nomor_telepon');
             $table->timestamps();

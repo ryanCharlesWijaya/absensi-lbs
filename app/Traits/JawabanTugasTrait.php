@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Models\JawabanTugas;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,6 +23,7 @@ trait JawabanTugasTrait {
             "tugas_id" => $data["tugas_id"],
             "siswa_id" => Auth::id(),
             "pesan" => $data["pesan"],
+            "tanggal_pengumpulan" => Carbon::now()->format("Y-m-d H:i:s")
         ]);
     }
 }

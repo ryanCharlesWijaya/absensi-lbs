@@ -5,9 +5,9 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="py-8">Tambah Kurikulum</h2>
+                    <h2 class="py-8">Tambah Semester</h2>
                 </div>
-                <form action="{{ route("guru.kurikulum.store") }}" method="post" class="card-body">
+                <form action="{{ route("guru.semester.store") }}" method="post" class="card-body">
                     @csrf
                     <x-text-input
                         type="number"

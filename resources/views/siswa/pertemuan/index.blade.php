@@ -28,6 +28,12 @@
                                     <td>{{ $pertemuan->deskripsi }}</td>
                                     <td>{{ $pertemuan->tanggal }}</td>
                                     <td class="d-flex">
+                                        @if (!$pertemuan->absensi()->where("user_id", Auth::id())->where("status", "hadir")->count())
+                                            <form action="{{ route("siswa.pertemuan.absensi.absen", ["pertemuan_id" => $pertemuan->id, "absensi_id" => $pertemuan->absensi()->where("user_id", Auth::id())->first()->id]) }}" method="POST">
+                                                @csrf
+                                                <button class="btn btn-sm btn-info me-2">Absen!</button>
+                                            </form>
+                                        @endif
                                         @if ($pertemuan->tugas && !Auth::user()->jawaban_tugas()->where("tugas_id", $pertemuan->tugas->id)->count())
                                             <a href="{{ route("siswa.pertemuan.tugas.create", ["pertemuan_id" => $pertemuan->id, "tugas_id" => $pertemuan->tugas->id]) }}" class="btn btn-sm btn-primary me-2">
                                                 Kumpul Tugas

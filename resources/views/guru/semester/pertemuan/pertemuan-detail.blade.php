@@ -40,8 +40,8 @@
                                 <h3>{{ $pertemuan->tanggal }}</h3>
                             </div>
                             <div class="mb-4">
-                                <label for="">Kurikulum</label>
-                                <h3>{{ $pertemuan->kurikulum->id }}</h3>
+                                <label for="">Semester</label>
+                                <h3>{{ $pertemuan->semester->id }}</h3>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="absensi-tab" role="tabpanel">
@@ -64,11 +64,11 @@
                                                     <span class="badge badge-primary">{{ $absensi->status }}</span>
                                                 </td>
                                                 <td>
-                                                    <form action="{{ route("guru.kurikulum.pertemuan.absensi.updateStatus", ["pertemuan_id" => $pertemuan->id, "absensi_id" => $absensi->id, "status" => "hadir"]) }}" class="d-inline-block" method="POST">
+                                                    <form action="{{ route("guru.semester.pertemuan.absensi.updateStatus", ["pertemuan_id" => $pertemuan->id, "absensi_id" => $absensi->id, "status" => "hadir"]) }}" class="d-inline-block" method="POST">
                                                         @csrf
                                                         <button class="btn btn-sm btn-secondary">Update Ke Hadir</button>
                                                     </form>
-                                                    <form action="{{ route("guru.kurikulum.pertemuan.absensi.updateStatus", ["pertemuan_id" => $pertemuan->id, "absensi_id" => $absensi->id, "status" => "tidak hadir"]) }}" class="d-inline-block" method="POST">
+                                                    <form action="{{ route("guru.semester.pertemuan.absensi.updateStatus", ["pertemuan_id" => $pertemuan->id, "absensi_id" => $absensi->id, "status" => "tidak hadir"]) }}" class="d-inline-block" method="POST">
                                                         @csrf
                                                         <button class="btn btn-sm btn-secondary">Update Ke Tidak Hadir</button>
                                                     </form>
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="quiz-tab" role="tabpanel">
-                            <a href="{{ route("guru.kurikulum.pertemuan.quiz.create", ["pertemuan_id" => $pertemuan->id]) }}" class="btn btn-dark mb-4">Create</a>
+                            <a href="{{ route("guru.semester.pertemuan.quiz.create", ["pertemuan_id" => $pertemuan->id]) }}" class="btn btn-dark mb-4">Create</a>
                             <div class="table-responsive">
                                 <table class="table table-rounded table-striped border gy-7 gs-7">
                                     <thead>
@@ -100,9 +100,9 @@
                                                 <td>{{ $quiz->tanggal_kadaluarsa }}</td>
                                                 <td>{{ $quiz->soals()->count() }}</td>
                                                 <td>
-                                                    <a href="{{ route("guru.kurikulum.pertemuan.quiz.show", ["pertemuan_id" => $pertemuan->id, "quiz_id" => $quiz->id]) }}" class="btn btn-sm btn-danger">Detail</a>
-                                                    <a href="{{ route("guru.kurikulum.pertemuan.quiz.edit", ["pertemuan_id" => $pertemuan->id, "quiz_id" => $quiz->id]) }}" class="btn btn-sm btn-info">Edit</a>
-                                                    <form action="{{ route("guru.kurikulum.pertemuan.quiz.delete", ["pertemuan_id" => $pertemuan->id, "quiz_id" => $quiz->id]) }}" class="d-inline-block" method="POST">
+                                                    <a href="{{ route("guru.semester.pertemuan.quiz.show", ["pertemuan_id" => $pertemuan->id, "quiz_id" => $quiz->id]) }}" class="btn btn-sm btn-danger">Detail</a>
+                                                    <a href="{{ route("guru.semester.pertemuan.quiz.edit", ["pertemuan_id" => $pertemuan->id, "quiz_id" => $quiz->id]) }}" class="btn btn-sm btn-info">Edit</a>
+                                                    <form action="{{ route("guru.semester.pertemuan.quiz.delete", ["pertemuan_id" => $pertemuan->id, "quiz_id" => $quiz->id]) }}" class="d-inline-block" method="POST">
                                                         @csrf
                                                         <button class="btn btn-sm btn-secondary">Delete</button>
                                                     </form>
@@ -114,7 +114,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tugas-tab" role="tabpanel">
-                            <a href="{{ route("guru.kurikulum.pertemuan.tugas.create", ["pertemuan_id" => $pertemuan->id]) }}" class="btn btn-dark mb-4">Create</a>
+                            <a href="{{ route("guru.semester.pertemuan.tugas.create", ["pertemuan_id" => $pertemuan->id]) }}" class="btn btn-dark mb-4">Create</a>
                             <div class="table-responsive">
                                 <table class="table table-rounded table-striped border gy-7 gs-7">
                                     <thead>
@@ -134,9 +134,9 @@
                                                 <td>{{ $tugas->deskripsi }}</td>
                                                 <td>{{ $tugas->tanggal_kadaluarsa }}</td>
                                                 <td>
-                                                    <a href="{{ route("guru.kurikulum.pertemuan.tugas.show", ["pertemuan_id" => $pertemuan->id, "tugas_id" => $tugas->id]) }}" class="btn btn-sm btn-danger">Detail</a>
-                                                    <a href="{{ route("guru.kurikulum.pertemuan.tugas.edit", ["pertemuan_id" => $pertemuan->id, "tugas_id" => $tugas->id]) }}" class="btn btn-sm btn-info">Edit</a>
-                                                    <form action="{{ route("guru.kurikulum.pertemuan.tugas.delete", ["pertemuan_id" => $pertemuan->id, "tugas_id" => $tugas->id]) }}" class="d-inline-block" method="POST">
+                                                    <a href="{{ route("guru.semester.pertemuan.tugas.show", ["pertemuan_id" => $pertemuan->id, "tugas_id" => $tugas->id]) }}" class="btn btn-sm btn-danger">Detail</a>
+                                                    <a href="{{ route("guru.semester.pertemuan.tugas.edit", ["pertemuan_id" => $pertemuan->id, "tugas_id" => $tugas->id]) }}" class="btn btn-sm btn-info">Edit</a>
+                                                    <form action="{{ route("guru.semester.pertemuan.tugas.delete", ["pertemuan_id" => $pertemuan->id, "tugas_id" => $tugas->id]) }}" class="d-inline-block" method="POST">
                                                         @csrf
                                                         <button class="btn btn-sm btn-secondary">Delete</button>
                                                     </form>
@@ -145,6 +145,33 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+
+                                @if (isset($tugasses[0]))
+                                    <table class="table table-rounded table-striped border gy-7 gs-7">
+                                        <thead>
+                                            <tr class="fw-bolder fs-6 text-gray-800">
+                                                <th>Siswa</th>
+                                                <th>Nilai</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            @foreach ($tugases[0]->jawaban as $jawaban)
+                                                <tr>
+                                                    <td>
+                                                        {{ $jawaban->siswa->nama }}
+                                                    </td>
+                                                    <td>{{ $jawaban->nilai ?? "belum dinilai" }}</td>
+                                                    <td>{{ \Carbon\Carbon::createFromFormat("Y-m-d H:i:s", $jawaban->created_at)->format("Y-m-d") }}</td>
+                                                    <td>
+                                                        <a href="{{ route("guru.semester.pertemuan.jawabanTugas.showNilai", ["pertemuan_id" => $pertemuan->id, "jawaban_tugas_id" => $jawaban->id]) }}" class="btn btn-sm btn-danger">Nilai Tugas</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                @endif
                             </div>
                         </div>
                     </div>

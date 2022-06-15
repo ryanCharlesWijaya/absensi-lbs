@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pertemuan;
-use App\Models\Kurikulum;
+use App\Models\Semester;
 use App\Services\PertemuanService;
 use Exception;
 use Illuminate\Http\Request;
@@ -19,12 +19,12 @@ class PertemuanController extends Controller
         $quizzes = $pertemuan->quiz ? [$pertemuan->quiz] : [];
         $tugases = $pertemuan->tugas ? [$pertemuan->tugas] : [];
 
-        return view("guru.kurikulum.pertemuan.pertemuan-detail", compact("pertemuan", "quizzes", "tugases"));
+        return view("guru.semester.pertemuan.pertemuan-detail", compact("pertemuan", "quizzes", "tugases"));
     }
 
     public function create()
     {
-        return view("guru.kurikulum.pertemuan.create-pertemuan");
+        return view("guru.semester.pertemuan.create-pertemuan");
     }
 
     public function store(Request $request, PertemuanService $pertemuanService)
@@ -34,7 +34,7 @@ class PertemuanController extends Controller
         try {
             $pertemuanService->createPertemuan($request->all());
             DB::commit();
-            return redirect(route("guru.kurikulum.show", ["kurikulum_id" => $request->input("kurikulum_id")]));
+            return redirect(route("guru.semester.show", ["semester_id" => $request->input("semester_id")]));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
@@ -45,7 +45,7 @@ class PertemuanController extends Controller
     {
         $pertemuan = Pertemuan::findOrFail($pertemuan_id);
 
-        return view("guru.kurikulum.pertemuan.edit-pertemuan", compact("pertemuan"));
+        return view("guru.semester.pertemuan.edit-pertemuan", compact("pertemuan"));
     }
 
     public function update(Request $request, PertemuanService $pertemuanService, int $pertemuan_id)
@@ -56,7 +56,7 @@ class PertemuanController extends Controller
             $pertemuanService->updatePertemuan($request->all(), $pertemuan_id);
             DB::commit();
             
-            return redirect(route("guru.kurikulum.show", ["kurikulum_id" => Pertemuan::findOrFail($pertemuan_id)->kurikulum->id]));
+            return redirect(route("guru.semester.show", ["semester_id" => Pertemuan::findOrFail($pertemuan_id)->semester->id]));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
@@ -68,11 +68,11 @@ class PertemuanController extends Controller
         DB::beginTransaction();
 
         try {
-            $kurikulum_id = Pertemuan::findOrFail($pertemuan_id)->kurikulum->id;
+            $semester_id = Pertemuan::findOrFail($pertemuan_id)->semester->id;
             $pertemuan = $pertemuanService->deletePertemuan($pertemuan_id);
 
             DB::commit();
-            return redirect(route("guru.kurikulum.show", ["kurikulum_id" => $kurikulum_id]));
+            return redirect(route("guru.semester.show", ["semester_id" => $semester_id]));
 
         } catch (Exception $e) {
             DB::rollBack();

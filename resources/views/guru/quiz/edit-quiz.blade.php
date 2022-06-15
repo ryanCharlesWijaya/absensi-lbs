@@ -15,7 +15,7 @@
                 <div class="card-header">
                     <h2 class="py-8">Edit Quiz</h2>
                 </div>
-                <form action="{{ route("guru.kurikulum.pertemuan.quiz.update", ["pertemuan_id" => $quiz->pertemuan_id, "quiz_id" => $quiz->id]) }}" method="post" class="card-body">
+                <form action="{{ route("guru.semester.pertemuan.quiz.update", ["pertemuan_id" => $quiz->pertemuan_id, "quiz_id" => $quiz->id]) }}" method="post" class="card-body">
                     @csrf
                     
                     <x-text-input

@@ -5,9 +5,9 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="py-8">Edit Kurikulum</h2>
+                    <h2 class="py-8">Edit Semester</h2>
                 </div>
-                <form action="{{ route("guru.kurikulum.update", ["kurikulum_id" => $kurikulum->id]) }}" method="post" class="card-body">
+                <form action="{{ route("guru.semester.update", ["semester_id" => $semester->id]) }}" method="post" class="card-body">
                     @csrf
                     <x-text-input
                         type="number"
@@ -17,7 +17,7 @@
                         min="1"
                         max="12"
                         required="required"
-                        value="{{ $kurikulum->kelas }}"
+                        value="{{ $semester->kelas }}"
                         />
 
                     <x-text-input
@@ -25,7 +25,7 @@
                         title="Tahun Ajaran"
                         id="tahun-ajaran-input"
                         info="Contoh nya: 2019/2020"
-                        value="{{ $kurikulum->tahun_ajaran }}"
+                        value="{{ $semester->tahun_ajaran }}"
                         />
 
                     <div class="mb-3">

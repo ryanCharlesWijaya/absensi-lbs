@@ -15,14 +15,14 @@
                 <div class="card-header">
                     <h2 class="py-8">Tambah Tugas</h2>
                 </div>
-                <form action="{{ route("guru.kurikulum.pertemuan.tugas.store", ["pertemuan_id" => $pertemuan->id]) }}" method="post" class="card-body" enctype="multipart/form-data">
+                <form action="{{ route("guru.semester.pertemuan.tugas.store", ["pertemuan_id" => $pertemuan->id]) }}" method="post" class="card-body" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="pertemuan_id" value="{{ $pertemuan->id }}">
 
                     <x-text-input
                         type="text"
                         name="judul"
-                        title="Judul Pertemuan"
+                        title="Judul Tugas"
                         id="judul-input"
                         required="required"
                         />

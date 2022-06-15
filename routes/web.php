@@ -1,18 +1,23 @@
 <?php
 
-use App\Http\Controllers\AbsensiController as GuruAbsensiController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Guru\KurikulumController as GuruKurikulumController;
+use App\Http\Controllers\Guru\AbsensiController as GuruAbsensiController;
+use App\Http\Controllers\Guru\SemesterController as GuruSemesterController;
 use App\Http\Controllers\User\UserController as UserManajemenController;
-use App\Http\Controllers\Guru\KurikulumResourceController as GuruKurikulumResourceController;
+use App\Http\Controllers\Guru\SemesterResourceController as GuruSemesterResourceController;
 use App\Http\Controllers\Guru\PertemuanController as GuruPertemuanController;
 use App\Http\Controllers\Guru\QuizController as GuruQuizController;
 use App\Http\Controllers\Guru\SoalController as GuruSoalController;
 use App\Http\Controllers\Siswa\DashboardController as SiswaDashboardController;
 use App\Http\Controllers\Siswa\PertemuanController as SiswaPertemuanController;
 use App\Http\Controllers\Guru\TugasController as GuruTugasController;
+use App\Http\Controllers\Guru\JawabanTugasController as GuruJawabanTugasController;
+use App\Http\Controllers\Guru\NilaiAkhirController;
+use App\Http\Controllers\Guru\ResourceSiswaController as GuruResourceSiswaController;
+use App\Http\Controllers\Siswa\AbsensiController as SiswaAbsensiController;
 use App\Http\Controllers\Siswa\TugasController as SiswaTugasController;
 use App\Http\Controllers\Siswa\QuizController as SiswaQuizController;
+use App\Http\Controllers\Siswa\ResourceSiswaController as SiswaResourceSiswaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -39,30 +44,30 @@ Route::group([
 ],
 function () {    
     Route::group([
-        "prefix" => "kurikulum",
-        "as" => "kurikulum.",
+        "prefix" => "semester",
+        "as" => "semester.",
     ],
     function () {
-        Route::get("", [GuruKurikulumController::class, 'index'])->name("index");
-        Route::get("/create", [GuruKurikulumController::class,'create'])->name("create");
-        Route::post("/store", [GuruKurikulumController::class, 'store'])->name("store");
-        Route::get("/{kurikulum_id}/detail", [GuruKurikulumController::class, 'show'])->name("show");
-        Route::get("/{kurikulum_id}/edit", [GuruKurikulumController::class, 'edit'])->name("edit");
-        Route::post("/{kurikulum_id}/update", [GuruKurikulumController::class, 'update'])->name("update");
+        Route::get("", [GuruSemesterController::class, 'index'])->name("index");
+        Route::get("/create", [GuruSemesterController::class,'create'])->name("create");
+        Route::post("/store", [GuruSemesterController::class, 'store'])->name("store");
+        Route::get("/{semester_id}/detail", [GuruSemesterController::class, 'show'])->name("show");
+        Route::get("/{semester_id}/edit", [GuruSemesterController::class, 'edit'])->name("edit");
+        Route::post("/{semester_id}/update", [GuruSemesterController::class, 'update'])->name("update");
 
-        Route::get("/{kurikulum_id}/assign-siswa", [GuruKurikulumController::class, 'showAssignSiswa'])->name("showAssignSiswa");
-        Route::post("/{kurikulum_id}/assign-siswa", [GuruKurikulumController::class, 'assignSiswa'])->name("assignSiswa");
+        Route::get("/{semester_id}/assign-siswa", [GuruSemesterController::class, 'showAssignSiswa'])->name("showAssignSiswa");
+        Route::post("/{semester_id}/assign-siswa", [GuruSemesterController::class, 'assignSiswa'])->name("assignSiswa");
 
         Route::group([
             "as" => "resources."
         ],
         function () {
-            Route::get("/{kurikulum_id}/resources", [GuruKurikulumResourceController::class, 'index'])->name("index");
-            Route::get("/{kurikulum_id}/resources/create", [GuruKurikulumResourceController::class, 'create'])->name("create");
-            Route::post("/{kurikulum_id}/resources/store", [GuruKurikulumResourceController::class, 'store'])->name("store");
-            Route::get("/{kurikulum_id}/resources/{media_id}", [GuruKurikulumResourceController::class, 'show'])->name("show");
-            Route::get("/{kurikulum_id}/resources/{media_id}/download", [GuruKurikulumResourceController::class, 'download'])->name("download");
-            Route::post("/{kurikulum_id}/resources/{media_id}/delete", [GuruKurikulumResourceController::class, 'delete'])->name("delete");
+            Route::get("/{semester_id}/resources", [GuruSemesterResourceController::class, 'index'])->name("index");
+            Route::get("/{semester_id}/resources/create", [GuruSemesterResourceController::class, 'create'])->name("create");
+            Route::post("/{semester_id}/resources/store", [GuruSemesterResourceController::class, 'store'])->name("store");
+            Route::get("/{semester_id}/resources/{media_id}", [GuruSemesterResourceController::class, 'show'])->name("show");
+            Route::get("/{semester_id}/resources/{media_id}/download", [GuruSemesterResourceController::class, 'download'])->name("download");
+            Route::post("/{semester_id}/resources/{media_id}/delete", [GuruSemesterResourceController::class, 'delete'])->name("delete");
         });
 
         Route::group([
@@ -111,6 +116,27 @@ function () {
                 Route::post("/{tugas_id}/update", [GuruTugasController::class, 'update'])->name("update");
                 Route::post("/{tugas_id}/delete", [GuruTugasController::class, 'delete'])->name("delete");
             });
+
+            Route::group([
+                "prefix" => "pertemuan/{pertemuan_id}/jawaban-tugas",
+                "as" => "jawabanTugas.",
+            ],
+            function () 
+            {
+                Route::get("/{jawaban_tugas_id}/nilai", [GuruJawabanTugasController::class, 'showNilai'])->name("showNilai");
+                Route::post("/{jawaban_tugas_id}/nilai", [GuruJawabanTugasController::class, 'nilai'])->name("nilai");
+            });
+        });
+
+        Route::group([
+            "prefix" => "nilai-akhir",
+            "as" => "nilaiAkhir."
+        ],
+        function () {
+            Route::get("/create", [NilaiAkhirController::class, 'create'])->name("create");
+            Route::post("/store", [NilaiAkhirController::class, 'store'])->name("store");
+            Route::get("/{nilai_akhir_id}/edit", [NilaiAkhirController::class, 'edit'])->name("edit");
+            Route::post("/{nilai_akhir_id}/update", [NilaiAkhirController::class, 'update'])->name("update");
         });
     });
 
@@ -142,8 +168,38 @@ function () {
         Route::post("/{soal_id}/delete", [GuruSoalController::class, 'delete'])->name("delete");
     });
 
-    Route::get("/", [DashboardController::class, 'index']);
+    Route::group([
+        "prefix" => "resource-siswa",
+        "as" => "resourceSiswa."
+    ],
+    function () {
+        Route::get("", [GuruResourceSiswaController::class, 'index'])->name("index");
+        Route::get("/create", [GuruResourceSiswaController::class, 'create'])->name("create");
+        Route::post("/store", [GuruResourceSiswaController::class, 'store'])->name("store");
+        Route::get("/{resource_siswa_id}/download", [GuruResourceSiswaController::class, 'download'])->name("download");
+        Route::post("/{resource_siswa_id}/delete", [GuruResourceSiswaController::class, 'delete'])->name("delete");
     });
+
+    Route::group([
+        "prefix" => "sekolah",
+        "as" => "sekolah."
+    ],
+    function () {
+        Route::get("", [GuruSoalController::class, 'index'])->name("index");
+        Route::get("/create", [GuruSoalController::class, 'create'])->name("create");
+        Route::post("/store", [GuruSoalController::class, 'store'])->name("store");
+        Route::get("/{sekolah_id}/detail", [GuruSoalController::class, 'show'])->name('show');
+        Route::get("/{sekolah_id}/edit", [GuruSoalController::class, 'edit'])->name("edit");
+        Route::post("/{sekolah_id}/update", [GuruSoalController::class, 'update'])->name("update");
+        Route::post("/{sekolah_id}/delete", [GuruSoalController::class, 'delete'])->name("delete");
+    });
+
+    Route::get("/", [DashboardController::class, 'index']);
+});
+
+
+
+
 
 // Siswa Route
 Route::group([
@@ -170,7 +226,7 @@ function () {
         ],
         function ()
         {
-            // Route::post("/{absensi_id}/update/status/{status}", [SiswaTugasController::class, "updateStatus"])->name("updateStatus");
+            Route::post("/{absensi_id}/absen", [SiswaAbsensiController::class, "absen"])->name("absen");
         });
 
         Route::group([
@@ -192,6 +248,18 @@ function () {
             Route::get("/{quiz_id}/create", [SiswaQuizController::class, "kerjakanQuiz"])->name("kerjakanQuiz");
             Route::post("/{quiz_id}/store", [SiswaQuizController::class, "kumpulQuiz"])->name("kumpulQuiz");
         });
+    });
+
+    Route::group([
+        "prefix" => "resource-siswa",
+        "as" => "resourceSiswa."
+    ],
+    function () {
+        Route::get("", [SiswaResourceSiswaController::class, 'index'])->name("index");
+        Route::get("/create", [SiswaResourceSiswaController::class, 'create'])->name("create");
+        Route::post("/store", [SiswaResourceSiswaController::class, 'store'])->name("store");
+        Route::get("/{resource_siswa_id}/download", [SiswaResourceSiswaController::class, 'download'])->name("download");
+        Route::post("/{resource_siswa_id}/delete", [SiswaResourceSiswaController::class, 'delete'])->name("delete");
     });
 
     Route::get('/dashboard', [SiswaDashboardController::class, 'index'])->name('dashboard');

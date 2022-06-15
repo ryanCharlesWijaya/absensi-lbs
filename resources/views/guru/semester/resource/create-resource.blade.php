@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <h2 class="py-8">Tambah Media</h2>
                 </div>
-                <form action="{{ route("guru.kurikulum.resources.store", ["kurikulum_id" => $kurikulum->id]) }}" method="POST" enctype="multipart/form-data" class="card-body">
+                <form action="{{ route("guru.semester.resources.store", ["semester_id" => $semester->id]) }}" method="POST" enctype="multipart/form-data" class="card-body">
                     @csrf
                     <div class="mb-3">
                         <label for="file-input" class="form-label">Default file input example</label>

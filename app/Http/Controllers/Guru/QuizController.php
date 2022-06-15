@@ -36,7 +36,7 @@ class QuizController extends Controller
             $quiz = $quizService->createQuiz($request->all());
 
             DB::commit();
-            return redirect(route("guru.kurikulum.pertemuan.show", ["pertemuan_id" => $pertemuan_id]));
+            return redirect(route("guru.semester.pertemuan.show", ["pertemuan_id" => $pertemuan_id]));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
@@ -59,7 +59,7 @@ class QuizController extends Controller
             $quiz = $quizService->updateQuiz($request->all(), $quiz_id);
 
             DB::commit();
-            return redirect(route("guru.kurikulum.pertemuan.show", ["pertemuan_id" => $pertemuan_id]));
+            return redirect(route("guru.semester.pertemuan.show", ["pertemuan_id" => $pertemuan_id]));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
@@ -73,7 +73,7 @@ class QuizController extends Controller
             Quiz::findOrFail($quiz_id)->delete();
 
             DB::commit();
-            return redirect(route("guru.kurikulum.pertemuan.show", ["pertemuan_id" => $pertemuan_id]));
+            return redirect(route("guru.semester.pertemuan.show", ["pertemuan_id" => $pertemuan_id]));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;

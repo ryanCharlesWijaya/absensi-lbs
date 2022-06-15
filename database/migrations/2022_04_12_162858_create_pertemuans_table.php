@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pertemuans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('kurikulum_id');
+            $table->unsignedBigInteger('semester_id');
             $table->string('judul');
             $table->string('deskripsi');
             $table->date('tanggal');

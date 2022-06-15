@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\JawabanTugas;
 use App\Models\Tugas;
 use App\Traits\JawabanTugasTrait;
 
@@ -18,5 +19,12 @@ class JawabanTugasService {
             ->toMediaCollection();
 
         return $jawaban_tugas;
+    }
+
+    public function updateNilai(int $nilai, int $jawaban_tugas_id)
+    {
+        $jawaban_tugas = JawabanTugas::findOrFail($jawaban_tugas_id);
+        
+        $jawaban_tugas->update(["nilai" => $nilai]);
     }
 }

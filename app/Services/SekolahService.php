@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Services;
+
+use App\Models\Sekolah;
+use Illuminate\Support\Facades\Validator;
+
+class SekolahService {
+    public function createSekolah(array $data)
+    {
+        $validated = Validator::make($data, [
+            "nama" => ["required", "string"],
+            "deskripsi" => ["required", "string"],
+            "alamat" => ["required", "string"],
+            "nomor_telepon" => ["required", "string"],
+            "fotos" => ["array"],
+            "fotos.*" => ["image"]
+        ]);
+
+        $sekolah = Sekolah::create($data);
+
+        foreach ($validated["fotos"] as $foto) $sekolah->addMedia($foto)->toMediaCollection();
+
+        return $sekolah;
+    }
+
+    public function updateSekolah(array $data, int $sekolah_id)
+    {
+        $sekolah = Sekolah::findOrFail($sekolah_id);
+
+        $validated = Validator::make($data, [
+            "nama" => ["sometimes", "string"],
+            "deskripsi" => ["sometimes", "string"],
+            "alamat" => ["sometimes", "string"],
+            "nomor_telepon" => ["sometimes", "string"],
+            "fotos" => ["sometimes", "array"],
+            "fotos.*" => ["image"]
+        ]);
+
+        $sekolah->update($data);
+
+        if ($sekolah->getFirstMedia() && $validated["fotos"]) {
+            $medias = $sekolah->getMedia();
+            foreach ($medias as $media) $media->delete();
+            foreach ($validated["fotos"] as $foto) $sekolah->addMedia($foto)->toMediaCollection();
+        }
+
+        return $sekolah;
+    }
+}

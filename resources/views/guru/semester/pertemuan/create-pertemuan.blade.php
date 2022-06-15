@@ -7,9 +7,9 @@
                 <div class="card-header">
                     <h2 class="py-8">Tambah Pertemuan</h2>
                 </div>
-                <form action="{{ route("guru.kurikulum.pertemuan.store") }}" method="post" class="card-body" enctype="multipart/form-data">
+                <form action="{{ route("guru.semester.pertemuan.store") }}" method="post" class="card-body" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="kurikulum_id" value="{{ request()->input("kurikulum_id") }}">
+                    <input type="hidden" name="semester_id" value="{{ request()->input("semester_id") }}">
 
                     <x-text-input
                         type="text"

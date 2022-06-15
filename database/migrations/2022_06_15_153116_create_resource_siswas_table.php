@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateResourceSiswasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('quizzes', function (Blueprint $table) {
+        Schema::create('resource_siswas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pertemuan_id');
-            $table->dateTime('tanggal_kadaluarsa');
-            $table->integer('durasi_quiz')->default(60);
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quizzes');
+        Schema::dropIfExists('resource_siswas');
     }
-};
+}

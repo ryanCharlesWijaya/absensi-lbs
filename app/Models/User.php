@@ -53,9 +53,9 @@ class User extends Authenticatable
         });
     }
 
-    public function kurikulums()
+    public function semesters()
     {
-        return $this->belongsToMany(Kurikulum::class, 'kurikulum_users');
+        return $this->belongsToMany(Semester::class, 'semester_users');
     }
 
     public function sekolah()

@@ -14,6 +14,7 @@ use App\Http\Controllers\Guru\TugasController as GuruTugasController;
 use App\Http\Controllers\Guru\JawabanTugasController as GuruJawabanTugasController;
 use App\Http\Controllers\Guru\NilaiAkhirController;
 use App\Http\Controllers\Guru\ResourceSiswaController as GuruResourceSiswaController;
+use App\Http\Controllers\Guru\SekolahController as GuruSekolahController;
 use App\Http\Controllers\Siswa\AbsensiController as SiswaAbsensiController;
 use App\Http\Controllers\Siswa\TugasController as SiswaTugasController;
 use App\Http\Controllers\Siswa\QuizController as SiswaQuizController;
@@ -185,13 +186,13 @@ function () {
         "as" => "sekolah."
     ],
     function () {
-        Route::get("", [GuruSoalController::class, 'index'])->name("index");
-        Route::get("/create", [GuruSoalController::class, 'create'])->name("create");
-        Route::post("/store", [GuruSoalController::class, 'store'])->name("store");
-        Route::get("/{sekolah_id}/detail", [GuruSoalController::class, 'show'])->name('show');
-        Route::get("/{sekolah_id}/edit", [GuruSoalController::class, 'edit'])->name("edit");
-        Route::post("/{sekolah_id}/update", [GuruSoalController::class, 'update'])->name("update");
-        Route::post("/{sekolah_id}/delete", [GuruSoalController::class, 'delete'])->name("delete");
+        Route::get("", [GuruSekolahController::class, 'index'])->name("index");
+        Route::get("/create", [GuruSekolahController::class, 'create'])->name("create");
+        Route::post("/store", [GuruSekolahController::class, 'store'])->name("store");
+        Route::get("/{sekolah_id}/detail", [GuruSekolahController::class, 'show'])->name('show');
+        Route::get("/{sekolah_id}/edit", [GuruSekolahController::class, 'edit'])->name("edit");
+        Route::post("/{sekolah_id}/update", [GuruSekolahController::class, 'update'])->name("update");
+        Route::post("/{sekolah_id}/delete", [GuruSekolahController::class, 'delete'])->name("delete");
     });
 
     Route::get("/", [DashboardController::class, 'index']);

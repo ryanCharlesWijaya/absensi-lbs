@@ -13,12 +13,14 @@ class SekolahController extends Controller
 {
     public function index()
     {
-        return view("guru/sekolah/index.blade.php");
+        $sekolahs = Sekolah::all();
+
+        return view("guru.sekolah.index", compact("sekolahs"));
     }
 
     public function create()
     {
-        return view("guru/sekolah/index.blade.php");
+        return view("guru.sekolah.create-sekolah");
     }
 
     public function store(Request $request, SekolahService $sekolahService)
@@ -28,7 +30,7 @@ class SekolahController extends Controller
             $sekolah = $sekolahService->createSekolah($request->all());
 
             DB::commit();
-            return view("guru.sekolah.index");
+            return redirect(route("guru.sekolah.index"));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
@@ -39,7 +41,7 @@ class SekolahController extends Controller
     {
         $sekolah = Sekolah::findOrFail($sekolah_id);
 
-        return view("guru/sekolah/edit-sekolah.php", compact("sekolah"));
+        return view("guru.sekolah.edit-sekolah", compact("sekolah"));
     }
 
     public function update(Request $request, SekolahService $sekolahService, int $sekolah_id)
@@ -49,7 +51,22 @@ class SekolahController extends Controller
             $sekolah = $sekolahService->updateSekolah($request->all(), $sekolah_id);
 
             DB::commit();
-            return view("guru.sekolah.index");
+            return redirect(route("guru.sekolah.index"));
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+    public function delete(Request $request, int $sekolah_id)
+    {
+        DB::beginTransaction();
+        try {
+            $sekolah = Sekolah::findOrFail($sekolah_id);
+            $sekolah->delete();
+
+            DB::commit();
+            return redirect(route("guru.sekolah.index"));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;

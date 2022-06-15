@@ -15,11 +15,11 @@ class SekolahService {
             "nomor_telepon" => ["required", "string"],
             "fotos" => ["array"],
             "fotos.*" => ["image"]
-        ]);
+        ])->validate();
 
         $sekolah = Sekolah::create($data);
 
-        foreach ($validated["fotos"] as $foto) $sekolah->addMedia($foto)->toMediaCollection();
+        if (isset($validated["fotos"])) foreach ($validated["fotos"] as $foto) $sekolah->addMedia($foto)->toMediaCollection();
 
         return $sekolah;
     }
@@ -35,7 +35,7 @@ class SekolahService {
             "nomor_telepon" => ["sometimes", "string"],
             "fotos" => ["sometimes", "array"],
             "fotos.*" => ["image"]
-        ]);
+        ])->validate();
 
         $sekolah->update($data);
 

@@ -99,14 +99,6 @@
                             <span class="menu-title">Daftar Resource Siswa</span>
                         </a>
                     </div>
-                    <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <a class="menu-link" href="{{ route("siswa.resourceSiswa.create") }}">
-                            <span class="menu-bullet">
-                                <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">Tambah Resource Siswa</span>
-                        </a>
-                    </div>
                 </div>
             </div>
             <!--end::Menu-->

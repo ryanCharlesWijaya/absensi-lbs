@@ -14,8 +14,10 @@ class PertemuanService {
 
         $pertemuan = $this->storePertemuanInDatabase($validated);
 
-        $pertemuan->addMedia($validated["file"])
-            ->toMediaCollection();
+        if (isset($validated["file"])) {
+            $pertemuan->addMedia($validated["file"])
+                ->toMediaCollection();
+        }
 
         foreach ($pertemuan->semester->siswas as $siswa) $pertemuan->absensi()->create(["user_id" => $siswa->id]);
 

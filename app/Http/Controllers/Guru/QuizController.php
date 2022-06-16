@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
+use App\Models\HasilQuiz;
 use App\Models\Pertemuan;
 use App\Models\Quiz;
 use App\Models\Soal;
@@ -27,6 +28,15 @@ class QuizController extends Controller
         $pertemuan = Pertemuan::findOrFail($pertemuan_id);
 
         return view("guru.quiz.create-quiz", compact("soals", "pertemuan"));
+    }
+
+    public function reviewHasilQuiz(int $pertemuan_id, int $hasil_quiz_id)
+    {
+        $hasil_quiz_siswa = HasilQuiz::findOrFail($hasil_quiz_id);
+        $quiz = $hasil_quiz_siswa->quiz;
+        $pertemuan = $quiz->pertemuan;
+
+        return view("guru.quiz.review-quiz", compact("hasil_quiz_siswa", "quiz", "pertemuan"));
     }
 
     public function store(Request $request, QuizService $quizService, int $pertemuan_id)

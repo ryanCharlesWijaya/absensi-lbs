@@ -80,7 +80,9 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="quiz-tab" role="tabpanel">
-                            <a href="{{ route("guru.semester.pertemuan.quiz.create", ["pertemuan_id" => $pertemuan->id]) }}" class="btn btn-dark mb-4">Create</a>
+                            @if ($pertemuan->quiz)
+                                <a href="{{ route("guru.semester.pertemuan.quiz.create", ["pertemuan_id" => $pertemuan->id]) }}" class="btn btn-dark mb-4">Create</a>
+                            @endif
                             <div class="table-responsive">
                                 <table class="table table-rounded table-striped border gy-7 gs-7">
                                     <thead>
@@ -111,10 +113,35 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+
+                                @if (isset($quizzes[0]))
+                                    <table class="table table-rounded table-striped border gy-7 gs-7">
+                                        <thead>
+                                            <tr class="fw-bolder fs-6 text-gray-800">
+                                                <th>Siswa</th>
+                                                <th>Nilai</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($quizzes[0]->hasil_quizzes as $hasil_quiz)
+                                                <tr>
+                                                    <td>
+                                                        {{ $hasil_quiz->user->nama }}
+                                                    </td>
+                                                    <td>{{ $hasil_quiz->nilai ?? "belum dinilai" }}</td>
+                                                    <td>{{ \Carbon\Carbon::createFromFormat("Y-m-d H:i:s", $hasil_quiz->created_at)->format("Y-m-d") }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                @endif
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tugas-tab" role="tabpanel">
-                            <a href="{{ route("guru.semester.pertemuan.tugas.create", ["pertemuan_id" => $pertemuan->id]) }}" class="btn btn-dark mb-4">Create</a>
+                            @if ($pertemuan->tugas)
+                                <a href="{{ route("guru.semester.pertemuan.tugas.create", ["pertemuan_id" => $pertemuan->id]) }}" class="btn btn-dark mb-4">Create</a>
+                            @endif
                             <div class="table-responsive">
                                 <table class="table table-rounded table-striped border gy-7 gs-7">
                                     <thead>

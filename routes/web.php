@@ -113,7 +113,7 @@ function () {
             ],
             function ()
             {
-                Route::get("/{hasil_quiz_id}/review", [SiswaQuizController::class, "reviewQuiz"])->name("reviewQuiz");
+                Route::get("/{hasil_quiz_id}/review", [GuruQuizController::class, "reviewHasilQuiz"])->name("reviewQuiz");
             });
             
             Route::group([

@@ -28,21 +28,27 @@
                                     <td>{{ $pertemuan->deskripsi }}</td>
                                     <td>{{ $pertemuan->tanggal }}</td>
                                     <td class="d-flex">
-                                        @if (!$pertemuan->absensi()->where("user_id", Auth::id())->where("status", "hadir")->count())
+                                        @if (!$pertemuan->has_absen && !$pertemuan->has_expired)
                                             <form action="{{ route("siswa.pertemuan.absensi.absen", ["pertemuan_id" => $pertemuan->id, "absensi_id" => $pertemuan->absensi()->where("user_id", Auth::id())->first()->id]) }}" method="POST">
                                                 @csrf
                                                 <button class="btn btn-sm btn-info me-2">Absen!</button>
                                             </form>
                                         @endif
-                                        @if ($pertemuan->tugas && !Auth::user()->jawaban_tugas()->where("tugas_id", $pertemuan->tugas->id)->count())
+                                        @if ($pertemuan->tugas && !$pertemuan->has_kumpul_tugas)
                                             <a href="{{ route("siswa.pertemuan.tugas.create", ["pertemuan_id" => $pertemuan->id, "tugas_id" => $pertemuan->tugas->id]) }}" class="btn btn-sm btn-primary me-2">
                                                 Kumpul Tugas
                                             </a>
                                         @endif
-                                        @if ($pertemuan->quiz && !Auth::user()->hasil_quiz()->where("quiz_id", $pertemuan->quiz->id)->count())
-                                            <a href="{{ route("siswa.pertemuan.quiz.kerjakanQuiz", ["pertemuan_id" => $pertemuan->id, "quiz_id" => $pertemuan->quiz->id]) }}" class="btn btn-sm btn-primary me-2">
-                                                Kerjain Quiz
-                                            </a>
+                                        @if ($pertemuan->quiz)
+                                            @if (!$pertemuan->quiz->has_expired && !$pertemuan->has_kerjain_quiz)
+                                                <a href="{{ route("siswa.pertemuan.quiz.kerjakanQuiz", ["pertemuan_id" => $pertemuan->id, "quiz_id" => $pertemuan->quiz->id]) }}" class="btn btn-sm btn-primary me-2">
+                                                    Kerjain Quiz
+                                                </a>
+                                            @elseif ($pertemuan->quiz->has_expired && $pertemuan->has_kerjain_quiz)
+                                                <a href="{{ route("siswa.pertemuan.quiz.reviewQuiz", ["pertemuan_id" => $pertemuan->id, "quiz_id" => $pertemuan->quiz->id]) }}" class="btn btn-sm btn-primary me-2">
+                                                    Review Quiz
+                                                </a>
+                                            @endif
                                         @endif
                                         @if ($pertemuan->getFirstMedia())
                                             <form action="{{ $pertemuan->getFirstMedia()->getFullUrl() }}" method="GET">

@@ -106,6 +106,15 @@ function () {
                 Route::post("/{quiz_id}/update", [GuruQuizController::class, 'update'])->name("update");
                 Route::post("/{quiz_id}/delete", [GuruQuizController::class, 'delete'])->name("delete");
             });
+
+            Route::group([
+                "prefix" => "pertemuan/{pertemuan_id}/hasil-quiz",
+                "as" => "hasilQuiz."
+            ],
+            function ()
+            {
+                Route::get("/{hasil_quiz_id}/review", [SiswaQuizController::class, "reviewQuiz"])->name("reviewQuiz");
+            });
             
             Route::group([
                 "prefix" => "pertemuan/{pertemuan_id}/tugas",
@@ -240,6 +249,7 @@ function () {
         {
             Route::get("/{quiz_id}/create", [SiswaQuizController::class, "kerjakanQuiz"])->name("kerjakanQuiz");
             Route::post("/{quiz_id}/store", [SiswaQuizController::class, "kumpulQuiz"])->name("kumpulQuiz");
+            Route::get("/{quiz_id}/review", [SiswaQuizController::class, "reviewQuiz"])->name("reviewQuiz");
         });
     });
 

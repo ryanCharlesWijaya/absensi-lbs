@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -37,5 +39,27 @@ class Pertemuan extends Model implements HasMedia
     public function tugas()
     {
         return $this->hasOne(Tugas::class);
+    }
+
+    public function getHasExpiredAttribute()
+    {
+        $now = Carbon::now()->format("Y-m-d");
+
+        return $this->tanggal_kadaluarsa < $now;
+    }
+
+    public function getHasAbsenAttribute()
+    {
+        return $this->absensi()->where("user_id", Auth::id())->where("status", "hadir")->count();
+    }
+
+    public function getHasKumpulTugasAttribute()
+    {
+        return Auth::user()->jawaban_tugas()->where("tugas_id", $this->tugas->id)->count();
+    }
+
+    public function getHasKerjainQuizAttribute()
+    {
+        return Auth::user()->hasil_quiz()->where("quiz_id", $this->quiz->id)->count();
     }
 }

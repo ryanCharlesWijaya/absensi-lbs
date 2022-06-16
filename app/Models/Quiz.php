@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Quiz extends Model
 {
@@ -13,6 +14,13 @@ class Quiz extends Model
         "pertemuan_id",
         "tanggal_kadaluarsa",
     ];
+
+    public function getHasExpiredAttribute()
+    {
+        $now = Carbon::now()->format("Y-m-d H:i:s");
+
+        return $this->tanggal_kadaluarsa < $now;
+    }
 
     public function detachAllSoals()
     {

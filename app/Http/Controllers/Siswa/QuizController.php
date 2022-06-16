@@ -8,6 +8,7 @@ use App\Models\Quiz;
 use App\Services\QuizService;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
@@ -32,5 +33,14 @@ class QuizController extends Controller
             DB::rollBack();
             throw $e;
         }
+    }
+
+    public function reviewQuiz(Request $request, int $pertemuan_id, int $quiz_id)
+    {
+        $quiz = Quiz::findOrFail($quiz_id);
+        $hasil_quiz_siswa = $quiz->hasil_quizzes()->where("user_id", Auth::id())->first();
+        $pertemuan = Pertemuan::findOrFail($pertemuan_id);
+
+        return view("siswa.quiz.review-quiz", compact("quiz", "hasil_quiz_siswa", "pertemuan"));
     }
 }

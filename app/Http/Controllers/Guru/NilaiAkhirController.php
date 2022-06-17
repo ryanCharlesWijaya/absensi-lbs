@@ -37,7 +37,8 @@ class NilaiAkhirController extends Controller
         $absensi_count = $siswa->absensis()
             ->whereHas("pertemuan", function ($query) use ($semester) {
                 $query->where("semester_id", $semester->id);
-            }, ">", 0);
+            }, ">", 0)
+            ->count();
 
         return view("guru.semester.nilai-akhir.create-nilai-akhir", compact("jawaban_tugases", "hasil_quizzes", "absensi_count", "semester", "siswa"));
     }

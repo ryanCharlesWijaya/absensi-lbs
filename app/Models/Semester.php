@@ -31,4 +31,9 @@ class Semester extends Model implements HasMedia
     {
         return $this->hasMany(Pertemuan::class, "semester_id");
     }
+
+    public function nilai_akhirs()
+    {
+        return $this->hasMany(NilaiAkhir::class, "semester_id");
+    }
 }

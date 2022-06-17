@@ -55,10 +55,10 @@
                                 @foreach ($hasil_quizzes as $hasil)
                                     <tr>
                                         <td>
-                                            {{ $jawaban->user->nama }}
+                                            {{ $hasil->user->nama }}
                                         </td>
-                                        <td>{{ $jawaban->nilai ?? "belum dinilai" }}</td>
-                                        <td>{{ \Carbon\Carbon::createFromFormat("Y-m-d H:i:s", $jawaban->created_at)->format("Y-m-d") }}</td>
+                                        <td>{{ $hasil->nilai ?? "belum dinilai" }}</td>
+                                        <td>{{ \Carbon\Carbon::createFromFormat("Y-m-d H:i:s", $hasil->created_at)->format("Y-m-d") }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

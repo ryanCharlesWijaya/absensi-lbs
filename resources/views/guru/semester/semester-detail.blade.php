@@ -115,17 +115,22 @@
                                             <th>Nomor Telepon</th>
                                             <th>Alamat</th>
                                             <th>Email</th>
+                                            <th>Nilai Akhir</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($semester->siswas as $siswa)
+                                            @php
+                                                $nilai_akhir = $semester->nilai_akhirs()->where("siswa_id", $siswa->id)->first();
+                                            @endphp
                                             <tr>
                                                 <td>{{ $siswa->nama }}</td>
                                                 <td>{{ $siswa->tanggal_lahir }}</td>
                                                 <td>{{ $siswa->nomor_telepon }}</td>
                                                 <td>{{ $siswa->alamat }}</td>
                                                 <td>{{ $siswa->email }}</td>
+                                                <td>{{ $nilai_akhir ? $nilai_akhir->nilai : "belum dinilai" }}</td>
                                                 <td>
                                                     <a href="{{ route("guru.semester.nilaiAkhir.create", ["semester_id" => $semester->id, "siswa_id" => $siswa->id]) }}" class="btn btn-sm btn-primary me-2">Nilai Siswa</a>
                                                 </td>

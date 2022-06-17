@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('semesters', function (Blueprint $table) {
             $table->id();
             $table->foreignId('guru_id')->nullable();
+            $table->integer('kelas');
             $table->enum("semester", [1, 2])->nullable();
             $table->timestamps();
         });

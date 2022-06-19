@@ -37,6 +37,18 @@
                                 <label for="">Tahun Ajaran</label>
                                 <h3>{{ $semester->tahun_ajaran }}</h3>
                             </div>
+                            <div class="mb-4">
+                                <label for="">Kurikulum</label>
+                                <h3>{{ $semester->kurikulum->nama }}</h3>
+                            </div>
+                            <div class="mb-4">
+                                <label for="">Sekolah</label>
+                                <h3>{{ $semester->sekolah->nama }}</h3>
+                            </div>
+                            <div class="mb-4">
+                                <label for="">Semester</label>
+                                <h3>{{ $semester->semester }}</h3>
+                            </div>
                         </div>
                         
                         {{-- Resource Tab --}}

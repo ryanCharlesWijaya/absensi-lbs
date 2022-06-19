@@ -19,6 +19,51 @@
                         required="required"
                         value="{{ $semester->kelas }}"
                         />
+                    
+                        <x-select-input
+                        name="kurikulum_id"
+                        title="kurikulum"
+                        id="kurikulum-input"
+                        required="required"
+                        >
+                        @foreach (\App\Models\Kurikulum::all() as $kurikulum)
+                            <option value="{{ $kurikulum->id }}"  {{ $kurikulum->id == $semester->kurikulum_id ? "selected" : null }} >{{ $kurikulum->nama }}</option>
+                        @endforeach
+                    </x-select-input>
+
+                    <x-select-input
+                        name="sekolah_id"
+                        title="Sekolah"
+                        id="sekolah-input"
+                        required="required"
+                        >
+                        @foreach (\App\Models\Sekolah::all() as $sekolah)
+                            <option value="{{ $sekolah->id }}" {{ $sekolah->id == $semester->sekolah_id ? "selected" : null }} >{{ $sekolah->nama }}</option>
+                        @endforeach
+                    </x-select-input>
+
+                    <x-select-input
+                        name="guru_id"
+                        title="Guru"
+                        id="guru-input"
+                        required="required"
+                        >
+                        @foreach (\App\Models\User::role("guru")->get() as $guru)
+                            <option value="{{ $guru->id }}" {{ $guru->id == $semester->guru_id ? "selected" : null }} >{{ $guru->nama }}</option>
+                        @endforeach
+                    </x-select-input>
+
+                    <x-text-input
+                        type="number"
+                        name="semester"
+                        title="semester"
+                        id="semester-input"
+                        min="1"
+                        max="2"
+                        required="required"
+                        info="Contoh nya: 1/2"
+                        value="{{ $semester->semester }}"
+                        />
 
                     <x-text-input
                         name="tahun_ajaran"
@@ -29,7 +74,7 @@
                         />
 
                     <div class="mb-3">
-                        <button class="btn btn-primary">Tambah</button>
+                        <button class="btn btn-primary">Edit</button>
                     </div>
                 </form>
             </div>

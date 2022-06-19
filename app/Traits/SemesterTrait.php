@@ -11,6 +11,9 @@ trait SemesterTrait
     {
         return Validator::make($data, [
             "guru_id" => ["nullable", "int"],
+            "kurikulum_id" => ["required", "int"],
+            "sekolah_id" => ["required", "int"],
+            "semester" => ["required", "int"],
             "kelas" => ["required", "min:1", "max:12"],
             "tahun_ajaran"=> ["required", "string"],
         ]);
@@ -20,6 +23,9 @@ trait SemesterTrait
     {
         return Semester::create([
             "guru_id" => $data["guru_id"] ?? null,
+            "kurikulum_id" => $data["kurikulum_id"],
+            "sekolah_id" => $data["sekolah_id"],
+            "semester" => $data["semester"],
             "kelas" => $data["kelas"],
             "tahun_ajaran" => $data["tahun_ajaran"]
         ]);
@@ -41,6 +47,8 @@ trait SemesterTrait
     {
         return Validator::make($data, [
             "guru_id" => ["sometimes", "nullable", "int"],
+            "kurikulum_id" => ["required", "int"],
+            "sekolah_id" => ["required", "int"],
             "kelas" => ["sometimes", "min:1", "max:12"],
             "tahun_ajaran"=> ["sometimes", "string"],
         ]);

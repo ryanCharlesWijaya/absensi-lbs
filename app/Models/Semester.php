@@ -14,6 +14,8 @@ class Semester extends Model implements HasMedia
     protected $fillable = [
         "guru_id",
         "sekolah_id",
+        "kurikulum_id",
+        "semester",
         "kelas",
         "tahun_ajaran",
     ];
@@ -26,6 +28,11 @@ class Semester extends Model implements HasMedia
     public function siswas()
     {
         return $this->belongsToMany(User::class, 'semester_users');
+    }
+
+    public function kurikulum()
+    {
+        return $this->belongsTo(Kurikulum::class);
     }
 
     public function sekolah()

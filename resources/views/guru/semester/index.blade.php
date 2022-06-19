@@ -7,11 +7,13 @@
                 <div class="card-header">
                     <h2 class="py-8">Daftar Semester</h2>
                     <div class="card-toolbar">
-                        <a href="{{ route("guru.semester.create") }}">
-                            <button class="btn btn-sm btn-primary" >
-                                <i class="fas fa-plus"></i> Tambah Semester
-                            </button>
-                        </a>
+                        @if (Auth::user()->isAdmin())
+                            <a href="{{ route("guru.semester.create") }}">
+                                <button class="btn btn-sm btn-primary" >
+                                    <i class="fas fa-plus"></i> Tambah Semester
+                                </button>
+                            </a>
+                        @endif
                     </div>
                 </div>
                 <div class="card-body">
@@ -21,6 +23,8 @@
                                 <tr class="fw-bolder fs-6 text-gray-800">
                                     <th>Tahun Ajaran</th>
                                     <th>Kelas</th>
+                                    <th>Sekolah</th>
+                                    <th>Kurikulum</th>
                                     <th>Guru</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -30,6 +34,8 @@
                                     <tr>
                                         <td>{{ $semester->tahun_ajaran }}</td>
                                         <td>{{ $semester->kelas }}</td>
+                                        <td>{{ $semester->sekolah->nama }}</td>
+                                        <td>{{ $semester->kurikulum->nama }}</td>
                                         <td>{{ $semester->guru ? $semester->guru->nama : "Kosong" }}</td>
                                         <td>
                                             <a href="{{ route("guru.semester.show", ["semester_id" => $semester->id]) }}" class="btn btn-sm btn-danger">Detail</a>

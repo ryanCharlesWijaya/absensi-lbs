@@ -13,6 +13,7 @@ use App\Http\Controllers\Siswa\PertemuanController as SiswaPertemuanController;
 use App\Http\Controllers\Guru\TugasController as GuruTugasController;
 use App\Http\Controllers\Guru\JawabanTugasController as GuruJawabanTugasController;
 use App\Http\Controllers\Guru\KurikulumController as GuruKurikulumController;
+use App\Http\Controllers\Guru\PengumumanController as GuruPengumumanController;
 use App\Http\Controllers\Guru\NilaiAkhirController;
 use App\Http\Controllers\Guru\ResourceSiswaController as GuruResourceSiswaController;
 use App\Http\Controllers\Guru\SekolahController as GuruSekolahController;
@@ -56,6 +57,19 @@ function () {
         Route::get("/{kurikulum_id}/detail", [GuruKurikulumController::class, 'show'])->name("show");
         Route::get("/{kurikulum_id}/edit", [GuruKurikulumController::class, 'edit'])->name("edit");
         Route::post("/{kurikulum_id}/update", [GuruKurikulumController::class, 'update'])->name("update");
+    });
+
+    Route::group([
+        "prefix" => "pengumuman",
+        "as" => "pengumuman.",
+    ],
+    function () {
+        Route::get("", [GuruPengumumanController::class, 'index'])->name("index");
+        Route::get("/create", [GuruPengumumanController::class,'create'])->name("create");
+        Route::post("/store", [GuruPengumumanController::class, 'store'])->name("store");
+        Route::get("/{pengumuman_id}/detail", [GuruPengumumanController::class, 'show'])->name("show");
+        Route::get("/{pengumuman_id}/edit", [GuruPengumumanController::class, 'edit'])->name("edit");
+        Route::post("/{pengumuman_id}/update", [GuruPengumumanController::class, 'update'])->name("update");
     });
 
     Route::group([

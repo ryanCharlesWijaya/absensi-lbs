@@ -13,6 +13,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#sekolah">Sekolah</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#pengumuman">Pengumuman</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -66,7 +69,7 @@
             
                         <div class="tab-pane fade" id="sekolah" role="tabpanel">
                             @foreach (\App\Models\Sekolah::all() as $sekolah)
-                                <div class="card card-bordered">
+                                <div class="card card-bordered mb-5">
                                     <div class="card-header">
                                         <h5 class="card-title">{{ $sekolah->nama }}</h5>
                                         <div class="card-toolbar">
@@ -79,6 +82,23 @@
                                         
                                         <label class="fw-bold" for="">Deskripsi:</label>
                                         <p class="card-text">{{ $sekolah->deskripsi }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <div class="tab-pane fade" id="pengumuman" role="tabpanel">
+                            @foreach (\App\Models\Pengumuman::all() as $pengumuman)
+                                <div class="card card-bordered mb-5">
+                                    <div class="card-header">
+                                        <h5 class="card-title">{{ $pengumuman->judul }}</h5>
+                                        <div class="card-toolbar">
+                                            <span class="badge badge-light">{{ $pengumuman->kategori }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <label class="fw-bold" for="">Deskripsi:</label>
+                                        <p class="card-text">{{ $pengumuman->deskripsi }}</p>
                                     </div>
                                 </div>
                             @endforeach

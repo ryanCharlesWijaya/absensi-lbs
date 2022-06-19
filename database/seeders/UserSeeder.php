@@ -18,11 +18,11 @@ class UserSeeder extends Seeder
     {
         
         $admin = User::create([
-            "nama" => "Ryan",
+            "nama" => "admin",
             "tanggal_lahir" => "2002-10-06",
             "nomor_telepon" => "+2193012",
-            "alamat" => "alamat ryan",
-            "email" => "ryan@gmail.com",
+            "alamat" => "alamat admin",
+            "email" => "admin@gmail.com",
             "password" => Hash::make("password"),
         ]);
         $admin->assignRole("admin");
@@ -38,11 +38,11 @@ class UserSeeder extends Seeder
         $guru->assignRole("guru");
 
         $siswa = User::create([
-            "nama" => "Fazil",
+            "nama" => "siswa",
             "tanggal_lahir" => "2002-03-31",
             "nomor_telepon" => "+2193012",
             "alamat" => "alamat ryan",
-            "email" => "fazil@gmail.com",
+            "email" => "siswa@gmail.com",
             "password" => Hash::make("password"),
         ]);
         $siswa->assignRole("siswa");

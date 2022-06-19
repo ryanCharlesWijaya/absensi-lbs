@@ -17,7 +17,7 @@ class Quiz extends Model
 
     public function getHasExpiredAttribute()
     {
-        $now = Carbon::now()->format("Y-m-d H:i:s");
+        $now = Carbon::now()->subDays(1)->format("Y-m-d H:i:s");
 
         return $this->tanggal_kadaluarsa < $now;
     }

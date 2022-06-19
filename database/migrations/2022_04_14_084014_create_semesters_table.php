@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('semesters', function (Blueprint $table) {
             $table->id();
             $table->foreignId('guru_id')->nullable();
+            $table->foreignId('kurikulum_id');
+            $table->foreignId('sekolah_id');
             $table->integer('kelas');
+            $table->string('tahun_ajaran');
             $table->enum("semester", [1, 2])->nullable();
             $table->timestamps();
         });

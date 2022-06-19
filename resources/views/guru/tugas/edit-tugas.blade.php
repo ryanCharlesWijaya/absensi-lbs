@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <button class="btn btn-primary">Tambah</button>
+                        <button class="btn btn-primary">Edit</button>
                     </div>
                 </form>
             </div>

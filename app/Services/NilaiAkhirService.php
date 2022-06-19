@@ -28,6 +28,6 @@ class NilaiAkhirService {
             "nilai" => ["required", "int", "min:0", "max:100"],
         ])->validate();
 
-        return $nilai_akhir->update($validated["nilai"]);
+        return $nilai_akhir->update($validated);
     }
 }

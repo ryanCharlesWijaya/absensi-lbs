@@ -11,6 +11,6 @@ class DashboardController extends Controller
     {
         if (Auth::user()->hasRole("siswa")) return redirect(route("siswa.dashboard"));
 
-        if (Auth::user()->hasAnyRole(["admin", "guru"])) return view('welcome');
+        if (Auth::user()->hasAnyRole(["admin", "guru"])) return view('home');
     }
 }

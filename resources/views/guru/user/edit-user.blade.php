@@ -9,6 +9,7 @@
                 </div>
                 <form action="{{ route("guru.user.updateDetail", ["user_id" => $user->id]) }}" method="post" class="card-body">
                     @csrf
+
                     <x-text-input
                         type="text"
                         name="nama"
@@ -88,7 +89,7 @@
                     </x-select-input>
 
                     <div class="mb-3">
-                        <button class="btn btn-primary">Tambah</button>
+                        <button class="btn btn-primary">Edit</button>
                     </div>
                 </form>
             </div>
@@ -116,7 +117,7 @@
                     />
 
                     <div class="mb-3">
-                        <button class="btn btn-primary">Tambah</button>
+                        <button class="btn btn-primary">Edit</button>
                     </div>
                 </form>
             </div>

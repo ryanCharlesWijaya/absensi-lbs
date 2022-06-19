@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="quiz-tab" role="tabpanel">
-                            @if ($pertemuan->quiz)
+                            @if (!$pertemuan->quiz)
                                 <a href="{{ route("guru.semester.pertemuan.quiz.create", ["pertemuan_id" => $pertemuan->id]) }}" class="btn btn-dark mb-4">Create</a>
                             @endif
                             <div class="table-responsive">
@@ -120,6 +120,7 @@
                                             <tr class="fw-bolder fs-6 text-gray-800">
                                                 <th>Siswa</th>
                                                 <th>Nilai</th>
+                                                <th>Tanggal Kumpul</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -131,6 +132,11 @@
                                                     </td>
                                                     <td>{{ $hasil_quiz->nilai ?? "belum dinilai" }}</td>
                                                     <td>{{ \Carbon\Carbon::createFromFormat("Y-m-d H:i:s", $hasil_quiz->created_at)->format("Y-m-d") }}</td>
+                                                    <td>
+                                                        <a href="{{ route("guru.semester.pertemuan.hasilQuiz.reviewQuiz", ["pertemuan_id" => $pertemuan->id, "hasil_quiz_id" => $hasil_quiz->id]) }}" class="btn btn-sm btn-primary me-2">
+                                                            Review Quiz
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -139,7 +145,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tugas-tab" role="tabpanel">
-                            @if ($pertemuan->tugas)
+                            @if (!$pertemuan->tugas)
                                 <a href="{{ route("guru.semester.pertemuan.tugas.create", ["pertemuan_id" => $pertemuan->id]) }}" class="btn btn-dark mb-4">Create</a>
                             @endif
                             <div class="table-responsive">

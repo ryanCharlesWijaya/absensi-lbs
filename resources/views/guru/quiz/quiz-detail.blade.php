@@ -8,7 +8,7 @@
                     <h2 class="py-8">Quiz Detail</h2>
                     <div class="card-toolbar">
                         <a href="{{ route("guru.semester.pertemuan.quiz.edit", ["pertemuan_id" => $pertemuan->id, "quiz_id" => $quiz->id]) }}" class="btn btn-sm btn-primary" >
-                            <i class="fas fa-plus"></i> Edit Quiz
+                            <i class="fas fa-pen"></i> Edit Quiz
                         </a>
                     </div>
                 </div>

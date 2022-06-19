@@ -3,8 +3,8 @@
 @section('content')
         <div class="col-md-8 offset-2">
             <div class="card">
-                <div class="card-header">
-                    <h2 class="py-8">{{ __('Login') }}</h2>
+                <div class="card-header card-header-stretch">
+                    <h2 class="card-title">{{ __('Login') }}</h2>
                     <div class="card-toolbar">
                         <ul class="nav nav-tabs nav-line-tabs nav-stretch fs-6 border-0">
                             <li class="nav-item">
@@ -65,24 +65,23 @@
                         </div>
             
                         <div class="tab-pane fade" id="sekolah" role="tabpanel">
-                            <table class="table table-rounded table-striped border gy-7 gs-7">
-                                <thead>
-                                    <tr class="fw-bolder fs-6 text-gray-800">
-                                        <th>Nama Sekolah</th>
-                                        <th>Deskripsi</th>
-                                        <th>Alamat</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (\App\Models\Sekolah::all() as $sekolah)
-                                        <tr>
-                                            <td>{{ $sekolah->nama }}</td>
-                                            <td>{{ substr($sekolah->deskripsi, 0, 100) }}</td>
-                                            <td>{{ $sekolah->nomor_telepon }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                            @foreach (\App\Models\Sekolah::all() as $sekolah)
+                                <div class="card card-bordered">
+                                    <div class="card-header">
+                                        <h5 class="card-title">{{ $sekolah->nama }}</h5>
+                                        <div class="card-toolbar">
+                                            <span class="badge badge-light">{{ $sekolah->nomor_telepon }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <label class="fw-bold" for="">Alamat:</label>
+                                        <p class="card-text">{{ $sekolah->alamat }}</p>
+                                        
+                                        <label class="fw-bold" for="">Deskripsi:</label>
+                                        <p class="card-text">{{ $sekolah->deskripsi }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                     

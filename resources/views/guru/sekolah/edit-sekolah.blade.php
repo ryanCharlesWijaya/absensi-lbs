@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="py-8">Tambah Sekolah</h2>
+                    <h2 class="py-8">Edit Sekolah</h2>
                 </div>
                 <form action="{{ route("guru.sekolah.store") }}" method="post" class="card-body">
                     @csrf
@@ -45,7 +45,7 @@
                         />
 
                     <div class="mb-3">
-                        <button class="btn btn-primary">Tambah</button>
+                        <button class="btn btn-primary">Edit</button>
                     </div>
                 </form>
             </div>

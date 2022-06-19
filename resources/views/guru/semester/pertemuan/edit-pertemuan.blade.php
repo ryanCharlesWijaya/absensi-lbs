@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="py-8">Edit Semester</h2>
+                    <h2 class="py-8">Edit Pertemuan</h2>
                 </div>
                 <form action="{{ route("guru.semester.pertemuan.update", ["pertemuan_id" => $pertemuan->id]) }}  " method="post" class="card-body" enctype="multipart/form-data">
                     {{-- @if ($errors->any())
@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <button class="btn btn-primary">Tambah</button>
+                        <button class="btn btn-primary">Edit</button>
                     </div>
                 </form>
             </div>

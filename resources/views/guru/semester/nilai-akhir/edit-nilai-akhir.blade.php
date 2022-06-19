@@ -12,7 +12,7 @@
                         </span>
                     </div>
                 </div>
-                <form action="{{ route("guru.semester.nilaiAkhir.store", ["semester_id" => $semester->id, "siswa_id" => $siswa->id]) }}" method="post" class="card-body" enctype="multipart/form-data">
+                <form action="{{ route("guru.semester.nilaiAkhir.update", ["semester_id" => $semester->id, "nilai_akhir_id" => $nilai_akhir->id]) }}" method="post" class="card-body" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="semester_id" value="{{ $semester->id }}">
                     <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
@@ -71,6 +71,7 @@
                         title="Nilai Pertemuan"
                         id="nilai-input"
                         required="required"
+                        :value="$nilai_akhir->nilai"
                         />
 
                     <div class="mb-3">

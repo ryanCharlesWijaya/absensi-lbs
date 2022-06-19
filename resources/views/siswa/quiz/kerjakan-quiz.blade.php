@@ -61,7 +61,7 @@
                     @endforeach
 
                     <div class="mb-3">
-                        <button class="btn btn-primary">Tambah</button>
+                        <button class="btn btn-primary">Kumpul</button>
                     </div>
                 </form>
             </div>

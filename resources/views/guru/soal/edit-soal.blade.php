@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="py-8">Tambah Soal</h2>
+                    <h2 class="py-8">Edit Soal</h2>
                 </div>
                 <form action="{{ route("guru.soal.update", ["soal_id" => $soal->id]) }}" method="post" class="card-body">
                     @csrf
@@ -101,7 +101,7 @@
                     </x-select-input>
 
                     <div class="mb-3">
-                        <button class="btn btn-primary">Tambah</button>
+                        <button class="btn btn-primary">Edit</button>
                     </div>
                 </form>
             </div>

@@ -57,13 +57,35 @@ class NilaiAkhirController extends Controller
         }
     }
 
-    public function edit(int $nilai_akhir_id)
+    public function edit(int $semester_id, int $nilai_akhir_id)
     {
         $nilai_akhir = NilaiAkhir::findOrFail($nilai_akhir_id);
         $semester = $nilai_akhir->semester;
         $siswa = $nilai_akhir->siswa;
 
-        return view("guru.semester.nilai-akhir.create-nilai-akhir", compact("nilai_akhir", "semester", "siswa"));
+        $jawaban_tugases = $siswa->jawaban_tugas()
+            ->whereHas("tugas", function ($query) use ($semester) {
+                return $query->whereHas("pertemuan", function ($query) use ($semester) {
+                    $query->where("semester_id", $semester->id);
+                }, ">", 0);
+            }, ">", 0)
+            ->get();
+
+        $hasil_quizzes = $siswa->hasil_quiz()
+            ->whereHas("quiz", function ($query) use ($semester) {
+                return $query->whereHas("pertemuan", function ($query) use ($semester) {
+                    $query->where("semester_id", $semester->id);
+                }, ">", 0);
+            }, ">", 0)
+            ->get();
+
+        $absensi_count = $siswa->absensis()
+            ->whereHas("pertemuan", function ($query) use ($semester) {
+                $query->where("semester_id", $semester->id);
+            }, ">", 0)
+            ->count();
+
+        return view("guru.semester.nilai-akhir.edit-nilai-akhir", compact("jawaban_tugases", "hasil_quizzes", "absensi_count", "nilai_akhir", "semester", "siswa"));
     }
 
     public function update(Request $request, NilaiAkhirService $nilaiAkhirService, int $semester_id, int $nilai_akhir_id)

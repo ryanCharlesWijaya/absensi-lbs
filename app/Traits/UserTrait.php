@@ -45,7 +45,7 @@ trait UserTrait
             "nomor_telepon" => ["sometimes","required", "int"],
             "alamat" => ["sometimes","nullable", "string"],
             "email" => ["sometimes","required", "string"],
-            "roles" => ["required"]
+            "role" => ["required"]
         ]);
     }
 

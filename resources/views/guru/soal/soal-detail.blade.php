@@ -5,10 +5,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="py-8">Daftar Soal</h2>
+                    <h2 class="py-8">Detail Soal</h2>
                     <div class="card-toolbar">
                         <a href="{{ route("guru.soal.edit", ["soal_id" => $soal->id]) }}" class="btn btn-sm btn-primary" >
-                            <i class="fas fa-plus"></i> Edit Soal
+                            <i class="fas fa-pen"></i> Edit Soal
                         </a>
                     </div>
                 </div>

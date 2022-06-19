@@ -20,6 +20,13 @@
                     <input type="hidden" name="tugas_id" value="{{ $tugas->id }}">
 
                     <div class="mb-3">
+                        <label for="file-input" class="form-label">Soal Tugas</label>
+                        <div>
+                            <b><a href="{{ $tugas->getFirstMedia()->getFullUrl() }}">{{ $tugas->getFirstMedia()->file_name }}</a></b>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="file-input" class="form-label">Default file input example</label>
                         <input class="form-control @error('file') is-invalid @enderror" type="file" name="file" id="file-input">
 

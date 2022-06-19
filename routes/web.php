@@ -12,6 +12,7 @@ use App\Http\Controllers\Siswa\DashboardController as SiswaDashboardController;
 use App\Http\Controllers\Siswa\PertemuanController as SiswaPertemuanController;
 use App\Http\Controllers\Guru\TugasController as GuruTugasController;
 use App\Http\Controllers\Guru\JawabanTugasController as GuruJawabanTugasController;
+use App\Http\Controllers\Guru\KurikulumController as GuruKurikulumController;
 use App\Http\Controllers\Guru\NilaiAkhirController;
 use App\Http\Controllers\Guru\ResourceSiswaController as GuruResourceSiswaController;
 use App\Http\Controllers\Guru\SekolahController as GuruSekolahController;
@@ -43,7 +44,20 @@ Route::group([
     "as" => "guru.",
     "middleware" => ["auth"]
 ],
-function () {    
+function () {   
+    Route::group([
+        "prefix" => "kurikulum",
+        "as" => "kurikulum.",
+    ],
+    function () {
+        Route::get("", [GuruKurikulumController::class, 'index'])->name("index");
+        Route::get("/create", [GuruKurikulumController::class,'create'])->name("create");
+        Route::post("/store", [GuruKurikulumController::class, 'store'])->name("store");
+        Route::get("/{kurikulum_id}/detail", [GuruKurikulumController::class, 'show'])->name("show");
+        Route::get("/{kurikulum_id}/edit", [GuruKurikulumController::class, 'edit'])->name("edit");
+        Route::post("/{kurikulum_id}/update", [GuruKurikulumController::class, 'update'])->name("update");
+    });
+
     Route::group([
         "prefix" => "semester",
         "as" => "semester.",
@@ -61,6 +75,8 @@ function () {
 
         Route::get("/{semester_id}/nilai-akhir/{siswa_id}/create", [NilaiAkhirController::class, 'create'])->name("nilaiAkhir.create");
         Route::post("/{semester_id}/nilai-akhir/{siswa_id}/store", [NilaiAkhirController::class, 'store'])->name("nilaiAkhir.store");
+        Route::get("/{semester_id}/nilai-akhir/{nilai_akhir_id}/edit", [NilaiAkhirController::class, 'edit'])->name("nilaiAkhir.edit");
+        Route::post("/{semester_id}/nilai-akhir/{nilai_akhir_id}/update", [NilaiAkhirController::class, 'update'])->name("nilaiAkhir.update");
 
         Route::group([
             "as" => "resources."

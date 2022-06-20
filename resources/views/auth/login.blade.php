@@ -88,20 +88,29 @@
                         </div>
 
                         <div class="tab-pane fade" id="pengumuman" role="tabpanel">
-                            @foreach (\App\Models\Pengumuman::all() as $pengumuman)
-                                <div class="card card-bordered mb-5">
-                                    <div class="card-header">
-                                        <h5 class="card-title">{{ $pengumuman->judul }}</h5>
-                                        <div class="card-toolbar">
-                                            <span class="badge badge-light">{{ $pengumuman->kategori }}</span>
+                            <div class="row">
+                                @foreach (\App\Models\Pengumuman::all() as $pengumuman)
+                                    <div class="col-6">
+                                        <div class="card overflow-hidden card-bordered mb-5">
+                                            <div class="card-body p-0">
+                                                @if ($pengumuman->getFirstMedia())
+                                                    <img src="{{ $pengumuman->getFirstMedia()->getFullUrl() }}" alt="" class="w-100">
+                                                @endif
+                                                <div class="p-8">
+                                                    <div class="d-flex justify-content-between">
+                                                        <h5 class="card-title">{{ $pengumuman->judul }}</h5>
+                                                        <div class="card-toolbar">
+                                                            <span class="badge badge-light">{{ $pengumuman->kategori }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <small for="">Ditambahkan pada, {{ \Carbon\Carbon::createFromFormat("Y-m-d H:i:s", $pengumuman->created_at)->format("d M Y") }}</small>
+                                                    <p class="card-text">{{ $pengumuman->deskripsi }}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="card-body">
-                                        <label class="fw-bold" for="">Deskripsi:</label>
-                                        <p class="card-text">{{ $pengumuman->deskripsi }}</p>
-                                    </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                     

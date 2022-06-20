@@ -22,14 +22,14 @@ License: For each use you must have a valid license purchased only from above li
 
 		@stack('head')
 	</head>
-	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
 		<div class="d-flex flex-column flex-root">
 			<div class="page d-flex flex-row flex-column-fluid">
                 @auth                    
                     <x-aside />
-                    <div class="wrapper d-flex flex-column flex-row-fluid pt-0" id="kt_wrapper">
+                    <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
 						<x-header />
-                        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                        <div class="content d-flex flex-column flex-column-fluid pt-8" id="kt_content">
                             @yield('content')
                         </div>
                     </div>

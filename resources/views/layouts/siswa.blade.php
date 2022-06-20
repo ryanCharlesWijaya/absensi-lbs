@@ -28,6 +28,7 @@ License: For each use you must have a valid license purchased only from above li
                 @auth                    
                     <x-siswa-aside />
                     <div class="wrapper d-flex flex-column flex-row-fluid pt-0" id="kt_wrapper">
+						<x-header />
                         <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
                             @yield('content')
                         </div>

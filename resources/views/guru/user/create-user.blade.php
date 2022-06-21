@@ -70,9 +70,11 @@
                         title="Kategori User"
                         id="role-input">
                         <option>Pilih Kategori User</option>
-                        <option value="guru" @if(old("role") == "guru") selected @endif>Guru</option>
                         <option value="siswa" @if(old("role") == "siswa") selected @endif>Siswa</option>
-                        <option value="admin" @if(old("role") == "admin") selected @endif>Admin</option>
+                        @if (Auth::user()->is_admin)
+                            <option value="guru" @if(old("role") == "guru") selected @endif>Guru</option>
+                            <option value="admin" @if(old("role") == "admin") selected @endif>Admin</option>
+                        @endif
                     </x-select-input>
 
                     <div class="mb-3">

@@ -53,6 +53,11 @@ class User extends Authenticatable
         });
     }
 
+    public function getIsAdminAttribute()
+    {
+        return $this->isAdmin();
+    }
+
     public function isAdmin()
     {
         return $this->getRoleNames()[0] == "admin";
@@ -61,6 +66,11 @@ class User extends Authenticatable
     public function absensis()
     {
         return $this->hasMany(Absensi::class, 'user_id');
+    }
+
+    public function teached_semesters()
+    {
+        return $this->hasMany(Semester::class, "guru_id");
     }
 
     public function semesters()

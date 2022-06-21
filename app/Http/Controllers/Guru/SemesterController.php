@@ -9,14 +9,17 @@ use App\Models\User;
 use App\Services\SemesterService;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SemesterController extends Controller
 {
     public function index()
     {
-        $semesters = Semester::paginate(16);
-
+        $semesters = (Auth::user()->is_admin)
+            ? Semester::paginate(16)
+            : Auth::user()->teached_semesters()->paginate(16);
+            
         return view("guru.semester.index", compact("semesters"));
     }
 

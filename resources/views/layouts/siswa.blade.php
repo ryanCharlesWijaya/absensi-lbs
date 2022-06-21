@@ -19,6 +19,7 @@ License: For each use you must have a valid license purchased only from above li
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<link href="{{ asset("assets/plugins/global/plugins.bundle.css") }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset("assets/css/style.bundle.css") }}" rel="stylesheet" type="text/css" />
+		<link rel="shortcut icon" href="{{ asset("assets/images/logo.png") }}" type="image/x-icon">
 
 		@stack('head')
 	</head>
@@ -26,7 +27,7 @@ License: For each use you must have a valid license purchased only from above li
 		<div class="d-flex flex-column flex-root">
 			<div class="page d-flex flex-row flex-column-fluid">
                 @auth                    
-                    <x-aside />
+                    <x-siswa-aside />
                     <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
 						<x-header />
                         <div class="content d-flex flex-column flex-column-fluid pt-8" id="kt_content">

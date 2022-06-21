@@ -34,7 +34,9 @@
                                         <td>{{ $user->alamat }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
-                                            <a href="{{ route("guru.user.edit", ["user_id" => $user->id]) }}" class="btn btn-sm btn-info">Edit</a>
+                                            @if (Auth::user()->is_admin)
+                                                <a href="{{ route("guru.user.edit", ["user_id" => $user->id]) }}" class="btn btn-sm btn-info">Edit</a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

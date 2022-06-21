@@ -37,7 +37,7 @@ class SemesterController extends Controller
         $siswas = User::role("siswa");
 
         foreach ($semester->siswas as $siswa) {
-            $siswas = $siswa->where("id", "<>", $siswa->id);
+            $siswas = $siswas->where("id", "<>", $siswa->id);
         }
 
         $siswas = $siswas->get();

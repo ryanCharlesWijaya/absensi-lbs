@@ -28,7 +28,7 @@
                                     <td>{{ $pertemuan->deskripsi }}</td>
                                     <td>{{ $pertemuan->tanggal }}</td>
                                     <td class="d-flex">
-                                        @if (!$pertemuan->has_absen && !$pertemuan->has_expired)
+                                        @if (!$pertemuan->has_absen && $pertemuan->can_absen)
                                             <form action="{{ route("siswa.pertemuan.absensi.absen", ["pertemuan_id" => $pertemuan->id, "absensi_id" => $pertemuan->absensi()->where("user_id", Auth::id())->first()->id]) }}" method="POST">
                                                 @csrf
                                                 <button class="btn btn-sm btn-info me-2">Absen!</button>

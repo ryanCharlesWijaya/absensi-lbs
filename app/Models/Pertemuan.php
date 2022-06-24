@@ -41,11 +41,11 @@ class Pertemuan extends Model implements HasMedia
         return $this->hasOne(Tugas::class);
     }
 
-    public function getHasExpiredAttribute()
+    public function getCanAbsenAttribute()
     {
         $now = Carbon::now()->format("Y-m-d");
 
-        return $this->tanggal_kadaluarsa < $now;
+        return $this->tanggal == $now;
     }
 
     public function getHasAbsenAttribute()

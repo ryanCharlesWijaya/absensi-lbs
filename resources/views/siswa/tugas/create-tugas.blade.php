@@ -26,30 +26,61 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="file-input" class="form-label">Default file input example</label>
-                        <input class="form-control @error('file') is-invalid @enderror" type="file" name="file" id="file-input">
+                    @if (!$jawaban_tugas)
+                        @if ($tugas->has_expired)
+                            <div class="mb-3">
+                                <label for="file-input" class="form-label">File Jawaban</label>
+                                <input class="form-control @error('file') is-invalid @enderror" type="file" name="file" id="file-input">
 
-                        @error('file')
-                            <div class="invalid-feedback">
-                                <span>{{ $message }}</span>
+                                @error('file')
+                                    <div class="invalid-feedback">
+                                        <span>{{ $message }}</span>
+                                    </div>
+                                @enderror
                             </div>
-                        @enderror
-                    </div>
+
+                            <div class="mb-3">
+                                <label for="" class="form-label">Pesan</label>
+                                <textarea class="form-control @error("pesan") is-invalid @enderror" name="pesan" id="pesan-input" rows="3" required="require">{{ old("pesan") }}</textarea>
+
+                                @error("pesan")
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        @endif
+                    @else
+                        <table class="table table-rounded table-striped border gy-7 gs-7">
+                            <thead>
+                                <tr class="fw-bolder fs-6 text-gray-800">
+                                    <th>Siswa</th>
+                                    <th>Nilai</th>
+                                    <th>Tanggal Pengerjaan</th>
+                                    <th>Pesan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ([$jawaban_tugas] as $jawaban)
+                                    <tr>
+                                        <td>
+                                            {{ $jawaban->siswa->nama }}
+                                        </td>
+                                        <td>{{ $jawaban->nilai ?? "belum dinilai" }}</td>
+                                        <td>{{ \Carbon\Carbon::createFromFormat("Y-m-d H:i:s", $jawaban->created_at)->format("Y-m-d") }}</td>
+                                        <td>{{ substr($jawaban->pesan) }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
 
                     <div class="mb-3">
-                        <label for="" class="form-label">pesan</label>
-                        <textarea class="form-control @error("pesan") is-invalid @enderror" name="pesan" id="pesan-input" rows="3" required="require">{{ old("pesan") }}</textarea>
-
-                        @error("pesan")
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <button class="btn btn-primary">Tambah</button>
+                        @if (!$tugas->has_expired)
+                            <button class="btn btn-primary">Tambah</button>
+                        @else
+                            <span>Masa Pengumpulan Tugas Telah Berakhir</span>
+                        @endif
                     </div>
                 </form>
             </div>

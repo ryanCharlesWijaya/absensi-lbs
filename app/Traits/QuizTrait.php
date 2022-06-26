@@ -15,15 +15,17 @@ trait QuizTrait
         return Validator::make($data, [
             "soals" => ["required", "array"],
             "soals.*" => ["required", "int"],
+            "durasi_quiz" => ["required", "int"],
             "tanggal_kadaluarsa" => ["required"],
             "pertemuan_id" => ["required", "int"]
-        ]);
+    ]);
     } 
 
     protected function storeQuizToDatabase(Array $data)
     {
         return Quiz::create([
             "pertemuan_id" => $data["pertemuan_id"],
+            "durasi_quiz" => $data["durasi_quiz"],
             "tanggal_kadaluarsa" => $data["tanggal_kadaluarsa"]
         ]);
     }
@@ -40,6 +42,7 @@ trait QuizTrait
         return Validator::make($data, [
             "soals" => ["sometimes", "array"],
             "soals.*" => ["sometimes", "int"],
+            "durasi_quiz" => ["sometimes", "int"],
             "tanggal_kadaluarsa" => ["sometimes"],
             "pertemuan_id" => ["sometimes", "int"]
         ]);

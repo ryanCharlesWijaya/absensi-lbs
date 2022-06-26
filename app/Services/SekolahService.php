@@ -13,6 +13,7 @@ class SekolahService {
             "deskripsi" => ["required", "string"],
             "alamat" => ["required", "string"],
             "nomor_telepon" => ["required", "string"],
+            "kategori" => ["required", "string"],
             "fotos" => ["array"],
             "fotos.*" => ["image"]
         ])->validate();
@@ -33,6 +34,7 @@ class SekolahService {
             "deskripsi" => ["sometimes", "string"],
             "alamat" => ["sometimes", "string"],
             "nomor_telepon" => ["sometimes", "string"],
+            "kategori" => ["sometimes", "string"],
             "fotos" => ["sometimes", "array"],
             "fotos.*" => ["image"]
         ])->validate();

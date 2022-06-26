@@ -20,6 +20,13 @@ class Tugas extends Model implements HasMedia
         "tanggal_kadaluarsa",
     ];
 
+    public function getHasExpiredAttribute()
+    {
+        $now = Carbon::now()->subDays(1)->format("Y-m-d H:i:s");
+
+        return $this->tanggal_kadaluarsa < $now;
+    }
+
     public function pertemuan()
     {
         return $this->belongsTo(Pertemuan::class, "pertemuan_id");

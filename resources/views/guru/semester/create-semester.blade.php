@@ -51,7 +51,7 @@
                         id="guru-input"
                         required="required"
                         >
-                        @foreach (\App\Models\User::role("guru")->get() as $guru)
+                        @foreach (\App\Models\User::role("admin")->get() as $guru)
                             <option value="{{ $guru->id }}">{{ $guru->nama }}</option>
                         @endforeach
                     </x-select-input>

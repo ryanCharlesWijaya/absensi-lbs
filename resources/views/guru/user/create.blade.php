@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="py-8">Tambah User</h2>
+                    <h2 class="py-8">Tambah Guru</h2>
                 </div>
                 <form action="{{ route("guru.user.store") }}" method="post" class="card-body">
                     @csrf
@@ -65,17 +65,7 @@
                         required="required"
                     />
 
-                    <x-select-input
-                        name="role"
-                        title="Kategori User"
-                        id="role-input">
-                        <option>Pilih Kategori User</option>
-                        <option value="siswa" @if(old("role") == "siswa") selected @endif>Siswa</option>
-                        @if (Auth::user()->is_admin)
-                            <option value="guru" @if(old("role") == "guru") selected @endif>Guru</option>
-                            <option value="admin" @if(old("role") == "admin") selected @endif>Admin</option>
-                        @endif
-                    </x-select-input>
+                    <input type="hidden" name="role" value="admin">
 
                     <div class="mb-3">
                         <button class="btn btn-primary">Tambah</button>

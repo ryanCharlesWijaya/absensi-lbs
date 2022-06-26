@@ -14,9 +14,16 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::paginate(16);
+        $users = User::role("admin")->paginate(16);
 
         return view("guru.user.index", compact("users"));
+    }
+
+    public function listSiswa()
+    {
+        $siswas = User::role("siswa")->paginate(16);
+
+        return view("guru.user.list-siswa", compact("siswas"));
     }
 
     public function show(int $user_id)
@@ -28,7 +35,12 @@ class UserController extends Controller
 
     public function create()
     {
-        return view("guru.user.create-user");
+        return view("guru.user.create");
+    }
+
+    public function createSiswa()
+    {
+        return view("guru.user.create-siswa");
     }
 
     public function store(Request $request, UserService $userService)
@@ -84,10 +96,10 @@ class UserController extends Controller
         DB::beginTransaction();
 
         try {
-            $user = $userService->deleteUserResource($user_id);
+            $userService->deleteUser($user_id);
 
             DB::commit();
-            return redirect(route("guru.user.index", ["user_id" => $user_id]));
+            return redirect(route("guru.user.index"));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;

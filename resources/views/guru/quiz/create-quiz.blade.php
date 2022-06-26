@@ -28,6 +28,14 @@
                         required="required"
                         />
 
+                    <x-text-input
+                        type="number"
+                        name="durasi_quiz"
+                        title="Durasi Quiz (dalam satuan menit)"
+                        id="durasi-input"
+                        required="required"
+                        />
+
                     <x-select-input
                         name="soals[]"
                         title="soal-soal"

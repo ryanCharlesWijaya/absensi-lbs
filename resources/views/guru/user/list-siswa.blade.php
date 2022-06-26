@@ -5,10 +5,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="py-8">Daftar Guru</h2>
+                    <h2 class="py-8">Daftar Siswa</h2>
                     <div class="card-toolbar">
-                        <a href="{{ route("guru.user.create") }}" class="btn btn-sm btn-primary">
-                            <i class="fas fa-plus"></i> Tambah Guru
+                        <a href="{{ route("guru.user.createSiswa") }}" class="btn btn-sm btn-primary">
+                            <i class="fas fa-plus"></i> Tambah Siswa
                         </a>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($siswas as $user)
                                     <tr>
                                         <td>{{ $user->nama }}</td>
                                         <td>{{ $user->tanggal_lahir }}</td>

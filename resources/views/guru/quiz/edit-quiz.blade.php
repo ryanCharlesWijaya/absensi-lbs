@@ -27,6 +27,15 @@
                         value="{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $quiz->tanggal_kadaluarsa)->format('Y-m-d') }}"
                         />
 
+                    <x-text-input
+                        type="number"
+                        name="durasi_quiz"
+                        title="Durasi Quiz (dalam satuan menit)"
+                        id="durasi-input"
+                        required="required"
+                        value="{{ $quiz->durasi_quiz }}"
+                        />
+
                     <x-select-input
                         name="soals[]"
                         title="soal-soal"

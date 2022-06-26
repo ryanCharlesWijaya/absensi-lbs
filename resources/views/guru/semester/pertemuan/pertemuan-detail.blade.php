@@ -87,7 +87,7 @@
                                 <table class="table table-rounded table-striped border gy-7 gs-7">
                                     <thead>
                                         <tr class="fw-bolder fs-6 text-gray-800">
-                                            <th>Tahun Ajaran</th>
+                                            <th>ID Quiz</th>
                                             <th>Tanggal Kadaluarsa</th>
                                             <th>Jumlah Soal</th>
                                             <th>Aksi</th>
@@ -184,6 +184,8 @@
                                             <tr class="fw-bolder fs-6 text-gray-800">
                                                 <th>Siswa</th>
                                                 <th>Nilai</th>
+                                                <th>Tanggal Pengerjaan</th>
+                                                <th>Pesan</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -195,6 +197,7 @@
                                                     </td>
                                                     <td>{{ $jawaban->nilai ?? "belum dinilai" }}</td>
                                                     <td>{{ \Carbon\Carbon::createFromFormat("Y-m-d H:i:s", $jawaban->created_at)->format("Y-m-d") }}</td>
+                                                    <td>{{ substr($jawaban->pesan) }}</td>  
                                                     <td>
                                                         <a href="{{ route("guru.semester.pertemuan.jawabanTugas.showNilai", ["pertemuan_id" => $pertemuan->id, "jawaban_tugas_id" => $jawaban->id]) }}" class="btn btn-sm btn-danger">Nilai Tugas</a>
                                                     </td>

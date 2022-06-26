@@ -13,6 +13,7 @@ class Quiz extends Model
     protected $fillable = [
         "pertemuan_id",
         "tanggal_kadaluarsa",
+        "durasi_quiz"
     ];
 
     public function getHasExpiredAttribute()

@@ -40,6 +40,15 @@
                         required="required"
                         />
 
+                    <x-select-input
+                        name="kategori"
+                        title="Kategori Sekolah"
+                        id="kategori-input">
+                        <option>Pilih Kategori Sekolah</option>
+                        <option value="sekolah_minggu" @if(old("kategori") == "sekolah_minggu") selected @endif>Sekolah Minggu</option>
+                        <option value="sekolah_siswa" @if(old("kategori") == "sekolah_siswa") selected @endif>Sekolah Siswa</option>
+                    </x-select-input>
+
                     <div class="mb-3">
                         <button class="btn btn-primary">Tambah</button>
                     </div>

@@ -31,17 +31,17 @@ class UserSeeder extends Seeder
             "nama" => "guru",
             "tanggal_lahir" => "2002-10-06",
             "nomor_telepon" => "+2193012",
-            "alamat" => "alamat ryan",
+            "alamat" => "alamat guru",
             "email" => "guru@gmail.com",
             "password" => Hash::make("password"),
         ]);
-        $guru->assignRole("guru");
+        $guru->assignRole("admin");
 
         $siswa = User::create([
             "nama" => "siswa",
             "tanggal_lahir" => "2002-03-31",
             "nomor_telepon" => "+2193012",
-            "alamat" => "alamat ryan",
+            "alamat" => "alamat siswa",
             "email" => "siswa@gmail.com",
             "password" => Hash::make("password"),
         ]);

@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('sekolahs', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('deskripsi');
-            $table->string('alamat');
-            $table->string('nomor_telepon');
+            $table->string('deskripsi')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('nomor_telepon')->nullable();
+            $table->enum("kategori", ["sekolah_minggu", "sekolah_siswa"])->default("sekolah_minggu");
             $table->timestamps();
         });
     }

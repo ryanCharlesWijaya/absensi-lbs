@@ -16,6 +16,7 @@ class Sekolah extends Model implements HasMedia
         "deskripsi",
         "alamat",
         "nomor_telepon",
+        "kategori"
     ];
 
     public function users()

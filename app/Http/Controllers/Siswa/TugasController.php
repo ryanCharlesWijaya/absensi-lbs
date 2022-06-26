@@ -9,6 +9,7 @@ use App\Services\JawabanTugasService;
 use App\Services\TugasService;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TugasController extends Controller
@@ -18,7 +19,9 @@ class TugasController extends Controller
         $pertemuan = Pertemuan::findOrFail($pertemuan_id);
         $tugas = Tugas::findOrFail($tugas_id);
 
-        return view("siswa.tugas.create-tugas", compact("pertemuan", "tugas"));
+        $jawaban_tugas = $tugas->jawaban()->where("siswa_id", Auth::id())->first();
+
+        return view("siswa.tugas.create-tugas", compact("pertemuan", "tugas", "jawaban_tugas"));
     }
 
     public function upload(Request $request, JawabanTugasService $jawabanTugasService, int $pertemuan_id, int $tugas_id)

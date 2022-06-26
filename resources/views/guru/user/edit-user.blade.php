@@ -9,6 +9,7 @@
                 </div>
                 <form action="{{ route("guru.user.updateDetail", ["user_id" => $user->id]) }}" method="post" class="card-body">
                     @csrf
+                    <input type="hidden" name="role" value="{{ $user->role }}">
 
                     <x-text-input
                         type="text"
@@ -51,42 +52,34 @@
                         value="{{ $user->email }}"
                     />
 
-                    <x-select-input
-                        name="role"
-                        title="Kategori User"
-                        id="role-input">
-                        <option>Pilih Kategori User</option>
-                        <option value="guru"
-                            @if (old("role"))
-                                @if(old("role") == "guru")
-                                    selected
-                                @endif
-                            @else
-                                @if($user->hasRole("guru"))
-                                    selected
-                                @endif
-                            @endif>Guru</option>
-                        <option value="siswa"
-                            @if (old("role"))
-                                @if(old("role") == "siswa")
-                                    selected
-                                @endif
-                            @else
-                                @if($user->hasRole("siswa"))
-                                    selected
-                                @endif
-                            @endif>Siswa</option>
-                        <option value="admin"
-                            @if (old("role"))
-                                @if(old("role") == "admin")
-                                    selected
-                                @endif
-                            @else
-                                @if($user->hasRole("admin"))
-                                    selected
-                                @endif
-                            @endif>Admin</option>
-                    </x-select-input>
+                    @if ($user->role == "siswa")
+                        <div class="mb-3">
+                            <label
+                                class="form-label text-capitalize">
+                                Nama Sekolah
+                            </label>
+                            <input
+                                type="text"
+                                name="nama_sekolah"
+                                class="form-control @error("nama_sekolah") is-invalid @enderror"
+                                id="nama_sekolah_input"
+                                list="sekolahs"
+                                @if (old("nama_sekolah")) value="{{ old("nama_sekolah") }}" @endif
+                                required>
+
+                            @error("nama_sekolah")
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <datalist id="sekolahs">
+                            @foreach (\App\Models\Sekolah::where("kategori", "sekolah_siswa")->get() as $sekolah)
+                                <option value="{{ $sekolah->nama }}">{{ $sekolah->nama }}</option>
+                            @endforeach
+                        </datalist>
+                    @endif
 
                     <div class="mb-3">
                         <button class="btn btn-primary">Edit</button>

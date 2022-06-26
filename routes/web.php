@@ -178,7 +178,9 @@ function () {
     ],
     function () {
         Route::get("", [UserManajemenController::class, 'index'])->name("index");
+        Route::get("/list-siswa", [UserManajemenController::class, 'listSiswa'])->name("listSiswa");
         Route::get("/create", [UserManajemenController::class,'create'])->name("create");
+        Route::get("/create-siswa", [UserManajemenController::class,'createSiswa'])->name("createSiswa");
         Route::post("/store", [UserManajemenController::class, 'store'])->name("store");
         Route::get("/{user_id}", [UserManajemenController::class, 'show'])->name("show");
         Route::get("/{user_id}/edit", [UserManajemenController::class, 'edit'])->name("edit");

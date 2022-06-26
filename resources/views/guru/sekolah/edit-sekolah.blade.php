@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <h2 class="py-8">Edit Sekolah</h2>
                 </div>
-                <form action="{{ route("guru.sekolah.store") }}" method="post" class="card-body">
+                <form action="{{ route("guru.sekolah.update", $sekolah->id) }}" method="post" class="card-body">
                     @csrf
                     <x-text-input
                         type="text"
@@ -43,6 +43,33 @@
                         :value="$sekolah->nomor_telepon"
                         required="required"
                         />
+
+                    <x-select-input
+                        name="kategori"
+                        title="Kategori Sekolah"
+                        id="kategori-input">
+                        <option>Pilih Kategori Sekolah</option>
+                        <option value="sekolah_minggu" 
+                            @if(old("kategori"))
+                                @if (old("kategori") == "sekolah_minggu")
+                                    selected
+                                @endif
+                            @else
+                                @if ($sekolah->kategori == "sekolah_minggu")
+                                    selected
+                                @endif
+                            @endif>Sekolah Minggu</option>
+                        <option value="sekolah_siswa" 
+                            @if(old("kategori"))
+                                @if (old("kategori") == "sekolah_siswa")
+                                    selected
+                                @endif
+                            @else
+                                @if ($sekolah->kategori == "sekolah_siswa")
+                                    selected
+                                @endif
+                            @endif>Sekolah Siswa</option>
+                    </x-select-input>
 
                     <div class="mb-3">
                         <button class="btn btn-primary">Edit</button>

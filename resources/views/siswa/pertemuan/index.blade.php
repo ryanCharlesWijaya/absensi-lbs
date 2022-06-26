@@ -24,7 +24,14 @@
                                 @foreach ($pertemuans as $key => $pertemuan)
                                 <tr>
                                     <td>{{ $key + 1}}</td>
-                                    <td>{{ $pertemuan->judul }}</td>
+                                    <td>
+                                        {{ $pertemuan->judul }}
+                                        @if ($pertemuan->has_absen)
+                                            <span class="badge badge-light-success">Sudah Absen</span>
+                                        @else
+                                            <span class="badge badge-light">Belum Absen</span>
+                                        @endif
+                                    </td>
                                     <td>{{ $pertemuan->deskripsi }}</td>
                                     <td>{{ $pertemuan->tanggal }}</td>
                                     <td class="d-flex">

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Sekolah;
 use App\Models\User;
 use App\Traits\UserTrait;
 
@@ -10,6 +11,12 @@ class UserService {
     public function createUser(Array $data)
     {
         $validated = $this->makeStoreValidator($data)->validate();
+
+        $sekolah = Sekolah::where("nama", $validated["nama_sekolah"] ??  null)->first();
+
+        $validated["sekolah_id"] = $sekolah
+            ? $sekolah->id
+            : Sekolah::create(["name" => $validated["nama_sekolah"], "kategori" => "sekolah_siswa"])->id;
 
         $user = $this->storeUserInDatabase($validated);
 
@@ -23,6 +30,14 @@ class UserService {
         $user = User::findOrFail($user_id);
 
         $validated = $this->makeUpdateDetailValidator($data)->validate();
+
+        if ($validated["nama_sekolah"]) {
+            $sekolah = Sekolah::where("nama", $validated["nama_sekolah"] ?? null)->first();
+
+            $validated["sekolah_id"] = $sekolah
+                ? $sekolah->id
+                : Sekolah::create(["nama" => $validated["nama_sekolah"], "kategori" => "sekolah_siswa"])->id;
+        }
 
         $this->updateUserInDatabase($validated, $user);
 
@@ -40,13 +55,8 @@ class UserService {
         return $user->refresh();
     }
 
-    public function deleteUserResource(int $user_id)
+    public function deleteUser(int $user_id)
     {
-        $user = User::findOrFail($user_id);
-
-        $user = $user::find($user_id);
-        $user->delete();
-
-        return $user;
+       User::findOrFail($user_id)->delete();
     }
 }

@@ -1,5 +1,5 @@
 @php
-    $role = Auth::user()->getRoleNames()[0];
+    $role = "admin";
 @endphp
 
 <!--begin::Aside-->
@@ -127,7 +127,15 @@
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Daftar User</span>
+                            <span class="menu-title">Daftar Guru</span>
+                        </a>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <a class="menu-link" href="{{ route("guru.user.listSiswa") }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Daftar Siswa</span>
                         </a>
                     </div>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
@@ -135,7 +143,15 @@
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Tambah User</span>
+                            <span class="menu-title">Tambah Guru</span>
+                        </a>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <a class="menu-link" href="{{ route("guru.user.createSiswa") }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Tambah Siswa</span>
                         </a>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ trait UserTrait
     protected function makeStoreValidator(Array $data)
     {   
         return Validator::make($data, [
-            "sekolah_id" => ["nullable", "int"],
+            "nama_sekolah" => ["nullable", "string"],
             "nama" => ["required", "string"],
             "tanggal_lahir"=> ["required", "string"],
             "nomor_telepon" => ["required", "string"],
@@ -39,7 +39,7 @@ trait UserTrait
     protected function makeUpdateDetailValidator(Array $data)
     {
         return Validator::make($data, [
-            "sekolah_id" => ["sometimes","nullable", "int"],
+            "nama_sekolah" => ["nullable", "string"],
             "nama" => ["sometimes","required", "string"],
             "tanggal_lahir"=> ["sometimes","required", "string"],
             "nomor_telepon" => ["sometimes","required", "int"],

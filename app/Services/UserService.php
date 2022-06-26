@@ -14,11 +14,13 @@ class UserService {
 
         $sekolah = Sekolah::where("nama", $validated["nama_sekolah"] ??  null)->first();
 
-        $validated["sekolah_id"] = $sekolah
-            ? $sekolah->id
-            : Sekolah::create(["nama" => $validated["nama_sekolah"], "kategori" => "sekolah_siswa"])->id;
+        if ($validated["nama_sekolah"]) {
+            $validated["sekolah_id"] = $sekolah
+                ? $sekolah->id
+                : Sekolah::create(["nama" => $validated["nama_sekolah"], "kategori" => "sekolah_siswa"])->id;
 
-        $user = $this->storeUserInDatabase($validated);
+            $user = $this->storeUserInDatabase($validated);
+        }
 
         $user->assignRole($validated["role"]);
 

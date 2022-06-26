@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Siswa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pertemuan;
 use App\Services\AbsensiService;
 use Exception;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class AbsensiController extends Controller
             $absenService->updateStatus($absen_id, "hadir");
 
             DB::commit();
-            return redirect(route("siswa.pertemuan.index"));
+            return redirect(route("siswa.semester.show", Pertemuan::find($pertemuan_id)->semester->id));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;

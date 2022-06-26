@@ -13,22 +13,6 @@ use Illuminate\Support\Facades\DB;
 
 class PertemuanController extends Controller
 {
-    public function index()
-    {
-        $user = Auth::user();
-        $semester = $user->semesters()->first();
-        $pertemuans = $semester->pertemuans ?? [];
-
-        return view("siswa.pertemuan.index", compact("pertemuans"));
-    }
-
-    public function show(int $pertemuan_id)
-    {   
-        $pertemuan = Pertemuan::findOrFail($pertemuan_id);
-
-        return view("siswa.pertemuan.pertemuan-detail", compact("pertemuan"));
-    }
-
     public function downloadResource(int $pertemuan_id)
     {
         $pertemuan = Pertemuan::findOrFail($pertemuan_id);

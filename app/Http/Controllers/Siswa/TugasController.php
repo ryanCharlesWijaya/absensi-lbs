@@ -31,7 +31,7 @@ class TugasController extends Controller
             $jawaban_tugas = $jawabanTugasService->uploadJawabanTugas($request->all(), $tugas_id);
 
             DB::commit();
-            return redirect(route("siswa.pertemuan.index"));
+            return redirect(route("siswa.semester.show", Pertemuan::find($pertemuan_id)->semester->id));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;

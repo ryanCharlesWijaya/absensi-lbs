@@ -21,6 +21,7 @@ use App\Http\Controllers\Siswa\AbsensiController as SiswaAbsensiController;
 use App\Http\Controllers\Siswa\TugasController as SiswaTugasController;
 use App\Http\Controllers\Siswa\QuizController as SiswaQuizController;
 use App\Http\Controllers\Siswa\ResourceSiswaController as SiswaResourceSiswaController;
+use App\Http\Controllers\Siswa\SemesterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -245,11 +246,19 @@ Route::group([
 ],
 function () {    
     Route::group([
+        "prefix" => "semester",
+        "as" => "semester."
+    ],
+    function () {
+        Route::get("", [SemesterController::class, 'index'])->name("index");
+        Route::get("/{semester_id}/detail", [SemesterController::class, 'show'])->name("show");
+    });
+
+    Route::group([
         "prefix" => "pertemuan",
         "as" => "pertemuan.",
     ],
     function () {
-        Route::get("", [SiswaPertemuanController::class, 'index'])->name("index");
         Route::get("/create", [SiswaPertemuanController::class,'create'])->name("create");
         Route::post("/store", [SiswaPertemuanController::class, 'store'])->name("store");
         Route::get("/{pertemuan_id}/download-resource", [SiswaPertemuanController::class, 'downloadResource'])->name("downloadResource");

@@ -36,7 +36,7 @@
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Dashboard</span>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                <div class="menu-item menu-accordion">
                     <a class="menu-link" href="{{ route("dashboard") }}">
                     <span class="menu-icon">
                         <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm007.svg-->

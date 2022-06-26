@@ -14,7 +14,7 @@ class UserService {
 
         $sekolah = Sekolah::where("nama", $validated["nama_sekolah"] ??  null)->first();
 
-        if ($validated["nama_sekolah"]) {
+        if (isset($validated["nama_sekolah"])) {
             $validated["sekolah_id"] = $sekolah
                 ? $sekolah->id
                 : Sekolah::create(["nama" => $validated["nama_sekolah"], "kategori" => "sekolah_siswa"])->id;
@@ -33,7 +33,7 @@ class UserService {
 
         $validated = $this->makeUpdateDetailValidator($data)->validate();
 
-        if ($validated["nama_sekolah"]) {
+        if (isset($validated["nama_sekolah"])) {
             $sekolah = Sekolah::where("nama", $validated["nama_sekolah"] ?? null)->first();
 
             $validated["sekolah_id"] = $sekolah

@@ -13,7 +13,10 @@ class NilaiAkhir extends Model
         "guru_id",
         "siswa_id",
         "semester_id",
-        "nilai",
+        "nilai_akhir",
+        "nilai_praktek",
+        "nilai_tugas",
+        "nilai_ulangan",
     ];
 
     public function siswa()

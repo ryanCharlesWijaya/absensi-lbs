@@ -16,7 +16,7 @@ class UserService {
 
         $validated["sekolah_id"] = $sekolah
             ? $sekolah->id
-            : Sekolah::create(["name" => $validated["nama_sekolah"], "kategori" => "sekolah_siswa"])->id;
+            : Sekolah::create(["nama" => $validated["nama_sekolah"], "kategori" => "sekolah_siswa"])->id;
 
         $user = $this->storeUserInDatabase($validated);
 

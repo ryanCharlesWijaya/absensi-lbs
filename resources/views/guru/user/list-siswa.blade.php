@@ -20,7 +20,7 @@
                                     <th>Nama</th>
                                     <th>Tanggal Lahir</th>
                                     <th>Nomor Telepon</th>
-                                    <th>Alamat</th>
+                                    <th>Sekolah Asal</th>
                                     <th>Email</th>
                                     <th>Kategori</th>
                                     <th>Aksi</th>
@@ -32,7 +32,7 @@
                                         <td>{{ $user->nama }}</td>
                                         <td>{{ $user->tanggal_lahir }}</td>
                                         <td>{{ $user->nomor_telepon }}</td>
-                                        <td>{{ $user->alamat }}</td>
+                                        <td>{{ $user->sekolah ? $user->sekolah->nama : "" }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->role }}</td>
                                         <td>

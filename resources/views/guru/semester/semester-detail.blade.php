@@ -142,12 +142,13 @@
                                                 <td>{{ $siswa->nomor_telepon }}</td>
                                                 <td>{{ $siswa->alamat }}</td>
                                                 <td>{{ $siswa->email }}</td>
-                                                <td>{{ $nilai_akhir ? $nilai_akhir->nilai : "belum dinilai" }}</td>
+                                                <td>{{ $nilai_akhir ? $nilai_akhir->nilai_akhir : "belum dinilai" }}</td>
                                                 <td>
                                                     @if (!$nilai_akhir)
                                                         <a href="{{ route("guru.semester.nilaiAkhir.create", ["semester_id" => $semester->id, "siswa_id" => $siswa->id]) }}" class="btn btn-sm btn-primary me-2">Nilai Siswa</a>  
                                                     @else
-                                                        <a href="{{ route("guru.semester.nilaiAkhir.edit", ["semester_id" => $semester->id, "nilai_akhir_id" => $nilai_akhir->id]) }}" class="btn btn-sm btn-primary me-2">Update Nilai</a>     
+                                                        <a href="{{ route("guru.semester.nilaiAkhir.show", ["semester_id" => $semester->id, "nilai_akhir_id" => $nilai_akhir->id]) }}" class="btn btn-sm btn-primary me-2">Print Nilai</a> 
+                                                        <a href="{{ route("guru.semester.nilaiAkhir.edit", ["semester_id" => $semester->id, "nilai_akhir_id" => $nilai_akhir->id]) }}" class="btn btn-sm btn-primary me-2">Update Nilai</a> 
                                                     @endif
                                                 </td>
                                             </tr>

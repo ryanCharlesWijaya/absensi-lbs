@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\DB;
 
 class NilaiAkhirController extends Controller
 {
+    public function show(int $semester_id, int $nilai_akhir_id)
+    {
+        $nilai_akhir = NilaiAkhir::find($nilai_akhir_id);
+        
+        return view("guru.semester.nilai-akhir.nilai-akhir-detail", compact("nilai_akhir"));
+    }
+
     public function create(int $semester_id, int $siswa_id)
     {
         $semester = Semester::findOrFail($semester_id);

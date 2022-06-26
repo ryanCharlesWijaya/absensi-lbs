@@ -40,7 +40,7 @@
                         id="sekolah-input"
                         required="required"
                         >
-                        @foreach (\App\Models\Sekolah::all() as $sekolah)
+                        @foreach (\App\Models\Sekolah::where("kategori", "sekolah_minggu")->get() as $sekolah)
                             <option value="{{ $sekolah->id }}">{{ $sekolah->nama }}</option>
                         @endforeach
                     </x-select-input>

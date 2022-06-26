@@ -12,10 +12,13 @@ class NilaiAkhirService {
         $validated = Validator::make($data, [
             "siswa_id" => ["required", "int"],
             "semester_id" => ["required", "int"],
-            "nilai" => ["required", "int", "min:0", "max:100"],
+            "nilai_praktek" => ["required", "int", "min:0", "max:100"],
+            "nilai_ulangan" => ["required", "int", "min:0", "max:100"],
+            "nilai_tugas" => ["required", "int", "min:0", "max:100"],
         ])->validate();
 
         $validated["guru_id"] = Auth::id();
+        $validated["nilai_akhir"] = (($validated["nilai_praktek"] ?? 0) + ($validated["nilai_ulangan"] ?? 0) + ($validated["nilai_tugas"] ?? 0)) / 3;
 
         return NilaiAkhir::create($validated);
     }
@@ -25,8 +28,12 @@ class NilaiAkhirService {
         $nilai_akhir = NilaiAkhir::findOrFail($nilai_akhir_id);
 
         $validated = Validator::make($data, [
-            "nilai" => ["required", "int", "min:0", "max:100"],
+            "nilai_praktek" => ["required", "int", "min:0", "max:100"],
+            "nilai_ulangan" => ["required", "int", "min:0", "max:100"],
+            "nilai_tugas" => ["required", "int", "min:0", "max:100"],
         ])->validate();
+
+        $validated["nilai_akhir"] = (($validated["nilai_praktek"] ?? 0) + ($validated["nilai_ulangan"] ?? 0) + ($validated["nilai_tugas"] ?? 0)) / 3;
 
         return $nilai_akhir->update($validated);
     }

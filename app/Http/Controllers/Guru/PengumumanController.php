@@ -57,4 +57,18 @@ class PengumumanController extends Controller
             throw $e;
         }
     }
+
+    public function delete(int $pengumuman_id)
+    {
+        DB::beginTransaction();
+        try {
+            Pengumuman::destroy($pengumuman_id);
+
+            DB::commit();
+            return redirect(route("guru.pengumuman.index"));
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
 }

@@ -70,6 +70,7 @@ function () {
         Route::get("/{pengumuman_id}/detail", [GuruPengumumanController::class, 'show'])->name("show");
         Route::get("/{pengumuman_id}/edit", [GuruPengumumanController::class, 'edit'])->name("edit");
         Route::post("/{pengumuman_id}/update", [GuruPengumumanController::class, 'update'])->name("update");
+        Route::post("/{pengumuman_id}/delete", [GuruPengumumanController::class, 'delete'])->name("delete");
     });
 
     Route::group([
@@ -88,6 +89,7 @@ function () {
         Route::post("/{semester_id}/assign-siswa", [GuruSemesterController::class, 'assignSiswa'])->name("assignSiswa");
 
         Route::get("/{semester_id}/nilai-akhir/{siswa_id}/create", [NilaiAkhirController::class, 'create'])->name("nilaiAkhir.create");
+        Route::get("/{semester_id}/nilai-akhir/{nilai_akhir_id}/show", [NilaiAkhirController::class, 'show'])->name("nilaiAkhir.show");
         Route::post("/{semester_id}/nilai-akhir/{siswa_id}/store", [NilaiAkhirController::class, 'store'])->name("nilaiAkhir.store");
         Route::get("/{semester_id}/nilai-akhir/{nilai_akhir_id}/edit", [NilaiAkhirController::class, 'edit'])->name("nilaiAkhir.edit");
         Route::post("/{semester_id}/nilai-akhir/{nilai_akhir_id}/update", [NilaiAkhirController::class, 'update'])->name("nilaiAkhir.update");

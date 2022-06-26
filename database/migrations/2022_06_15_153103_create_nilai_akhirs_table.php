@@ -18,7 +18,10 @@ class CreateNilaiAkhirsTable extends Migration
             $table->foreignId("guru_id");
             $table->foreignId("siswa_id");
             $table->foreignId("semester_id");
-            $table->integer("nilai");
+            $table->integer("nilai_ulangan");
+            $table->integer("nilai_praktek");
+            $table->integer("nilai_tugas");
+            $table->integer("nilai_akhir");
             $table->timestamps();
         });
     }

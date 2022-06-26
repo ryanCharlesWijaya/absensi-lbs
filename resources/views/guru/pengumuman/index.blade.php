@@ -29,8 +29,12 @@
                                     <tr>
                                         <td>{{ $pengumuman->judul }}</td>
                                         <td>{{ $pengumuman->deskripsi }}</td>
-                                        <td>
-                                            <a href="{{ route("guru.pengumuman.edit", ["pengumuman_id" => $pengumuman->id]) }}" class="btn btn-sm btn-info">Edit</a>
+                                        <td class="d-flex">
+                                            <a href="{{ route("guru.pengumuman.edit", ["pengumuman_id" => $pengumuman->id]) }}" class="btn btn-sm btn-info me-2">Edit</a>
+                                            <form action="{{ route("guru.pengumuman.delete", ["pengumuman_id" => $pengumuman->id]) }}" method="POST">
+                                                @csrf
+                                                <button class="btn btn-sm btn-danger">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

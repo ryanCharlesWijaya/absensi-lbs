@@ -67,9 +67,25 @@
 
                     <x-text-input
                         type="text"
-                        name="nilai"
-                        title="Nilai Pertemuan"
-                        id="nilai-input"
+                        name="nilai_praktek"
+                        title="Nilai Praktek"
+                        id="nilai-praktek-input"
+                        required="required"
+                        />
+
+                    <x-text-input
+                        type="text"
+                        name="nilai_ulangan"
+                        title="Nilai Ulangan"
+                        id="nilai-ulangan-input"
+                        required="required"
+                        />
+
+                    <x-text-input
+                        type="text"
+                        name="nilai_tugas"
+                        title="Nilai Tugas"
+                        id="nilai-tugas-input"
                         required="required"
                         />
 

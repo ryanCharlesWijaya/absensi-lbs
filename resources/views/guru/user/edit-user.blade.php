@@ -64,7 +64,7 @@
                                 class="form-control @error("nama_sekolah") is-invalid @enderror"
                                 id="nama_sekolah_input"
                                 list="sekolahs"
-                                @if (old("nama_sekolah")) value="{{ old("nama_sekolah") }}" @endif
+                                value="{{ old("nama_sekolah") ?? $user->sekolah ? $user->sekolah->nama : "" }}"
                                 required>
 
                             @error("nama_sekolah")

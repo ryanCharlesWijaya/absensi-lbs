@@ -67,11 +67,29 @@
 
                     <x-text-input
                         type="text"
-                        name="nilai"
-                        title="Nilai Pertemuan"
-                        id="nilai-input"
+                        name="nilai_praktek"
+                        title="Nilai Praktek"
+                        id="nilai-praktek-input"
                         required="required"
-                        :value="$nilai_akhir->nilai"
+                        value="{{ $nilai_akhir->nilai_praktek }}"
+                        />
+
+                    <x-text-input
+                        type="text"
+                        name="nilai_ulangan"
+                        title="Nilai Ulangan"
+                        id="nilai-ulangan-input"
+                        required="required"
+                        value="{{ $nilai_akhir->nilai_ulangan }}"
+                        />
+
+                    <x-text-input
+                        type="text"
+                        name="nilai_tugas"
+                        title="Nilai Tugas"
+                        id="nilai-tugas-input"
+                        required="required"
+                        value="{{ $nilai_akhir->nilai_tugas }}"
                         />
 
                     <div class="mb-3">

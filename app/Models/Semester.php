@@ -37,7 +37,7 @@ class Semester extends Model implements HasMedia
 
     public function sekolah()
     {
-        return $this->hasOne(User::class, "id", "sekolah_id");
+        return $this->hasOne(Sekolah::class, "id", "sekolah_id");
     }
 
     public function pertemuans()

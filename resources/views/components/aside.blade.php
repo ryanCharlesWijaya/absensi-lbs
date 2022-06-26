@@ -48,7 +48,7 @@
                         </span>
                         <!--end::Svg Icon-->
                     </span>
-                    <span class="menu-title">Dasbhoard</span>
+                    <span class="menu-title">Dashboard</span>
                 </div>
                 </a>
                 @if ($role == "admin")

@@ -37,7 +37,11 @@
                                         <td>{{ $user->role }}</td>
                                         <td>
                                             @if (Auth::user()->is_admin)
-                                                <a href="{{ route("guru.user.edit", ["user_id" => $user->id]) }}" class="btn btn-sm btn-info">Edit</a>
+                                                <a href="{{ route("guru.user.edit", ["user_id" => $user->id]) }}" class="btn btn-sm btn-info me-2">Edit</a>
+                                                <form action="{{ route("guru.user.delete", ["user_id" => $user->id]) }}" method="POST">
+                                                    @csrf
+                                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                                </form>
                                             @endif
                                         </td>
                                     </tr>

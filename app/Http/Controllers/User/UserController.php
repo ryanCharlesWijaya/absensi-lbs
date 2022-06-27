@@ -99,7 +99,7 @@ class UserController extends Controller
             $userService->deleteUser($user_id);
 
             DB::commit();
-            return redirect(route("guru.user.index"));
+            return back();
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;

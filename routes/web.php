@@ -187,6 +187,7 @@ function () {
         Route::post("/store", [UserManajemenController::class, 'store'])->name("store");
         Route::get("/{user_id}", [UserManajemenController::class, 'show'])->name("show");
         Route::get("/{user_id}/edit", [UserManajemenController::class, 'edit'])->name("edit");
+        Route::post("/{user_id}/delete", [UserManajemenController::class, 'delete'])->name("delete");
         Route::post("/{user_id}/update-detail", [UserManajemenController::class, 'updateDetail'])->name("updateDetail");
         Route::post("/{user_id}/update-password", [UserManajemenController::class, 'updatePassword'])->name("updatePassword");
     });

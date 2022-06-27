@@ -26,7 +26,7 @@ class SemesterController extends Controller
     public function show(int $semester_id)
     {
         $semester = Semester::findOrFail($semester_id);
-        $pertemuans = Pertemuan::all();
+        $pertemuans = $semester->pertemuans;
 
         return view("guru.semester.semester-detail", compact("semester", "pertemuans"));
     }

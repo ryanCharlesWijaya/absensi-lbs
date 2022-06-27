@@ -19,11 +19,6 @@ class SiswaAuthentication
     {
         if (!Auth::user()->hasRole("siswa")) return redirect(route("login"));
 
-        if (!Auth::user()->semesters()->count()) {
-            Auth::logout();
-            return redirect(route("login"));
-        } 
-
         return $next($request);
     }
 }

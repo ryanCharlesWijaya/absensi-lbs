@@ -13,7 +13,6 @@ class DashboardController extends Controller
 {
     public function index() {    
         $siswa = Auth::user();
-        $semester = $siswa->semesters[0];
         $jawaban_tugases = JawabanTugas::where("siswa_id", $siswa->id)->get(); 
         $hasil_quizzes = HasilQuiz::where("user_id", $siswa->id)->get();
 

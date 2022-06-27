@@ -11,7 +11,7 @@
                                 <a class="nav-link active" data-bs-toggle="tab" href="#login">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#sekolah">Sekolah</a>
+                                <a class="nav-link" data-bs-toggle="tab" href="#sekolah">Sekolah Minggu</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#pengumuman">Pengumuman</a>
@@ -68,7 +68,7 @@
                         </div>
             
                         <div class="tab-pane fade" id="sekolah" role="tabpanel">
-                            @foreach (\App\Models\Sekolah::all() as $sekolah)
+                            @foreach (\App\Models\Sekolah::where("kategori", "sekolah_minggu")->get() as $sekolah)
                                 <div class="card card-bordered mb-5">
                                     <div class="card-header">
                                         <h5 class="card-title">{{ $sekolah->nama }}</h5>

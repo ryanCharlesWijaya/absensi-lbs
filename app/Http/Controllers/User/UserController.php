@@ -47,9 +47,10 @@ class UserController extends Controller
     {
         DB::beginTransaction();
         try {
-            $userService->createUser($request->all());            
+            $user = $userService->createUser($request->all());            
 
             DB::commit();
+            if ($user->role == "siswa") return redirect(route("guru.user.listSiswa"));
             return redirect(route("guru.user.index"));
         } catch (Exception $e) {
             DB::rollBack();
@@ -71,6 +72,7 @@ class UserController extends Controller
             $user = $userService->updateUserDetail($request->all(), $user_id);
 
             DB::commit();
+            if ($user->role == "siswa") return redirect(route("guru.user.listSiswa"));
             return redirect(route("guru.user.index"));
         } catch (Exception $e) {
             DB::rollBack();
@@ -85,6 +87,7 @@ class UserController extends Controller
             $user = $userService->updateUserPassword($request->all(), $user_id);
 
             DB::commit();
+            if ($user->role == "siswa") return redirect(route("guru.user.listSiswa"));
             return redirect(route("guru.user.index"));
         } catch (Exception $e) {
             DB::rollBack();

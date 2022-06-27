@@ -27,7 +27,7 @@
                     </div>
 
                     @if (!$jawaban_tugas)
-                        @if ($tugas->has_expired)
+                        @if (!$tugas->has_expired)
                             <div class="mb-3">
                                 <label for="file-input" class="form-label">File Jawaban</label>
                                 <input class="form-control @error('file') is-invalid @enderror" type="file" name="file" id="file-input">

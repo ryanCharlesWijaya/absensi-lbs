@@ -68,7 +68,7 @@
                                         </td>
                                         <td>{{ $jawaban->nilai ?? "belum dinilai" }}</td>
                                         <td>{{ \Carbon\Carbon::createFromFormat("Y-m-d H:i:s", $jawaban->created_at)->format("Y-m-d") }}</td>
-                                        <td>{{ substr($jawaban->pesan) }}</td>
+                                        <td>{{ substr($jawaban->pesan, 0, 100) }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

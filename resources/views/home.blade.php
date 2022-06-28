@@ -53,7 +53,7 @@
                                 <a href="#" class="text-dark text-hover-primary fw-bolder fs-3">Jumlah Guru</a>
                                 <div class="text-muted fs-7 fw-bold">Jumlah Guru Yang Mengajar</div>
                             </div>
-                            <div class="fw-bolder fs-3 text-primary">{{ \App\Models\User::role("guru")->count() }} Orang</div>
+                            <div class="fw-bolder fs-3 text-primary">{{ \App\Models\User::role("admin")->count() }} Orang</div>
                         </div>
                     </div>
                     <!--end::Stats-->

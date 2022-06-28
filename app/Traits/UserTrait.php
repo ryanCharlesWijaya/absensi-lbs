@@ -3,8 +3,10 @@
 namespace App\Traits;
 
 use App\Models\User;
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule as ValidationRule;
 
 trait UserTrait
 {
@@ -36,15 +38,15 @@ trait UserTrait
         ]);
     }
 
-    protected function makeUpdateDetailValidator(Array $data)
+    protected function makeUpdateDetailValidator(Array $data, int $user_id)
     {
         return Validator::make($data, [
             "nama_sekolah" => ["nullable", "string"],
             "nama" => ["sometimes","required", "string"],
             "tanggal_lahir"=> ["sometimes","required", "string"],
-            "nomor_telepon" => ["sometimes","required", "int"],
+            "nomor_telepon" => ["sometimes","required", "string"],
             "alamat" => ["sometimes","nullable", "string"],
-            "email" => ["sometimes","required", "string"],
+            "email" => ["sometimes","required", "string", ValidationRule::unique("users")->ignore($user_id)],
             "role" => ["required"]
         ]);
     }

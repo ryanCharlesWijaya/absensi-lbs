@@ -31,7 +31,7 @@ class UserService {
     {
         $user = User::findOrFail($user_id);
 
-        $validated = $this->makeUpdateDetailValidator($data)->validate();
+        $validated = $this->makeUpdateDetailValidator($data, $user_id)->validate();
 
         if (isset($validated["nama_sekolah"])) {
             $sekolah = Sekolah::where("nama", $validated["nama_sekolah"] ?? null)->first();

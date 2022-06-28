@@ -197,7 +197,7 @@
                                                     </td>
                                                     <td>{{ $jawaban->nilai ?? "belum dinilai" }}</td>
                                                     <td>{{ \Carbon\Carbon::createFromFormat("Y-m-d H:i:s", $jawaban->created_at)->format("Y-m-d") }}</td>
-                                                    <td>{{ substr($jawaban->pesan) }}</td>  
+                                                    <td>{{ substr($jawaban->pesan, 0, 100) }}</td>  
                                                     <td>
                                                         <a href="{{ route("guru.semester.pertemuan.jawabanTugas.showNilai", ["pertemuan_id" => $pertemuan->id, "jawaban_tugas_id" => $jawaban->id]) }}" class="btn btn-sm btn-danger">Nilai Tugas</a>
                                                     </td>

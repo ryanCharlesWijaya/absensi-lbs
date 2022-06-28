@@ -30,7 +30,7 @@
                                     <tr>
                                         <td>{{ $sekolah->nama }}</td>
                                         <td>{{ substr($sekolah->deskripsi, 0, 100) }}</td>
-                                        <td>{{ $sekolah->nomor_telepon }}</td>
+                                        <td>{{ $sekolah->alamat }}</td>
                                         <td>
                                             <a href="{{ route("guru.sekolah.edit", ["sekolah_id" => $sekolah->id]) }}" class="btn btn-sm btn-info">Edit</a>
                                         </td>

@@ -89,7 +89,7 @@
                                         @if ($pertemuan->getFirstMedia())
                                             <form action="{{ $pertemuan->getFirstMedia()->getFullUrl() }}" method="GET">
                                                 @csrf
-                                                <button class="btn btn-sm btn-danger">Tampilkan Resource</button>
+                                                <button class="btn btn-sm btn-danger">Tampilkan Materi</button>
                                             </form>
                                         @endif
                                     </td>

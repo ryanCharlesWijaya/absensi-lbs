@@ -58,6 +58,7 @@
                                     <th>Nilai</th>
                                     <th>Tanggal Pengerjaan</th>
                                     <th>Pesan</th>
+                                    <th>File Jawaban</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,6 +70,9 @@
                                         <td>{{ $jawaban->nilai ?? "belum dinilai" }}</td>
                                         <td>{{ \Carbon\Carbon::createFromFormat("Y-m-d H:i:s", $jawaban->created_at)->format("Y-m-d") }}</td>
                                         <td>{{ substr($jawaban->pesan, 0, 100) }}</td>
+                                        <td class="d-flex">
+                                            <a href="{{ $jawaban->getFirstMedia()->getFullUrl() }}" target="__blank" class="btn btn-sm btn-primary me-2">View</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

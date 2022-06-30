@@ -55,7 +55,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($pertemuan->absensi()->whereHas("user")->get() as $absensi)
+                                        @foreach ($pertemuan->absensi()->whereHas("user", function ($query) {
+                                            return $query->where("id", "<>", null);
+                                        }, ">", 0)->get() as $absensi)
                                             <tr>
                                                 <td>
                                                     {{ $absensi->user->nama }}
@@ -125,7 +127,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($quizzes[0]->hasil_quizzes()->whereHas("user")->get() as $hasil_quiz)
+                                            @foreach ($quizzes[0]->hasil_quizzes()->whereHas("user", function ($query) {
+                                                return $query->where("id", "<>", null);
+                                            }, ">", 0)->get() as $hasil_quiz)
                                                 <tr>
                                                     <td>
                                                         {{ $hasil_quiz->user->nama }}
@@ -190,7 +194,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($tugases[0]->jawaban()->whereHas("siswa")->get() as $jawaban)
+                                            @foreach ($tugases[0]->jawaban()->whereHas("siswa", function ($query) {
+                                                return $query->where("id", "<>", null);
+                                            }, ">", 0)->get() as $jawaban)
                                                 <tr>
                                                     <td>
                                                         {{ $jawaban->siswa->nama }}

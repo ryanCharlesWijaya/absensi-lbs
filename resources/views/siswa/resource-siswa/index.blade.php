@@ -22,12 +22,6 @@
                                     <td class="d-flex">
                                         <a href="{{ $resource->getFirstMedia()->getFullUrl() }}" target="__blank" class="btn btn-sm btn-primary me-2">View</a>
                                         <a href="{{ route("guru.resourceSiswa.download", [ "resource_siswa_id" => $resource->id]) }}" class="btn btn-sm btn-info me-2">Download</a>
-                                        <form action="{{ route("guru.resourceSiswa.delete", [ "resource_siswa_id" => $resource->id]) }}" method="POST">
-                                            @csrf
-                                            <button class="btn btn-sm btn-danger">
-                                                Delete
-                                            </button>
-                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

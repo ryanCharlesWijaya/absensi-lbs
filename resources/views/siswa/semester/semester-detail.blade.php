@@ -97,6 +97,28 @@
                             @endforeach
                         </tbody>    
                     </table>
+
+                    <br>
+                    <h3>Resource Siswa</h3>
+                    <table class="table table-rounded table-striped border gy-7 gs-7">
+                        <thead>
+                            <tr class="fw-bolder fs-6 text-gray-800">
+                                <th>Nama</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($semester->getMedia() as $media)
+                                <tr>
+                                    <td>{{ $media->name }}</td>
+                                    <td class="d-flex">
+                                        <a href="{{ $media->getFullUrl() }}" target="__blank" class="btn btn-sm btn-primary me-2">View</a>
+                                        <a href="{{ route("guru.semester.resources.download", ["semester_id" => $semester->id, "media_id" => $media->id]) }}" class="btn btn-sm btn-info me-2">Download</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

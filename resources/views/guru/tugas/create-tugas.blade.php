@@ -46,6 +46,13 @@
                         min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"
                         required="required"
                         />
+
+                    <x-text-input
+                        type="url"
+                        name="url"
+                        title="url video"
+                        id="url-input"
+                        />
                     
                     <div class="mb-3">
                         <label for="file-input" class="form-label">Default file input example</label>

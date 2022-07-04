@@ -13,6 +13,7 @@ trait TugasTrait {
             "judul" => ["required", "string"],
             "deskripsi" => ["required", "string"],
             "tanggal_kadaluarsa" => ["required"],
+            "url" => ["sometimes", "string"],
             "file" => ["required"]
         ]);
     }
@@ -29,6 +30,7 @@ trait TugasTrait {
             "judul" => ["sometimes", "string"],
             "deskripsi" => ["sometimes", "string"],
             "tanggal_kadaluarsa" => ["sometimes"],
+            "url" => ["sometimes", "string"],
             "file" => ["sometimes"]
         ]);
     }

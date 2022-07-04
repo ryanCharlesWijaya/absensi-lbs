@@ -18,6 +18,7 @@ class Tugas extends Model implements HasMedia
         "judul",
         "deskripsi",
         "tanggal_kadaluarsa",
+        "url"
     ];
 
     public function getHasExpiredAttribute()

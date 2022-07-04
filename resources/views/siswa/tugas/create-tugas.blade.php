@@ -26,6 +26,15 @@
                         </div>
                     </div>
 
+                    @if ($tugas->url)
+                        <div class="mb-3">
+                            <label for="file-input" class="form-label">Video Tugas</label>
+                            <div>
+                                <b><a href="{{ $tugas->url }}">{{ $tugas->url }}</a></b>
+                            </div>
+                        </div>
+                    @endif
+
                     @if (!$jawaban_tugas)
                         @if (!$tugas->has_expired)
                             <div class="mb-3">

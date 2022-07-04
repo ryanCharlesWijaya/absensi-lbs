@@ -48,6 +48,14 @@
                         required="required"
                         value="{{ old('tanggal_kadaluarsa') ?? \Carbon\Carbon::createFromFormat('Y-m-d', $tugas->tanggal_kadaluarsa)->format('Y-m-d') }}"
                         />
+
+                    <x-text-input
+                        type="url"
+                        name="url"
+                        title="url video"
+                        id="url-input"
+                        value="{{ $tugas->url }}"
+                        />
                     
                     <div class="mb-3">
                         <label for="file-input" class="form-label">Default file input example</label>

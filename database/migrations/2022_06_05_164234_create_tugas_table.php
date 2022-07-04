@@ -19,6 +19,7 @@ class CreateTugasTable extends Migration
             $table->string("judul");
             $table->string("deskripsi");
             $table->date("tanggal_kadaluarsa");
+            $table->string("url");
             $table->timestamps();
         });
     }

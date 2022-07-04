@@ -19,7 +19,7 @@ trait UserTrait
             "nomor_telepon" => ["required", "string", "min:9", "max:15"],
             "alamat" => ["nullable", "string"],
             "email" => ["required", "unique:users", "string"],
-            "password" => ["required", "confirmed", "min:8"],
+            "password" => ["required", "confirmed", "min:8", "max:30"],
             "role" => ["required", "in:guru,siswa,admin"]
         ]);
     }
@@ -54,7 +54,7 @@ trait UserTrait
     protected function makeUpdatePasswordValidator(Array $data)
     {
         return Validator::make($data, [
-            "password" => ["required", "confirmed", "min:8"]
+            "password" => ["required", "confirmed", "min:8", "max:30"]
         ]);
     }
 

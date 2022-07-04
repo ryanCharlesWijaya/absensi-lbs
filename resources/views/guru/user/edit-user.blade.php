@@ -104,6 +104,7 @@
                         title="Password"
                         id="password-input"
                         required="required"
+                        info="minimal 8 karakter. maksimal 30 karakter"
                     />
 
                     <x-text-input

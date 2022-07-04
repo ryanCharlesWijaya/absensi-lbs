@@ -20,6 +20,7 @@
                         </thead>
                         <tbody>
                             @foreach ($resources as $resource)
+                                @if ($resource->getFirstMedia())
                                 <tr>
                                     <td>{{ $resource->getFirstMedia()->name }}</td>
                                     <td class="d-flex">
@@ -33,6 +34,14 @@
                                         </form>
                                     </td>
                                 </tr>
+                                @else
+                                <tr>
+                                    <td>
+                                        <a href="{{ $resource->url }}">{{ $resource->url }}</a>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                @endif
                             @endforeach
                         </tbody>
                     </table>

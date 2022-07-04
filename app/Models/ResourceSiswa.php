@@ -10,4 +10,6 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class ResourceSiswa extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
+
+    protected $fillable = ["url"];
 }

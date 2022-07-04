@@ -15,6 +15,7 @@ class CreateResourceSiswasTable extends Migration
     {
         Schema::create('resource_siswas', function (Blueprint $table) {
             $table->id();
+            $table->string("url")->nullable();
             $table->timestamps();
         });
     }

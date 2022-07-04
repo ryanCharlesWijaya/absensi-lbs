@@ -17,6 +17,7 @@
                         </thead>
                         <tbody>
                             @foreach ($resources as $resource)
+                                @if ($resource->getFirstMedia())
                                 <tr>
                                     <td>{{ $resource->getFirstMedia()->name }}</td>
                                     <td class="d-flex">
@@ -24,6 +25,14 @@
                                         <a href="{{ route("guru.resourceSiswa.download", [ "resource_siswa_id" => $resource->id]) }}" class="btn btn-sm btn-info me-2">Download</a>
                                     </td>
                                 </tr>
+                                @else
+                                <tr>
+                                    <td>
+                                        <a href="{{ $resource->url }}">{{ $resource->url }}</a>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                @endif
                             @endforeach
                         </tbody>
                     </table>

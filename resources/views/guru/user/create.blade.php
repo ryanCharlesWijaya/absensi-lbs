@@ -49,6 +49,7 @@
                         title="Email"
                         id="email-input"
                         required="required"
+                        info="minimal 11 karakter. maksimal 60 karakter"
                     />
 
                     <x-text-input

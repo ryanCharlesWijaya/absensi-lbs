@@ -52,6 +52,7 @@
                         title="Email"
                         id="email-input"
                         required="required"
+                        info="minimal 11 karakter. maksimal 60 karakter"
                     />
 
                     <x-text-input
@@ -61,8 +62,6 @@
                         id="password-input"
                         required="required"
                         info="minimal 8 karakter. maksimal 30 karakter"
-
-
                     />
 
                     <x-text-input

@@ -18,7 +18,7 @@ trait UserTrait
             "tanggal_lahir"=> ["required", "string"],
             "nomor_telepon" => ["required", "string", "min:9", "max:15"],
             "alamat" => ["nullable", "string"],
-            "email" => ["required", "unique:users", "string"],
+            "email" => ["required", "unique:users", "string", "min:11", "max:60"],
             "password" => ["required", "confirmed", "min:8", "max:30"],
             "role" => ["required", "in:guru,siswa,admin"]
         ]);
@@ -46,7 +46,7 @@ trait UserTrait
             "tanggal_lahir"=> ["sometimes","required", "string"],
             "nomor_telepon" => ["sometimes","required", "string", "min:9", "max:15"],
             "alamat" => ["sometimes","nullable", "string"],
-            "email" => ["sometimes","required", "string", ValidationRule::unique("users")->ignore($user_id)],
+            "email" => ["sometimes","required", "string", ValidationRule::unique("users")->ignore($user_id), "min:11", "max:60"],
             "role" => ["required"]
         ]);
     }

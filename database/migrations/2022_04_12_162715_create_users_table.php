@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->foreignId("sekolah_id")->nullable();
             $table->string('nama')->nullable();
             $table->date('tanggal_lahir')->nullable();
-            $table->string('nomor_telepon')->nullable();
+            $table->string('nomor_telepon', 15)->nullable();
             $table->string('alamat')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

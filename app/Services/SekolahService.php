@@ -12,7 +12,7 @@ class SekolahService {
             "nama" => ["required", "string"],
             "deskripsi" => ["required", "string"],
             "alamat" => ["required", "string"],
-            "nomor_telepon" => ["required", "string"],
+            "nomor_telepon" => ["required", "string", "min:9", "max:15"],
             "kategori" => ["required", "string"],
             "fotos" => ["array"],
             "fotos.*" => ["image"]
@@ -33,7 +33,7 @@ class SekolahService {
             "nama" => ["sometimes", "string"],
             "deskripsi" => ["sometimes", "string"],
             "alamat" => ["sometimes", "string"],
-            "nomor_telepon" => ["sometimes", "string"],
+            "nomor_telepon" => ["sometimes", "string", "min:9", "max:15"],
             "kategori" => ["sometimes", "string"],
             "fotos" => ["sometimes", "array"],
             "fotos.*" => ["image"]

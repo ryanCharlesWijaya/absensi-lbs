@@ -16,7 +16,7 @@ trait UserTrait
             "nama_sekolah" => ["nullable", "string"],
             "nama" => ["required", "string"],
             "tanggal_lahir"=> ["required", "string"],
-            "nomor_telepon" => ["required", "string"],
+            "nomor_telepon" => ["required", "string", "min:9", "max:15"],
             "alamat" => ["nullable", "string"],
             "email" => ["required", "unique:users", "string"],
             "password" => ["required", "confirmed", "min:8"],
@@ -44,7 +44,7 @@ trait UserTrait
             "nama_sekolah" => ["nullable", "string"],
             "nama" => ["sometimes","required", "string"],
             "tanggal_lahir"=> ["sometimes","required", "string"],
-            "nomor_telepon" => ["sometimes","required", "string"],
+            "nomor_telepon" => ["sometimes","required", "string", "min:9", "max:15"],
             "alamat" => ["sometimes","nullable", "string"],
             "email" => ["sometimes","required", "string", ValidationRule::unique("users")->ignore($user_id)],
             "role" => ["required"]

@@ -29,10 +29,15 @@
 
                     <x-text-input
                         type="number"
+                        type="number"
                         name="nomor_telepon"
                         title="Nomor Telepon"
                         id="nomor-telepon-input"
                         required="required"
+                        info="minimal 9 karakter dan maksimal 15 karakter"
+
+
+
                     />
 
                     <x-text-input

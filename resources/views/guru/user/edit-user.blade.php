@@ -31,10 +31,15 @@
 
                     <x-text-input
                         type="text"
+                        type="number"
                         name="nomor_telepon"
                         title="Nomor Telepon"
                         id="nomor-telepon-input"
                         required="required"
+                        info="minimal 9 karakter dan maksimal 15 karakter"
+
+
+
                         value="{{ $user->nomor_telepon }}"
                     />
 

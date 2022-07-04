@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('deskripsi')->nullable();
             $table->string('alamat')->nullable();
-            $table->string('nomor_telepon')->nullable();
+            $table->string('nomor_telepon', 15)->nullable();
             $table->enum("kategori", ["sekolah_minggu", "sekolah_siswa"])->default("sekolah_minggu");
             $table->timestamps();
         });

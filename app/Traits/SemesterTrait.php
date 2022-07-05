@@ -38,9 +38,21 @@ trait SemesterTrait
         ]);
     }
 
+    protected function makeDetachSiswaValidator(Array $data)
+    {
+        return Validator::make($data, [
+            "siswa_id" => ["required", "int"]
+        ]);
+    }
+
     protected function assignSiswaToSemester(Array $data, Semester $semester)
     {
         return $semester->siswas()->attach($data["siswa_id"]);
+    }
+
+    protected function detachSiswaToSemester(Array $data, Semester $semester)
+    {
+        return $semester->siswas()->detach($data["siswa_id"]);
     }
 
     protected function makeUpdateValidator(Array $data)

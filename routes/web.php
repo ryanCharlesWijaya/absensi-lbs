@@ -89,6 +89,8 @@ function () {
         Route::get("/{semester_id}/assign-siswa", [GuruSemesterController::class, 'showAssignSiswa'])->name("showAssignSiswa");
         Route::post("/{semester_id}/assign-siswa", [GuruSemesterController::class, 'assignSiswa'])->name("assignSiswa");
 
+        Route::post("/{semester_id}/detach-siswa", [GuruSemesterController::class, 'detachSiswa'])->name("detachSiswa");
+
         Route::get("/{semester_id}/nilai-akhir/{siswa_id}/create", [NilaiAkhirController::class, 'create'])->name("nilaiAkhir.create");
         Route::get("/{semester_id}/nilai-akhir/{nilai_akhir_id}/show", [NilaiAkhirController::class, 'show'])->name("nilaiAkhir.show");
         Route::post("/{semester_id}/nilai-akhir/{siswa_id}/store", [NilaiAkhirController::class, 'store'])->name("nilaiAkhir.store");

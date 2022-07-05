@@ -150,6 +150,11 @@
                                                         <a href="{{ route("guru.semester.nilaiAkhir.show", ["semester_id" => $semester->id, "nilai_akhir_id" => $nilai_akhir->id]) }}" class="btn btn-sm btn-primary me-2">Print Nilai</a> 
                                                         <a href="{{ route("guru.semester.nilaiAkhir.edit", ["semester_id" => $semester->id, "nilai_akhir_id" => $nilai_akhir->id]) }}" class="btn btn-sm btn-primary me-2">Update Nilai</a> 
                                                     @endif
+                                                    <form action="{{ route("guru.semester.detachSiswa", ["semester_id" => $semester->id]) }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
+                                                        <button class="mt-2 btn btn-sm btn-primary me-2">Detach Siswa</button> 
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach

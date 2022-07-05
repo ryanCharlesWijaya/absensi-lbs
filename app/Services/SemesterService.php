@@ -28,6 +28,15 @@ class SemesterService {
         foreach ($semester->pertemuans as $pertemuan) $pertemuan->absensi()->create(["user_id" => $validated["siswa_id"]]);
     }
 
+    public function detachSiswa(Array $data, int $semester_id)
+    {
+        $semester = Semester::findOrFail($semester_id);
+
+        $validated = $this->makeDetachSiswaValidator($data)->validate();
+
+        $this->detachSiswaToSemester($validated, $semester);
+    }
+
     public function updateSemester(Array $data, int $semester_id)
     {
         $semester = Semester::findOrFail($semester_id);

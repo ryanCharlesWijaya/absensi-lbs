@@ -59,6 +59,20 @@ class SemesterController extends Controller
         }   
     }
 
+    public function detachSiswa(Request $request, SemesterService $semesterService, int $semester_id)
+    {
+        DB::beginTransaction();
+        try {
+            $semesterService->detachSiswa($request->all(), $semester_id);
+
+            DB::commit();
+            return redirect(route("guru.semester.show", ["semester_id" => $semester_id]))->with(["success" => "successfully detach siswa"]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }   
+    }
+
     public function create()
     {
         return view("guru.semester.create-semester");

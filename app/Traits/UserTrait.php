@@ -42,7 +42,7 @@ trait UserTrait
     {
         return Validator::make($data, [
             "nama_sekolah" => ["nullable", "string"],
-            "nama" => ["sometimes","required", "string"],
+            "nama" => ["sometimes","required", "string", ValidationRule::unique("users")->ignore($user_id)],
             "tanggal_lahir"=> ["sometimes","required", "string"],
             "nomor_telepon" => ["sometimes","required", "string", "min:9", "max:15"],
             "alamat" => ["sometimes","nullable", "string"],

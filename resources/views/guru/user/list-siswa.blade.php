@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('head')
+    <link href="{{ asset("assets/plugins/custom/datatables/datatables.bundle.css") }}" rel="stylesheet" type="text/css"/>
+@endpush
+
 @section('content')
     <div class="w-100 row ps-8 pe-2 pt-0">
         <div class="col-12">
@@ -14,7 +18,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-rounded table-striped border gy-7 gs-7">
+                        <table id="siswa_table" class="table table-rounded table-striped border gy-7 gs-7">
                             <thead>
                                 <tr class="fw-bolder fs-6 text-gray-800">
                                     <th>Nama</th>
@@ -54,3 +58,26 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset("assets/plugins/custom/datatables/datatables.bundle.js") }}"></script>
+    <script>
+        $("#siswa_table").DataTable({
+ "language": {
+  "lengthMenu": "Show _MENU_",
+ },
+ "dom":
+  "<'row'" +
+  "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+  "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+  ">" +
+
+  "<'table-responsive'tr>" +
+
+  "<'row'" +
+  "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+  "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+  ">"
+});
+    </script>
+@endpush

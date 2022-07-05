@@ -14,7 +14,7 @@ trait UserTrait
     {   
         return Validator::make($data, [
             "nama_sekolah" => ["nullable", "string"],
-            "nama" => ["required", "string"],
+            "nama" => ["required", "string", "unique:users"],
             "tanggal_lahir"=> ["required", "string"],
             "nomor_telepon" => ["required", "string", "min:9", "max:15"],
             "alamat" => ["nullable", "string"],

@@ -44,9 +44,8 @@ License: For each use you must have a valid license purchased only from above li
 			</div>
 		</div>
 
-		@stack('scripts')
-
 		<script src="{{ asset("assets/plugins/global/plugins.bundle.js")}}"></script>
 		<script src="{{ asset("assets/js/scripts.bundle.js") }}"></script>
+		@stack('scripts')
 	</body>
 </html>

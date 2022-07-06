@@ -34,10 +34,8 @@
                         title="Nomor Telepon"
                         id="nomor-telepon-input"
                         required="required"
+                        maxchar="15"
                         info="minimal 9 karakter dan maksimal 15 karakter"
-
-
-
                     />
 
                     <x-text-input
@@ -52,6 +50,7 @@
                         title="Email"
                         id="email-input"
                         required="required"
+                        maxchar="60"
                         info="minimal 11 karakter. maksimal 60 karakter"
                     />
 
@@ -61,6 +60,7 @@
                         title="Password"
                         id="password-input"
                         required="required"
+                        maxchar="30"
                         info="minimal 8 karakter. maksimal 30 karakter"
                     />
 
@@ -69,6 +69,7 @@
                         name="password_confirmation"
                         title="Password Confirmation"
                         id="password-confirmation-input"
+                        maxchar="30"
                         required="required"
                     />
 

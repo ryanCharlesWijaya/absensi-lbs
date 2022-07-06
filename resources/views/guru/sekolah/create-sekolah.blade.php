@@ -39,10 +39,8 @@
                         title="Nomor Telepon"
                         id="nomor-telepon-input"
                         required="required"
+                        maxchar="15"
                         info="minimal 9 karakter dan maksimal 15 karakter"
-
-
-
                         />
 
                     <x-select-input

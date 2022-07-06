@@ -12,6 +12,7 @@
         @if ($required) required @endif
         @if ($min) min="{{ $min }}" @endif
         @if ($max) max="{{ $max }}" @endif
+        @if ($maxchar) maxlength="{{ $maxchar }}" @endif
         @if ($value || old($name))
             @if (old($name))
                 value="{{ old($name) }}"

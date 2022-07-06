@@ -14,6 +14,7 @@ class TextInput extends Component
     public $required = false;
     public $min;
     public $max;
+    public $maxchar;
     public $value;
 
     /**
@@ -21,7 +22,7 @@ class TextInput extends Component
      *
      * @return void
      */
-    public function __construct($name, $title, $id, $info = false, $required = false, $min = false, $max = false, $value = false, $type = "text")
+    public function __construct($name, $title, $id, $info = false, $required = false, $min = false, $max = false, $maxchar = null, $value = false, $type = "text")
     {
         $this->type = $type;
         $this->name = $name;
@@ -31,6 +32,7 @@ class TextInput extends Component
         $this->required = $required;
         $this->min = $min;
         $this->max = $max;
+        $this->maxchar = $maxchar;
         $this->value = $value;
     }
 

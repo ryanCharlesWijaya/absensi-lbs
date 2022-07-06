@@ -14,13 +14,12 @@ class SekolahService {
             "alamat" => ["required", "string"],
             "nomor_telepon" => ["required", "string", "min:9", "max:15"],
             "kategori" => ["required", "string"],
-            "fotos" => ["array"],
-            "fotos.*" => ["image"]
+            "file" => ["nullable", "image"]
         ])->validate();
 
         $sekolah = Sekolah::create($data);
 
-        if (isset($validated["fotos"])) foreach ($validated["fotos"] as $foto) $sekolah->addMedia($foto)->toMediaCollection();
+        if (isset($validated["file"])) $sekolah->addMedia($validated["file"])->toMediaCollection();
 
         return $sekolah;
     }
@@ -35,18 +34,20 @@ class SekolahService {
             "alamat" => ["sometimes", "string"],
             "nomor_telepon" => ["sometimes", "string", "min:9", "max:15"],
             "kategori" => ["sometimes", "string"],
-            "fotos" => ["sometimes", "array"],
-            "fotos.*" => ["image"]
+            "file" => ["sometimes", "image"]
         ])->validate();
 
         $sekolah->update($data);
 
-        if ($sekolah->getFirstMedia() && $validated["fotos"]) {
-            $medias = $sekolah->getMedia();
-            foreach ($medias as $media) $media->delete();
-            foreach ($validated["fotos"] as $foto) $sekolah->addMedia($foto)->toMediaCollection();
+        if (isset($validated["file"])) {
+            if ($sekolah->getFirstMedia()) {
+                $medias = $sekolah->getMedia();
+                foreach ($medias as $media) $media->delete();
+            }
+            
+            $sekolah->addMedia($validated["file"])->toMediaCollection();
         }
 
-        return $sekolah;
+        return $sekolah->refresh();
     }
 }

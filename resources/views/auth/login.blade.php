@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-        <div class="col-md-8 offset-2">
+        <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-header card-header-stretch">
                     <h2 class="card-title">{{ __('Login') }}</h2>
@@ -77,11 +77,28 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <label class="fw-bold" for="">Alamat:</label>
-                                        <p class="card-text">{{ $sekolah->alamat }}</p>
-                                        
-                                        <label class="fw-bold" for="">Deskripsi:</label>
-                                        <p class="card-text">{{ $sekolah->deskripsi }}</p>
+                                        <div class="row">
+                                            @if ($sekolah->getFirstMedia())
+                                                <div class="col-md-4 mb-3 mb-md-0">
+                                                    <img src="{{ $sekolah->getFirstMedia()->getFullUrl() }}" class="w-100 rounded" alt="">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <label class="fw-bold" for="">Alamat:</label>
+                                                    <p class="card-text">{{ $sekolah->alamat }}</p>
+                                                    
+                                                    <label class="fw-bold" for="">Deskripsi:</label>
+                                                    <p class="card-text">{{ $sekolah->deskripsi }}</p>
+                                                </div>
+                                            @else
+                                            <div class="col-md-12">
+                                                <label class="fw-bold" for="">Alamat:</label>
+                                                <p class="card-text">{{ $sekolah->alamat }}</p>
+                                                
+                                                <label class="fw-bold" for="">Deskripsi:</label>
+                                                <p class="card-text">{{ $sekolah->deskripsi }}</p>
+                                            </div>
+                                            @endif                                            
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach

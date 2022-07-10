@@ -53,6 +53,8 @@
                         title="Email"
                         id="email-input"
                         value="{{ $user->email }}"
+                        maxchar="30"
+                        info="minimal 11 karakter. maksimal 30 karakter"
                     />
 
                     @if ($user->role == "siswa")
@@ -102,8 +104,8 @@
                         title="Password"
                         id="password-input"
                         required="required"
-                        maxchar="30"
-                        info="minimal 8 karakter. maksimal 30 karakter"
+                        maxchar="15"
+                        info="minimal 8 karakter. maksimal 15 karakter"
                     />
 
                     <x-text-input
@@ -111,7 +113,7 @@
                         name="password_confirmation"
                         title="Password Confirmation"
                         id="password-confirmation-input"
-                        maxchar="30"
+                        maxchar="15"
                         required="required"
                     />
 

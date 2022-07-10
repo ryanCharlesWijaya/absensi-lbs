@@ -32,7 +32,7 @@
                                     title="email"
                                     id="email-input"
                                     required="required"
-                                    maxchar="60"
+                                    maxchar="30"
                                     />
         
                                 <x-text-input
@@ -41,7 +41,7 @@
                                     title="password"
                                     id="password-input"
                                     required="required"
-                                    maxchar="30"
+                                    maxchar="15"
                                     />
         
         

@@ -34,7 +34,6 @@
                     
                     <x-text-input
                         type="text"
-                        type="number"
                         name="nomor_telepon"
                         title="Nomor Telepon"
                         id="nomor-telepon-input"

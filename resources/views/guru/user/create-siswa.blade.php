@@ -28,8 +28,7 @@
                     />
 
                     <x-text-input
-                        type="number"
-                        type="number"
+                        type="text"
                         name="nomor_telepon"
                         title="Nomor Telepon"
                         id="nomor-telepon-input"
